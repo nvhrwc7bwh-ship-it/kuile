@@ -1,0 +1,132 @@
+<view class="page" wx:if="{{flag}}">
+  <view class="status-bar"></view>
+
+  <!-- 导航 -->
+  <view class="navbar">
+    <view class="navbar-back" bindtap="onBack">‹</view>
+    <text class="navbar-title">目标详情</text>
+    <view class="navbar-back" bindtap="shareFlag">⋯</view>
+  </view>
+
+  <!-- 主信息 -->
+  <view class="card">
+    <view class="head">
+      <view class="avatar" bindtap="goProfile" data-uid="{{flag.user.id}}">{{flag.user.name[0]}}</view>
+      <view class="who">
+        <text class="who-name">{{flag.user.name}}</text>
+        <text class="who-sub">{{flag.days}} 天 · 押金 {{flag.deposit}} 元</text>
+      </view>
+      <text class="tag {{flag.status === 'success' ? 'tag-green' : (flag.status === 'failed' ? 'tag-red' : 'tag-gray')}}">
+        {{flag.status === 'prep' ? '筹备中' : (flag.status === 'running' ? '进行中' : (flag.status === 'success' ? '已达标' : (flag.status === 'failed' ? '未达标' : '已取消')))}}
+      </text>
+    </view>
+
+    <text class="title">{{flag.title}}</text>
+    <text class="reason" wx:if="{{flag.reason}}">{{flag.reason}}</text>
+
+    <view class="nums">
+      <view class="n"><text class="n-v">{{flag.startWeight}}</text><text class="n-k">起始 kg</text></view>
+      <view class="n"><text class="n-v">{{flag.curWeight || '—'}}</text><text class="n-k">当前 kg</text></view>
+      <view class="n"><text class="n-v">{{flag.targetWeight}}</text><text class="n-k">目标 kg</text></view>
+    </view>
+
+    <view class="progress">
+      <view class="progress-bar" style="width: {{flag.checkedDays / flag.days * 100}}%"></view>
+    </view>
+    <view class="prog-foot">
+      <text class="t-muted t-small">已打卡 {{flag.checkedDays}} / {{flag.days}} 天</text>
+      <text class="t-muted t-small">连续 {{flag.streak}} 天 · 断卡 {{flag.breaks}}/{{flag.breakLimit}} 次</text>
+    </view>
+  </view>
+
+  <!-- 见证席 -->
+  <view class="card">
+    <view class="card-head">
+      <text class="card-title">见证席</text>
+      <text class="t-muted t-small">{{flag.acceptedWitnessCount}} 位已接受</text>
+    </view>
+    <view class="witness-list">
+      <view class="witness" wx:for="{{flag.witnesses}}" wx:key="userId">
+        <view class="w-avatar">{{item.name[0]}}</view>
+        <text class="w-name">{{item.name}}</text>
+        <text class="tag {{item.status === 'accepted' ? 'tag-green' : 'tag-gray'}}">
+          {{item.status === 'accepted' ? '已接受' : '待回应'}}
+        </text>
+      </view>
+      <text class="t-muted t-small" wx:if="{{flag.witnesses.length === 0}}">还没有见证席</text>
+    </view>
+    <view class="quorum" wx:if="{{!flag.quorum.met}}">
+      见证席还差 {{flag.quorum.need - flag.acceptedWitnessCount}} 位才能成局
+    </view>
+    <button class="btn btn-ghost btn-sm" bindtap="goWitness" style="margin-top: 20rpx;">
+      进入见证席面板
+    </button>
+  </view>
+
+  <!-- 节点 -->
+  <view class="card">
+    <text class="card-title">称重节点</text>
+    <view class="nodes">
+      <view class="node" wx:for="{{flag.nodes}}" wx:key="index">
+        <view class="node-dot {{item.state}}"></view>
+        <view class="node-info">
+          <text class="node-name">{{item.name}}</text>
+          <text class="node-sub">第 {{item.day}} 天 · {{item.date}}</text>
+        </view>
+        <text class="node-w" wx:if="{{item.weight}}">{{item.weight}} kg</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 留言 -->
+  <view class="card">
+    <text class="card-title">留言</text>
+    <view class="msg-list">
+      <view class="msg" wx:for="{{flag.messages}}" wx:key="id">
+        <view class="msg-head">
+          <text class="msg-name">{{item.nickname}}</text>
+          <text class="t-muted t-small">{{item.createdAt}}</text>
+        </view>
+        <text class="msg-text">{{item.content}}</text>
+        <view class="msg-reply" wx:if="{{item.reply}}">
+          <text class="msg-reply-name">{{item.reply.isOwner ? '发起人' : '回复'}}：</text>
+          <text>{{item.reply.content}}</text>
+        </view>
+        <view class="msg-act" bindtap="openReply" data-id="{{item.id}}">回复</view>
+      </view>
+      <text class="t-muted t-small" wx:if="{{flag.messages.length === 0}}">还没有留言</text>
+    </view>
+
+    <!-- 留言输入 -->
+    <view class="msg-input">
+      <input class="m-input" placeholder="说点什么…（匿名）"
+             value="{{messageInput}}" bindinput="onMessageInput" />
+      <button class="btn btn-primary btn-sm" bindtap="sendMessage">发送</button>
+    </view>
+  </view>
+
+  <!-- 底部操作条 -->
+  <view class="footer-bar">
+    <block wx:if="{{flag.isMine}}">
+      <button class="btn btn-primary" bindtap="goCheckin" wx:if="{{flag.status === 'running'}}">今日打卡</button>
+      <button class="btn btn-plain" bindtap="goRecord" wx:if="{{flag.status === 'success' || flag.status === 'failed'}}">看记录卡</button>
+    </block>
+    <block wx:else>
+      <button class="btn btn-plain" bindtap="toggleLike">❤️ {{flag.likeCount}}</button>
+      <button class="btn btn-plain" bindtap="toggleWatch">👁 {{flag.watchCount}}</button>
+      <button class="btn btn-danger" bindtap="reportFlag">举报</button>
+    </block>
+  </view>
+
+  <!-- 回复弹层 -->
+  <view class="reply-mask" wx:if="{{showReplyBox}}" bindtap="closeReply">
+    <view class="reply-box" catchtap="noop">
+      <text class="reply-title">回复这条留言</text>
+      <textarea class="textarea" value="{{replyText}}" bindinput="onReplyInput"
+                placeholder="写点什么…" maxlength="300"></textarea>
+      <button class="btn btn-primary" bindtap="sendReply">发送</button>
+    </view>
+  </view>
+</view>
+
+<view class="empty" wx:if="{{loading}}">加载中…</view>

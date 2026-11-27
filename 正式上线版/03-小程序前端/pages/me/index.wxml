@@ -1,0 +1,66 @@
+<view class="page" wx:if="{{user}}">
+  <view class="status-bar"></view>
+
+  <!-- 用户卡 -->
+  <view class="card user-card" bindtap="goProfile">
+    <view class="u-avatar">{{user.nickname[0]}}</view>
+    <view class="u-info">
+      <text class="u-name">{{user.nickname}}</text>
+      <text class="u-bio" wx:if="{{user.bio}}">{{user.bio}}</text>
+      <view class="credit-row">
+        <text class="credit-num">{{user.creditScore}}</text>
+        <text class="credit-tier">{{user.creditTier}}</text>
+      </view>
+    </view>
+    <text class="u-arrow">›</text>
+  </view>
+
+  <!-- 押金与权限 -->
+  <view class="card">
+    <view class="kv"><text class="k">押金上限</text><text class="v">{{user.depositMax}} 元</text></view>
+    <view class="kv"><text class="k">失败扣收比例</text><text class="v">{{user.failRate * 100}}%</text></view>
+    <view class="kv"><text class="k">累计发起</text><text class="v">{{user.flagsCreated}} 个 Flag</text></view>
+    <view class="kv"><text class="k">累计互动</text><text class="v">{{user.interactionCount}} 次</text></view>
+  </view>
+
+  <!-- 我的 Flag -->
+  <view class="card">
+    <view class="card-head">
+      <text class="card-title">我的 Flag</text>
+      <text class="link" bindtap="goCreate">+ 立一个</text>
+    </view>
+    <view class="my-flag" wx:for="{{flags}}" wx:key="id" data-id="{{item.id}}" bindtap="goFlag">
+      <view class="mf-left">
+        <text class="mf-title">{{item.title}}</text>
+        <text class="mf-sub">{{item.days}} 天 · 打卡 {{item.checkedDays}}/{{item.days}} · 押金 {{item.deposit}} 元</text>
+      </view>
+      <text class="tag {{item.status === 'success' ? 'tag-green' : (item.status === 'failed' ? 'tag-red' : 'tag-gray')}}">
+        {{item.status === 'prep' ? '筹备中' : (item.status === 'running' ? '进行中' : (item.status === 'success' ? '已达标' : '未达标'))}}
+      </text>
+    </view>
+    <text class="t-muted t-small" wx:if="{{flags.length === 0}}">还没有立过 Flag</text>
+  </view>
+
+  <!-- 功能区 -->
+  <view class="card">
+    <text class="card-title">我的</text>
+    <view class="func" bindtap="goWitness">
+      <text class="func-icon">🤝</text>
+      <text class="func-label">见证席任务</text>
+      <text class="func-badge" wx:if="{{witnessCount > 0}}">{{witnessCount}}</text>
+      <text class="u-arrow">›</text>
+    </view>
+    <view class="func" bindtap="goCreditLogs">
+      <text class="func-icon">📊</text>
+      <text class="func-label">信用分明细</text>
+      <text class="u-arrow">›</text>
+    </view>
+    <view class="func" bindtap="goAgreement">
+      <text class="func-icon">📄</text>
+      <text class="func-label">用户协议与隐私政策</text>
+      <text class="u-arrow">›</text>
+    </view>
+  </view>
+</view>
+
+<view class="empty" wx:if="{{loading}}">加载中…</view>

@@ -1,0 +1,52 @@
+<view class="page" wx:if="{{card}}">
+  <view class="status-bar"></view>
+
+  <!-- 结局横幅 -->
+  <view class="banner {{card.outcome === 'success' ? 'ok' : 'no'}}">
+    <text class="banner-icon">{{card.outcome === 'success' ? '🏆' : '📋'}}</text>
+    <text class="banner-title">{{card.outcome === 'success' ? '达标了' : '这次没成'}}</text>
+    <text class="banner-sub">{{card.tier}} 档 · {{card.witnesses.length}} 位见证</text>
+  </view>
+
+  <!-- 目标 -->
+  <view class="card">
+    <text class="card-title">{{card.title}}</text>
+    <view class="nums">
+      <view class="n"><text class="n-v">{{card.startWeight}}</text><text class="n-k">起始 kg</text></view>
+      <view class="n"><text class="n-v">{{card.finalWeight || '—'}}</text><text class="n-k">最终 kg</text></view>
+      <view class="n"><text class="n-v">{{card.targetWeight}}</text><text class="n-k">目标 kg</text></view>
+    </view>
+    <view class="kv"><text class="k">周期</text><text class="v">{{card.days}} 天</text></view>
+    <view class="kv"><text class="k">打卡</text><text class="v">{{card.checkedDays}} 天 · 断卡 {{card.breaks}} 次</view>
+    <view class="kv">
+      <text class="k">押金</text>
+      <text class="v" wx:if="{{card.depositEnabled}}">押 {{card.depositPaid}} 元{{card.outcome === 'success' ? '（已全退）' : '（扣 ' + card.lostAmount + ' 元）'}}</text>
+      <text class="v" wx:else>{{card.depositAmount > 0 ? '名义 ' + card.depositAmount + ' 元（内测阶段未收取）' : '0 元（内测阶段未收取）'}}</text>
+    </view>
+    <view class="kv"><text class="k">信用分</text><text class="v">{{card.creditDelta > 0 ? '+' : ''}}{{card.creditDelta}}</text></view>
+  </view>
+
+  <!-- 见证席头像墙 -->
+  <view class="card">
+    <text class="card-title">见证席</text>
+    <view class="wall">
+      <view class="w" wx:for="{{card.witnesses}}" wx:key="id">
+        <view class="w-a">{{item.name[0]}}</view>
+        <text class="w-n">{{item.name}}</text>
+      </view>
+      <text class="t-muted t-small" wx:if="{{card.witnesses.length === 0}}">这一局独自打卡</text>
+    </view>
+  </view>
+
+  <!-- 金句 -->
+  <view class="card" wx:if="{{card.quote}}">
+    <text class="quote">「{{card.quote}}」</text>
+  </view>
+
+  <view class="pad">
+    <button class="btn btn-primary" bindtap="shareCard">分享这张记录卡</button>
+  </view>
+</view>
+
+<view class="empty" wx:if="{{loading}}">加载中…</view>
+<view class="empty" wx:if="{{!loading && !card}}">这张记录卡还不存在</view>

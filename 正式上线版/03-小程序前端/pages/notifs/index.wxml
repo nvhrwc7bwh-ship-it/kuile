@@ -1,0 +1,29 @@
+<view class="page">
+  <view class="status-bar"></view>
+
+  <view class="head">
+    <text class="head-title">通知</text>
+    <text class="head-sub" bindtap="goWitness">我的见证任务 ›</text>
+  </view>
+
+  <view class="filters">
+    <view class="filter {{filter === item.key ? 'on' : ''}}"
+          wx:for="{{filters}}" wx:key="key"
+          data-key="{{item.key}}" bindtap="selectFilter">{{item.label}}</view>
+  </view>
+
+  <view class="notif-list">
+    <view class="notif {{item.isRead ? '' : 'unread'}}"
+          wx:for="{{list}}" wx:key="id"
+          wx:if="{{filter === 'all' || (filter === 'todo' ? isTodo(item) : !isTodo(item))}}"
+          data-index="{{index}}" bindtap="openItem">
+      <view class="notif-dot" wx:if="{{!item.isRead}}"></view>
+      <text class="notif-title">{{item.title}}</text>
+      <text class="notif-content">{{item.content}}</text>
+      <text class="t-muted t-small">{{item.createdAt}}</text>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{!loading && list.length === 0}}">还没有通知</view>
+  <view class="loading" wx:if="{{loading}}">加载中…</view>
+</view>

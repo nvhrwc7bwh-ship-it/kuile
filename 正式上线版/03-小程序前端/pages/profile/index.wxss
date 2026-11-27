@@ -1,0 +1,65 @@
+/* 亏了 · 用户主页专属样式 */
+
+.user-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 20rpx;
+}
+
+.u-avatar {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 48rpx;
+  background: #1F5F4E;
+  color: #FFFFFF;
+  font-size: 40rpx;
+  text-align: center;
+  line-height: 96rpx;
+  flex-shrink: 0;
+}
+
+.u-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.u-name {
+  display: block;
+  font-size: 34rpx;
+  font-weight: 700;
+}
+
+.u-bio {
+  display: block;
+  font-size: 23rpx;
+  color: #6B6560;
+  margin: 4rpx 0 10rpx;
+}
+
+.u-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10rpx;
+}
+
+.pf {
+  padding: 20rpx 0;
+  border-bottom: 2rpx solid #F0EDE8;
+}
+
+.pf:last-child {
+  border-bottom: none;
+}
+
+.pf-title {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 500;
+  margin-bottom: 10rpx;
+}
+
+.pf-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

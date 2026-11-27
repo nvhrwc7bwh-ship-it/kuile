@@ -1,0 +1,585 @@
+2026-11-27T09:07:16.190Z [INFO] Flag 已创建 {"flagId":"flg_bea4acc480e1863df528aac4","userId":"usr_test","periodDays":7,"amount":0}
+2026-11-27T09:07:16.199Z [INFO] 筹备期结束，转入进行中 {"flagId":"flg_bea4acc480e1863df528aac4"}
+2026-11-27T09:07:16.200Z [INFO] 打卡已提交，等待 AI 判定 {"flagId":"flg_bea4acc480e1863df528aac4","day":1,"weight":69.8}
+2026-11-27T09:07:16.201Z [INFO] 打卡已提交，等待 AI 判定 {"flagId":"flg_bea4acc480e1863df528aac4","day":2,"weight":69.5}
+2026-11-27T09:07:16.205Z [INFO] Flag 结算完成 {"flagId":"flg_bea4acc480e1863df528aac4","success":true,"tier":"T0","creditDelta":3,"refund":0,"deduct":0}
+2026-11-27T09:07:16.206Z [INFO] Flag 已创建 {"flagId":"flg_c9a6eae047841c62e795e14a","userId":"usr_test","periodDays":7,"amount":0}
+2026-11-27T09:07:16.207Z [INFO] Flag 结算完成 {"flagId":"flg_c9a6eae047841c62e795e14a","success":false,"tier":"T0","creditDelta":-3,"refund":0,"deduct":0}
+2026-11-27T09:07:16.208Z [INFO] Flag 已创建 {"flagId":"flg_96ccd4d40dd50e29a85622e2","userId":"usr_test","periodDays":7,"amount":0}
+2026-11-27T09:07:16.208Z [INFO] 筹备期结束，转入进行中 {"flagId":"flg_bea4acc480e1863df528aac4"}
+2026-11-27T09:07:16.209Z [INFO] 筹备期结束，转入进行中 {"flagId":"flg_c9a6eae047841c62e795e14a"}
+2026-11-27T09:07:16.209Z [INFO] 筹备期结束，转入进行中 {"flagId":"flg_96ccd4d40dd50e29a85622e2"}
+2026-11-27T09:07:16.210Z [INFO] 断卡判定 {"flagId":"flg_96ccd4d40dd50e29a85622e2","day":2,"breaks":1,"state":"fail"}
+2026-11-27T09:07:16.211Z [INFO] Flag 结算完成 {"flagId":"flg_96ccd4d40dd50e29a85622e2","success":false,"tier":"T0","creditDelta":-3,"refund":0,"deduct":0}
+2026-11-27T09:07:16.587Z [INFO] Flag 已创建 {"flagId":"flg_926bd8c4c07eebdc9f39b7c0","userId":"usr_beta","periodDays":7,"amount":0}
+2026-11-27T09:07:16.593Z [INFO] Flag 结算完成 {"flagId":"flg_926bd8c4c07eebdc9f39b7c0","success":false,"tier":"T0","creditDelta":-3,"refund":0,"deduct":0}
+2026-11-27T09:07:16.596Z [INFO] Flag 已创建 {"flagId":"flg_198efd0d763926c5e0993034","userId":"usr_pay","periodDays":7,"amount":0}
+2026-11-27T09:07:16.598Z [INFO] Flag 结算完成 {"flagId":"flg_198efd0d763926c5e0993034","success":false,"tier":"T0","creditDelta":-3,"refund":130,"deduct":70}
+2026-11-27T09:07:16.598Z [INFO] Flag 已创建 {"flagId":"flg_95e4a3ec614c734f623d02a7","userId":"usr_flip_a","periodDays":7,"amount":0}
+2026-11-27T09:07:16.599Z [INFO] Flag 结算完成 {"flagId":"flg_95e4a3ec614c734f623d02a7","success":false,"tier":"T0","creditDelta":-3,"refund":0,"deduct":0}
+2026-11-27T09:07:16.600Z [INFO] Flag 已创建 {"flagId":"flg_25583d34e314e09619d02145","userId":"usr_flip_b","periodDays":7,"amount":0}
+2026-11-27T09:07:16.601Z [INFO] Flag 结算完成 {"flagId":"flg_25583d34e314e09619d02145","success":false,"tier":"T0","creditDelta":-3,"refund":130,"deduct":70}
+2026-11-27T09:07:16.601Z [INFO] Flag 已创建 {"flagId":"flg_2f13dc9adf51d54b7d4c144d","userId":"usr_api","periodDays":7,"amount":0}
+2026-11-27T09:07:16.603Z [INFO] 内测阶段免收押金 {"flagId":"flg_2f13dc9adf51d54b7d4c144d","nominalAmount":200}
+2026-11-27T09:07:16.603Z [INFO] Flag 已创建 {"flagId":"flg_76d3b18dc032166666011354","userId":"usr_api","periodDays":7,"amount":0}
+2026-11-27T09:07:17.203Z [WARN] 已跳过数据库连接检查（SKIP_DB_CHECK=1）—— 仅用于接口路由冒烟测试
+2026-11-27T09:07:17.223Z [INFO] 定时任务已启动（每 60 秒）
+2026-11-27T09:07:17.230Z [INFO] 亏了 · 后端服务已启动 {"port":3999,"env":"test","apiBaseUrl":"https://api.yourdomain.com"}
+2026-11-27T09:07:17.331Z [INFO] 数据库连接池已创建 {"host":"127.0.0.1","database":"kuile"}
+2026-11-27T09:07:17.342Z [ERROR] 健康检查：数据库连接失败 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.349Z [INFO] GET /api/health → 200 (22ms)
+2026-11-27T09:07:17.468Z [ERROR] 健康检查：数据库连接失败 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.469Z [INFO] GET /api/health → 200 (2ms)
+2026-11-27T09:07:17.475Z [WARN] GET /api/flags/my → 400 (1ms)
+2026-11-27T09:07:17.478Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.478Z [WARN] GET /api/flags/my → 400 (1ms)
+2026-11-27T09:07:17.498Z [WARN] POST /api/auth/login → 400 (1ms)
+2026-11-27T09:07:17.501Z [WARN] GET /api/not-exist-xxx → 404 (1ms)
+2026-11-27T09:07:17.504Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.504Z [WARN] GET /api/flags/config → 400 (1ms)
+2026-11-27T09:07:17.507Z [ERROR] 未捕获异常 {"path":"/api/flags","err":"connect ECONNREFUSED 127.0.0.1:3306","stack":"Error: connect ECONNREFUSED 127.0.0.1:3306\n    at Object.query (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:45:34)\n    at E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\routes\\flags.js:113:27\n    at Layer.handle [as handle_request] (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at optionalAuth (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\middleware\\auth.js:123:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"}
+2026-11-27T09:07:17.507Z [ERROR] GET /api/flags → 500 (2ms)
+2026-11-27T09:07:17.509Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.510Z [WARN] GET /api/flags/my → 400 (2ms)
+2026-11-27T09:07:17.513Z [ERROR] 未捕获异常 {"path":"/api/flags/flg_test/checkins","err":"connect ECONNREFUSED 127.0.0.1:3306","stack":"Error: connect ECONNREFUSED 127.0.0.1:3306\n    at Object.query (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:45:34)\n    at E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\routes\\flags.js:281:27\n    at Layer.handle [as handle_request] (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at optionalAuth (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\middleware\\auth.js:123:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"}
+2026-11-27T09:07:17.514Z [ERROR] GET /api/flags/flg_test/checkins → 500 (3ms)
+2026-11-27T09:07:17.521Z [ERROR] 未捕获异常 {"path":"/api/flags/flg_test","err":"connect ECONNREFUSED 127.0.0.1:3306","stack":"Error: connect ECONNREFUSED 127.0.0.1:3306\n    at query (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:45:34)\n    at Object.queryOne (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:53:22)\n    at Object.getFlag (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\services\\flagService.js:97:22)\n    at E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\routes\\flags.js:234:36\n    at Layer.handle [as handle_request] (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at optionalAuth (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\middleware\\auth.js:123:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"}
+2026-11-27T09:07:17.522Z [ERROR] GET /api/flags/flg_test → 500 (6ms)
+2026-11-27T09:07:17.526Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.526Z [WARN] POST /api/flags/flg_test/checkin → 400 (1ms)
+2026-11-27T09:07:17.528Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.528Z [WARN] POST /api/flags/flg_test/cancel → 400 (1ms)
+2026-11-27T09:07:17.530Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.530Z [WARN] GET /api/auth/profile → 400 (1ms)
+2026-11-27T09:07:17.533Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.534Z [WARN] POST /api/auth/logout → 400 (3ms)
+2026-11-27T09:07:17.535Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.536Z [WARN] GET /api/notifications → 400 (2ms)
+2026-11-27T09:07:17.538Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.538Z [WARN] GET /api/notifications/unread-count → 400 (1ms)
+2026-11-27T09:07:17.539Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.540Z [WARN] POST /api/notifications/read → 400 (1ms)
+2026-11-27T09:07:17.544Z [ERROR] 未捕获异常 {"path":"/api/record-cards/flg_test","err":"connect ECONNREFUSED 127.0.0.1:3306","stack":"Error: connect ECONNREFUSED 127.0.0.1:3306\n    at query (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:45:34)\n    at Object.queryOne (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:53:22)\n    at E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\routes\\notifications.js:78:25\n    at Layer.handle [as handle_request] (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at optionalAuth (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\middleware\\auth.js:123:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"}
+2026-11-27T09:07:17.544Z [ERROR] GET /api/record-cards/flg_test → 500 (3ms)
+2026-11-27T09:07:17.546Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.546Z [WARN] GET /api/me/credit-logs → 400 (1ms)
+2026-11-27T09:07:17.550Z [ERROR] 未捕获异常 {"path":"/api/users/usr_test","err":"connect ECONNREFUSED 127.0.0.1:3306","stack":"Error: connect ECONNREFUSED 127.0.0.1:3306\n    at query (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:45:34)\n    at Object.queryOne (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:53:22)\n    at E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\routes\\users.js:24:24\n    at Layer.handle [as handle_request] (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at optionalAuth (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\middleware\\auth.js:123:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"}
+2026-11-27T09:07:17.551Z [ERROR] GET /api/users/usr_test → 500 (4ms)
+2026-11-27T09:07:17.555Z [ERROR] 未捕获异常 {"path":"/api/users/usr_test/flags","err":"connect ECONNREFUSED 127.0.0.1:3306","stack":"Error: connect ECONNREFUSED 127.0.0.1:3306\n    at Object.query (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:45:34)\n    at E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\routes\\users.js:65:27\n    at Layer.handle [as handle_request] (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at optionalAuth (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\middleware\\auth.js:123:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"}
+2026-11-27T09:07:17.555Z [ERROR] GET /api/users/usr_test/flags → 500 (4ms)
+2026-11-27T09:07:17.557Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.558Z [WARN] POST /api/social/flags/flg_test/like → 400 (2ms)
+2026-11-27T09:07:17.560Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.560Z [WARN] POST /api/social/flags/flg_test/watch → 400 (1ms)
+2026-11-27T09:07:17.562Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.562Z [WARN] GET /api/social/flags/flg_test/messages → 400 (1ms)
+2026-11-27T09:07:17.564Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.564Z [WARN] POST /api/social/flags/flg_test/messages → 400 (1ms)
+2026-11-27T09:07:17.567Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.567Z [WARN] POST /api/social/messages/msg_test/reply → 400 (1ms)
+2026-11-27T09:07:17.569Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.569Z [WARN] POST /api/social/follow → 400 (1ms)
+2026-11-27T09:07:17.571Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.572Z [WARN] GET /api/social/following → 400 (1ms)
+2026-11-27T09:07:17.573Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.574Z [WARN] POST /api/social/objections → 400 (2ms)
+2026-11-27T09:07:17.580Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.581Z [WARN] GET /api/social/objections → 400 (6ms)
+2026-11-27T09:07:17.589Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.591Z [WARN] GET /api/witness/tasks → 400 (9ms)
+2026-11-27T09:07:17.593Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.594Z [WARN] GET /api/witness/panel/flg_test → 400 (2ms)
+2026-11-27T09:07:17.596Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.597Z [WARN] POST /api/witness/invite → 400 (2ms)
+2026-11-27T09:07:17.603Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.603Z [WARN] POST /api/witness/respond → 400 (1ms)
+2026-11-27T09:07:17.605Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.605Z [WARN] POST /api/witness/verdict → 400 (1ms)
+2026-11-27T09:07:17.607Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.607Z [WARN] GET /api/witness/pool → 400 (1ms)
+2026-11-27T09:07:17.609Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.609Z [WARN] POST /api/witness/pool/apply → 400 (1ms)
+2026-11-27T09:07:17.611Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.611Z [WARN] POST /api/witness/pool/invite → 400 (1ms)
+2026-11-27T09:07:17.613Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.613Z [WARN] POST /api/witness/recruit → 400 (1ms)
+2026-11-27T09:07:17.616Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.617Z [WARN] GET /api/witness/recruit/flg_test → 400 (3ms)
+2026-11-27T09:07:17.619Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.620Z [WARN] POST /api/witness/recruit/apply → 400 (2ms)
+2026-11-27T09:07:17.621Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.622Z [WARN] POST /api/witness/recruit/accept → 400 (1ms)
+2026-11-27T09:07:17.624Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.625Z [WARN] POST /api/pay/create → 400 (2ms)
+2026-11-27T09:07:17.626Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:07:17.627Z [WARN] GET /api/pay/order/ord_test → 400 (2ms)
+2026-11-27T09:07:17.628Z [ERROR] 微信支付回调处理失败 {"err":"回调缺少验签请求头"}
+2026-11-27T09:07:17.628Z [ERROR] POST /api/pay/notify → 500 (0ms)
+2026-11-27T09:16:05.376Z [INFO] Flag 已创建 {"flagId":"flg_ef95af50bab45ca15b6957c0","userId":"usr_test","periodDays":7,"amount":0}
+2026-11-27T09:16:05.385Z [INFO] 筹备期结束，转入进行中 {"flagId":"flg_ef95af50bab45ca15b6957c0"}
+2026-11-27T09:16:05.386Z [INFO] 打卡已提交，等待 AI 判定 {"flagId":"flg_ef95af50bab45ca15b6957c0","day":1,"weight":69.8}
+2026-11-27T09:16:05.388Z [INFO] 打卡已提交，等待 AI 判定 {"flagId":"flg_ef95af50bab45ca15b6957c0","day":2,"weight":69.5}
+2026-11-27T09:16:05.391Z [INFO] Flag 结算完成 {"flagId":"flg_ef95af50bab45ca15b6957c0","success":true,"tier":"T0","creditDelta":3,"refund":0,"deduct":0}
+2026-11-27T09:16:05.392Z [INFO] Flag 已创建 {"flagId":"flg_029e0535dc2b16bbca212830","userId":"usr_test","periodDays":7,"amount":0}
+2026-11-27T09:16:05.394Z [INFO] Flag 结算完成 {"flagId":"flg_029e0535dc2b16bbca212830","success":false,"tier":"T0","creditDelta":-3,"refund":0,"deduct":0}
+2026-11-27T09:16:05.394Z [INFO] Flag 已创建 {"flagId":"flg_1718dc826e6aa3ee4357f04c","userId":"usr_test","periodDays":7,"amount":0}
+2026-11-27T09:16:05.395Z [INFO] 筹备期结束，转入进行中 {"flagId":"flg_ef95af50bab45ca15b6957c0"}
+2026-11-27T09:16:05.395Z [INFO] 筹备期结束，转入进行中 {"flagId":"flg_029e0535dc2b16bbca212830"}
+2026-11-27T09:16:05.395Z [INFO] 筹备期结束，转入进行中 {"flagId":"flg_1718dc826e6aa3ee4357f04c"}
+2026-11-27T09:16:05.396Z [INFO] 断卡判定 {"flagId":"flg_1718dc826e6aa3ee4357f04c","day":2,"breaks":1,"state":"fail"}
+2026-11-27T09:16:05.397Z [INFO] Flag 结算完成 {"flagId":"flg_1718dc826e6aa3ee4357f04c","success":false,"tier":"T0","creditDelta":-3,"refund":0,"deduct":0}
+2026-11-27T09:16:05.753Z [INFO] Flag 已创建 {"flagId":"flg_ddfa41be837e0113dc046555","userId":"usr_beta","periodDays":7,"amount":0}
+2026-11-27T09:16:05.759Z [INFO] Flag 结算完成 {"flagId":"flg_ddfa41be837e0113dc046555","success":false,"tier":"T0","creditDelta":-3,"refund":0,"deduct":0}
+2026-11-27T09:16:05.761Z [INFO] Flag 已创建 {"flagId":"flg_3b9ac7741cf394d21c4ff97b","userId":"usr_pay","periodDays":7,"amount":0}
+2026-11-27T09:16:05.764Z [INFO] Flag 结算完成 {"flagId":"flg_3b9ac7741cf394d21c4ff97b","success":false,"tier":"T0","creditDelta":-3,"refund":130,"deduct":70}
+2026-11-27T09:16:05.765Z [INFO] Flag 已创建 {"flagId":"flg_7627b52a3cad9f5c8e29a9be","userId":"usr_flip_a","periodDays":7,"amount":0}
+2026-11-27T09:16:05.765Z [INFO] Flag 结算完成 {"flagId":"flg_7627b52a3cad9f5c8e29a9be","success":false,"tier":"T0","creditDelta":-3,"refund":0,"deduct":0}
+2026-11-27T09:16:05.766Z [INFO] Flag 已创建 {"flagId":"flg_e6c77f1070829e469d6cc2dc","userId":"usr_flip_b","periodDays":7,"amount":0}
+2026-11-27T09:16:05.767Z [INFO] Flag 结算完成 {"flagId":"flg_e6c77f1070829e469d6cc2dc","success":false,"tier":"T0","creditDelta":-3,"refund":130,"deduct":70}
+2026-11-27T09:16:05.768Z [INFO] Flag 已创建 {"flagId":"flg_1b87b999b8d8b6ecca8ef632","userId":"usr_api","periodDays":7,"amount":0}
+2026-11-27T09:16:05.769Z [INFO] 内测阶段免收押金 {"flagId":"flg_1b87b999b8d8b6ecca8ef632","nominalAmount":200}
+2026-11-27T09:16:05.770Z [INFO] Flag 已创建 {"flagId":"flg_41a40a631dfeb22c60d777b7","userId":"usr_api","periodDays":7,"amount":0}
+2026-11-27T09:16:06.432Z [WARN] 已跳过数据库连接检查（SKIP_DB_CHECK=1）—— 仅用于接口路由冒烟测试
+2026-11-27T09:16:06.452Z [INFO] 定时任务已启动（每 60 秒）
+2026-11-27T09:16:06.461Z [INFO] 亏了 · 后端服务已启动 {"port":3999,"env":"test","apiBaseUrl":"https://api.yourdomain.com"}
+2026-11-27T09:16:06.500Z [INFO] 数据库连接池已创建 {"host":"127.0.0.1","database":"kuile"}
+2026-11-27T09:16:06.506Z [ERROR] 健康检查：数据库连接失败 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.514Z [INFO] GET /api/health → 200 (15ms)
+2026-11-27T09:16:06.648Z [ERROR] 健康检查：数据库连接失败 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.649Z [INFO] GET /api/health → 200 (2ms)
+2026-11-27T09:16:06.656Z [WARN] GET /api/flags/my → 400 (2ms)
+2026-11-27T09:16:06.659Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.660Z [WARN] GET /api/flags/my → 400 (2ms)
+2026-11-27T09:16:06.677Z [WARN] POST /api/auth/login → 400 (1ms)
+2026-11-27T09:16:06.679Z [WARN] GET /api/not-exist-xxx → 404 (1ms)
+2026-11-27T09:16:06.681Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.682Z [WARN] GET /api/flags/config → 400 (2ms)
+2026-11-27T09:16:06.685Z [ERROR] 未捕获异常 {"path":"/api/flags","err":"connect ECONNREFUSED 127.0.0.1:3306","stack":"Error: connect ECONNREFUSED 127.0.0.1:3306\n    at Object.query (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:45:34)\n    at E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\routes\\flags.js:113:27\n    at Layer.handle [as handle_request] (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at optionalAuth (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\middleware\\auth.js:123:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"}
+2026-11-27T09:16:06.686Z [ERROR] GET /api/flags → 500 (4ms)
+2026-11-27T09:16:06.688Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.689Z [WARN] GET /api/flags/my → 400 (2ms)
+2026-11-27T09:16:06.694Z [ERROR] 未捕获异常 {"path":"/api/flags/flg_test/checkins","err":"connect ECONNREFUSED 127.0.0.1:3306","stack":"Error: connect ECONNREFUSED 127.0.0.1:3306\n    at Object.query (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:45:34)\n    at E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\routes\\flags.js:281:27\n    at Layer.handle [as handle_request] (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at optionalAuth (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\middleware\\auth.js:123:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"}
+2026-11-27T09:16:06.695Z [ERROR] GET /api/flags/flg_test/checkins → 500 (4ms)
+2026-11-27T09:16:06.701Z [ERROR] 未捕获异常 {"path":"/api/flags/flg_test","err":"connect ECONNREFUSED 127.0.0.1:3306","stack":"Error: connect ECONNREFUSED 127.0.0.1:3306\n    at query (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:45:34)\n    at Object.queryOne (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:53:22)\n    at Object.getFlag (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\services\\flagService.js:97:22)\n    at E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\routes\\flags.js:234:36\n    at Layer.handle [as handle_request] (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at optionalAuth (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\middleware\\auth.js:123:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"}
+2026-11-27T09:16:06.702Z [ERROR] GET /api/flags/flg_test → 500 (6ms)
+2026-11-27T09:16:06.706Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.707Z [WARN] POST /api/flags/flg_test/checkin → 400 (2ms)
+2026-11-27T09:16:06.709Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.709Z [WARN] POST /api/flags/flg_test/cancel → 400 (1ms)
+2026-11-27T09:16:06.711Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.712Z [WARN] GET /api/auth/profile → 400 (2ms)
+2026-11-27T09:16:06.713Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.714Z [WARN] POST /api/auth/logout → 400 (2ms)
+2026-11-27T09:16:06.715Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.716Z [WARN] GET /api/notifications → 400 (2ms)
+2026-11-27T09:16:06.717Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.718Z [WARN] GET /api/notifications/unread-count → 400 (2ms)
+2026-11-27T09:16:06.720Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.720Z [WARN] POST /api/notifications/read → 400 (2ms)
+2026-11-27T09:16:06.724Z [ERROR] 未捕获异常 {"path":"/api/record-cards/flg_test","err":"connect ECONNREFUSED 127.0.0.1:3306","stack":"Error: connect ECONNREFUSED 127.0.0.1:3306\n    at query (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:45:34)\n    at Object.queryOne (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:53:22)\n    at E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\routes\\notifications.js:78:25\n    at Layer.handle [as handle_request] (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at optionalAuth (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\middleware\\auth.js:123:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"}
+2026-11-27T09:16:06.724Z [ERROR] GET /api/record-cards/flg_test → 500 (3ms)
+2026-11-27T09:16:06.726Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.727Z [WARN] GET /api/me/credit-logs → 400 (2ms)
+2026-11-27T09:16:06.730Z [ERROR] 未捕获异常 {"path":"/api/users/usr_test","err":"connect ECONNREFUSED 127.0.0.1:3306","stack":"Error: connect ECONNREFUSED 127.0.0.1:3306\n    at query (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:45:34)\n    at Object.queryOne (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:53:22)\n    at E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\routes\\users.js:24:24\n    at Layer.handle [as handle_request] (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at optionalAuth (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\middleware\\auth.js:123:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"}
+2026-11-27T09:16:06.730Z [ERROR] GET /api/users/usr_test → 500 (2ms)
+2026-11-27T09:16:06.733Z [ERROR] 未捕获异常 {"path":"/api/users/usr_test/flags","err":"connect ECONNREFUSED 127.0.0.1:3306","stack":"Error: connect ECONNREFUSED 127.0.0.1:3306\n    at Object.query (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:45:34)\n    at E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\routes\\users.js:65:27\n    at Layer.handle [as handle_request] (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at optionalAuth (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\middleware\\auth.js:123:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"}
+2026-11-27T09:16:06.733Z [ERROR] GET /api/users/usr_test/flags → 500 (2ms)
+2026-11-27T09:16:06.736Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.736Z [WARN] POST /api/social/flags/flg_test/like → 400 (2ms)
+2026-11-27T09:16:06.738Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.739Z [WARN] POST /api/social/flags/flg_test/watch → 400 (2ms)
+2026-11-27T09:16:06.741Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.742Z [WARN] GET /api/social/flags/flg_test/messages → 400 (3ms)
+2026-11-27T09:16:06.745Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.746Z [WARN] POST /api/social/flags/flg_test/messages → 400 (2ms)
+2026-11-27T09:16:06.749Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.749Z [WARN] POST /api/social/messages/msg_test/reply → 400 (2ms)
+2026-11-27T09:16:06.751Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.752Z [WARN] POST /api/social/follow → 400 (2ms)
+2026-11-27T09:16:06.754Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.754Z [WARN] GET /api/social/following → 400 (1ms)
+2026-11-27T09:16:06.757Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.757Z [WARN] POST /api/social/objections → 400 (2ms)
+2026-11-27T09:16:06.763Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.764Z [WARN] GET /api/social/objections → 400 (6ms)
+2026-11-27T09:16:06.766Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.767Z [WARN] GET /api/witness/tasks → 400 (3ms)
+2026-11-27T09:16:06.775Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.776Z [WARN] GET /api/witness/panel/flg_test → 400 (8ms)
+2026-11-27T09:16:06.780Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.780Z [WARN] POST /api/witness/invite → 400 (2ms)
+2026-11-27T09:16:06.784Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.784Z [WARN] POST /api/witness/respond → 400 (2ms)
+2026-11-27T09:16:06.789Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.790Z [WARN] POST /api/witness/verdict → 400 (2ms)
+2026-11-27T09:16:06.792Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.793Z [WARN] GET /api/witness/pool → 400 (2ms)
+2026-11-27T09:16:06.796Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.796Z [WARN] POST /api/witness/pool/apply → 400 (2ms)
+2026-11-27T09:16:06.798Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.798Z [WARN] POST /api/witness/pool/invite → 400 (1ms)
+2026-11-27T09:16:06.800Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.800Z [WARN] POST /api/witness/recruit → 400 (1ms)
+2026-11-27T09:16:06.802Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.803Z [WARN] GET /api/witness/recruit/flg_test → 400 (2ms)
+2026-11-27T09:16:06.805Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.806Z [WARN] POST /api/witness/recruit/apply → 400 (2ms)
+2026-11-27T09:16:06.808Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.809Z [WARN] POST /api/witness/recruit/accept → 400 (2ms)
+2026-11-27T09:16:06.811Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.812Z [WARN] POST /api/pay/create → 400 (2ms)
+2026-11-27T09:16:06.814Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:16:06.814Z [WARN] GET /api/pay/order/ord_test → 400 (2ms)
+2026-11-27T09:16:06.816Z [ERROR] 微信支付回调处理失败 {"err":"回调缺少验签请求头"}
+2026-11-27T09:16:06.816Z [ERROR] POST /api/pay/notify → 500 (1ms)
+2026-11-27T09:19:35.398Z [INFO] Flag 已创建 {"flagId":"flg_c77f88fcef93bb40920f74a1","userId":"usr_test","periodDays":7,"amount":0}
+2026-11-27T09:19:35.406Z [INFO] 筹备期结束，转入进行中 {"flagId":"flg_c77f88fcef93bb40920f74a1"}
+2026-11-27T09:19:35.407Z [INFO] 打卡已提交，等待 AI 判定 {"flagId":"flg_c77f88fcef93bb40920f74a1","day":1,"weight":69.8}
+2026-11-27T09:19:35.409Z [INFO] 打卡已提交，等待 AI 判定 {"flagId":"flg_c77f88fcef93bb40920f74a1","day":2,"weight":69.5}
+2026-11-27T09:19:35.416Z [INFO] Flag 结算完成 {"flagId":"flg_c77f88fcef93bb40920f74a1","success":true,"tier":"T0","creditDelta":3,"refund":0,"deduct":0}
+2026-11-27T09:19:35.418Z [INFO] Flag 已创建 {"flagId":"flg_f30c9b401d902339c088ad4a","userId":"usr_test","periodDays":7,"amount":0}
+2026-11-27T09:19:35.419Z [INFO] Flag 结算完成 {"flagId":"flg_f30c9b401d902339c088ad4a","success":false,"tier":"T0","creditDelta":-3,"refund":0,"deduct":0}
+2026-11-27T09:19:35.420Z [INFO] Flag 已创建 {"flagId":"flg_5e1b7a3e4ff4453c7797c63f","userId":"usr_test","periodDays":7,"amount":0}
+2026-11-27T09:19:35.420Z [INFO] 筹备期结束，转入进行中 {"flagId":"flg_c77f88fcef93bb40920f74a1"}
+2026-11-27T09:19:35.421Z [INFO] 筹备期结束，转入进行中 {"flagId":"flg_f30c9b401d902339c088ad4a"}
+2026-11-27T09:19:35.421Z [INFO] 筹备期结束，转入进行中 {"flagId":"flg_5e1b7a3e4ff4453c7797c63f"}
+2026-11-27T09:19:35.422Z [INFO] 断卡判定 {"flagId":"flg_5e1b7a3e4ff4453c7797c63f","day":2,"breaks":1,"state":"fail"}
+2026-11-27T09:19:35.423Z [INFO] Flag 结算完成 {"flagId":"flg_5e1b7a3e4ff4453c7797c63f","success":false,"tier":"T0","creditDelta":-3,"refund":0,"deduct":0}
+2026-11-27T09:19:35.758Z [INFO] Flag 已创建 {"flagId":"flg_b3f31506df2e3600832bdfcd","userId":"usr_beta","periodDays":7,"amount":0}
+2026-11-27T09:19:35.763Z [INFO] Flag 结算完成 {"flagId":"flg_b3f31506df2e3600832bdfcd","success":false,"tier":"T0","creditDelta":-3,"refund":0,"deduct":0}
+2026-11-27T09:19:35.764Z [INFO] Flag 已创建 {"flagId":"flg_a32292dd10634fa50b35b0bc","userId":"usr_pay","periodDays":7,"amount":0}
+2026-11-27T09:19:35.766Z [INFO] Flag 结算完成 {"flagId":"flg_a32292dd10634fa50b35b0bc","success":false,"tier":"T0","creditDelta":-3,"refund":130,"deduct":70}
+2026-11-27T09:19:35.767Z [INFO] Flag 已创建 {"flagId":"flg_e79783b178e69ed715dfed1a","userId":"usr_flip_a","periodDays":7,"amount":0}
+2026-11-27T09:19:35.768Z [INFO] Flag 结算完成 {"flagId":"flg_e79783b178e69ed715dfed1a","success":false,"tier":"T0","creditDelta":-3,"refund":0,"deduct":0}
+2026-11-27T09:19:35.768Z [INFO] Flag 已创建 {"flagId":"flg_00b435355dc9e01cc0ae082c","userId":"usr_flip_b","periodDays":7,"amount":0}
+2026-11-27T09:19:35.769Z [INFO] Flag 结算完成 {"flagId":"flg_00b435355dc9e01cc0ae082c","success":false,"tier":"T0","creditDelta":-3,"refund":130,"deduct":70}
+2026-11-27T09:19:35.770Z [INFO] Flag 已创建 {"flagId":"flg_eb6f62512fb2f233ca7f1547","userId":"usr_api","periodDays":7,"amount":0}
+2026-11-27T09:19:35.771Z [INFO] 内测阶段免收押金 {"flagId":"flg_eb6f62512fb2f233ca7f1547","nominalAmount":200}
+2026-11-27T09:19:35.772Z [INFO] Flag 已创建 {"flagId":"flg_00d2ac9650009e06ba803c1c","userId":"usr_api","periodDays":7,"amount":0}
+2026-11-27T09:19:36.268Z [WARN] 已跳过数据库连接检查（SKIP_DB_CHECK=1）—— 仅用于接口路由冒烟测试
+2026-11-27T09:19:36.296Z [INFO] 定时任务已启动（每 60 秒）
+2026-11-27T09:19:36.305Z [INFO] 亏了 · 后端服务已启动 {"port":3999,"env":"test","apiBaseUrl":"https://api.yourdomain.com"}
+2026-11-27T09:19:36.458Z [INFO] 数据库连接池已创建 {"host":"127.0.0.1","database":"kuile"}
+2026-11-27T09:19:36.464Z [ERROR] 健康检查：数据库连接失败 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.470Z [INFO] GET /api/health → 200 (13ms)
+2026-11-27T09:19:36.592Z [ERROR] 健康检查：数据库连接失败 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.592Z [INFO] GET /api/health → 200 (1ms)
+2026-11-27T09:19:36.600Z [WARN] GET /api/flags/my → 400 (2ms)
+2026-11-27T09:19:36.603Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.603Z [WARN] GET /api/flags/my → 400 (1ms)
+2026-11-27T09:19:36.618Z [WARN] POST /api/auth/login → 400 (2ms)
+2026-11-27T09:19:36.619Z [WARN] GET /api/not-exist-xxx → 404 (1ms)
+2026-11-27T09:19:36.621Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.622Z [WARN] GET /api/flags/config → 400 (2ms)
+2026-11-27T09:19:36.625Z [ERROR] 未捕获异常 {"path":"/api/flags","err":"connect ECONNREFUSED 127.0.0.1:3306","stack":"Error: connect ECONNREFUSED 127.0.0.1:3306\n    at Object.query (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:45:34)\n    at E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\routes\\flags.js:113:27\n    at Layer.handle [as handle_request] (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at optionalAuth (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\middleware\\auth.js:123:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"}
+2026-11-27T09:19:36.625Z [ERROR] GET /api/flags → 500 (3ms)
+2026-11-27T09:19:36.627Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.628Z [WARN] GET /api/flags/my → 400 (2ms)
+2026-11-27T09:19:36.640Z [ERROR] 未捕获异常 {"path":"/api/flags/flg_test/checkins","err":"connect ECONNREFUSED 127.0.0.1:3306","stack":"Error: connect ECONNREFUSED 127.0.0.1:3306\n    at Object.query (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:45:34)\n    at E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\routes\\flags.js:281:27\n    at Layer.handle [as handle_request] (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at optionalAuth (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\middleware\\auth.js:123:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"}
+2026-11-27T09:19:36.641Z [ERROR] GET /api/flags/flg_test/checkins → 500 (11ms)
+2026-11-27T09:19:36.646Z [ERROR] 未捕获异常 {"path":"/api/flags/flg_test","err":"connect ECONNREFUSED 127.0.0.1:3306","stack":"Error: connect ECONNREFUSED 127.0.0.1:3306\n    at query (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:45:34)\n    at Object.queryOne (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:53:22)\n    at Object.getFlag (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\services\\flagService.js:97:22)\n    at E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\routes\\flags.js:234:36\n    at Layer.handle [as handle_request] (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at optionalAuth (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\middleware\\auth.js:123:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"}
+2026-11-27T09:19:36.646Z [ERROR] GET /api/flags/flg_test → 500 (5ms)
+2026-11-27T09:19:36.651Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.652Z [WARN] POST /api/flags/flg_test/checkin → 400 (2ms)
+2026-11-27T09:19:36.653Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.654Z [WARN] POST /api/flags/flg_test/cancel → 400 (1ms)
+2026-11-27T09:19:36.655Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.656Z [WARN] GET /api/auth/profile → 400 (2ms)
+2026-11-27T09:19:36.657Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.658Z [WARN] POST /api/auth/logout → 400 (2ms)
+2026-11-27T09:19:36.659Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.659Z [WARN] GET /api/notifications → 400 (1ms)
+2026-11-27T09:19:36.661Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.662Z [WARN] GET /api/notifications/unread-count → 400 (2ms)
+2026-11-27T09:19:36.664Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.665Z [WARN] POST /api/notifications/read → 400 (2ms)
+2026-11-27T09:19:36.667Z [ERROR] 未捕获异常 {"path":"/api/record-cards/flg_test","err":"connect ECONNREFUSED 127.0.0.1:3306","stack":"Error: connect ECONNREFUSED 127.0.0.1:3306\n    at query (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:45:34)\n    at Object.queryOne (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:53:22)\n    at E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\routes\\notifications.js:78:25\n    at Layer.handle [as handle_request] (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at optionalAuth (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\middleware\\auth.js:123:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"}
+2026-11-27T09:19:36.668Z [ERROR] GET /api/record-cards/flg_test → 500 (2ms)
+2026-11-27T09:19:36.669Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.670Z [WARN] GET /api/me/credit-logs → 400 (1ms)
+2026-11-27T09:19:36.672Z [ERROR] 未捕获异常 {"path":"/api/users/usr_test","err":"connect ECONNREFUSED 127.0.0.1:3306","stack":"Error: connect ECONNREFUSED 127.0.0.1:3306\n    at query (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:45:34)\n    at Object.queryOne (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:53:22)\n    at E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\routes\\users.js:24:24\n    at Layer.handle [as handle_request] (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at optionalAuth (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\middleware\\auth.js:123:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"}
+2026-11-27T09:19:36.672Z [ERROR] GET /api/users/usr_test → 500 (2ms)
+2026-11-27T09:19:36.675Z [ERROR] 未捕获异常 {"path":"/api/users/usr_test/flags","err":"connect ECONNREFUSED 127.0.0.1:3306","stack":"Error: connect ECONNREFUSED 127.0.0.1:3306\n    at Object.query (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:45:34)\n    at E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\routes\\users.js:65:27\n    at Layer.handle [as handle_request] (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at optionalAuth (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\middleware\\auth.js:123:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"}
+2026-11-27T09:19:36.675Z [ERROR] GET /api/users/usr_test/flags → 500 (2ms)
+2026-11-27T09:19:36.678Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.678Z [WARN] POST /api/social/flags/flg_test/like → 400 (2ms)
+2026-11-27T09:19:36.681Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.682Z [WARN] POST /api/social/flags/flg_test/watch → 400 (2ms)
+2026-11-27T09:19:36.683Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.684Z [WARN] GET /api/social/flags/flg_test/messages → 400 (2ms)
+2026-11-27T09:19:36.685Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.685Z [WARN] POST /api/social/flags/flg_test/messages → 400 (1ms)
+2026-11-27T09:19:36.687Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.688Z [WARN] POST /api/social/messages/msg_test/reply → 400 (2ms)
+2026-11-27T09:19:36.690Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.690Z [WARN] POST /api/social/follow → 400 (1ms)
+2026-11-27T09:19:36.692Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.692Z [WARN] GET /api/social/following → 400 (1ms)
+2026-11-27T09:19:36.694Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.694Z [WARN] POST /api/social/objections → 400 (1ms)
+2026-11-27T09:19:36.701Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.702Z [WARN] GET /api/social/objections → 400 (6ms)
+2026-11-27T09:19:36.714Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.714Z [WARN] GET /api/witness/tasks → 400 (12ms)
+2026-11-27T09:19:36.717Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.718Z [WARN] GET /api/witness/panel/flg_test → 400 (3ms)
+2026-11-27T09:19:36.720Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.721Z [WARN] POST /api/witness/invite → 400 (2ms)
+2026-11-27T09:19:36.725Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.726Z [WARN] POST /api/witness/respond → 400 (2ms)
+2026-11-27T09:19:36.727Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.728Z [WARN] POST /api/witness/verdict → 400 (2ms)
+2026-11-27T09:19:36.729Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.730Z [WARN] GET /api/witness/pool → 400 (1ms)
+2026-11-27T09:19:36.731Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.731Z [WARN] POST /api/witness/pool/apply → 400 (1ms)
+2026-11-27T09:19:36.733Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.733Z [WARN] POST /api/witness/pool/invite → 400 (1ms)
+2026-11-27T09:19:36.734Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.735Z [WARN] POST /api/witness/recruit → 400 (1ms)
+2026-11-27T09:19:36.737Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.738Z [WARN] GET /api/witness/recruit/flg_test → 400 (3ms)
+2026-11-27T09:19:36.740Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.740Z [WARN] POST /api/witness/recruit/apply → 400 (1ms)
+2026-11-27T09:19:36.742Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.742Z [WARN] POST /api/witness/recruit/accept → 400 (1ms)
+2026-11-27T09:19:36.744Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.744Z [WARN] POST /api/pay/create → 400 (1ms)
+2026-11-27T09:19:36.746Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T09:19:36.746Z [WARN] GET /api/pay/order/ord_test → 400 (1ms)
+2026-11-27T09:19:36.747Z [ERROR] 微信支付回调处理失败 {"err":"回调缺少验签请求头"}
+2026-11-27T09:19:36.748Z [ERROR] POST /api/pay/notify → 500 (1ms)
+2026-11-27T11:51:17.267Z [INFO] Flag 已创建 {"flagId":"flg_bce38535d5d5dbfc328fd91c","userId":"usr_test","periodDays":7,"amount":0}
+2026-11-27T11:51:17.288Z [INFO] 筹备期结束，转入进行中 {"flagId":"flg_bce38535d5d5dbfc328fd91c"}
+2026-11-27T11:51:17.292Z [INFO] 打卡已提交，等待 AI 判定 {"flagId":"flg_bce38535d5d5dbfc328fd91c","day":1,"weight":69.8}
+2026-11-27T11:51:17.296Z [INFO] 打卡已提交，等待 AI 判定 {"flagId":"flg_bce38535d5d5dbfc328fd91c","day":2,"weight":69.5}
+2026-11-27T11:51:17.308Z [INFO] Flag 结算完成 {"flagId":"flg_bce38535d5d5dbfc328fd91c","success":true,"tier":"T0","creditDelta":3,"refund":0,"deduct":0}
+2026-11-27T11:51:17.312Z [INFO] Flag 已创建 {"flagId":"flg_024569b67949ad4b6f67bcc8","userId":"usr_test","periodDays":7,"amount":0}
+2026-11-27T11:51:17.316Z [INFO] Flag 结算完成 {"flagId":"flg_024569b67949ad4b6f67bcc8","success":false,"tier":"T0","creditDelta":-3,"refund":0,"deduct":0}
+2026-11-27T11:51:17.318Z [INFO] Flag 已创建 {"flagId":"flg_59d1e633f7d57f14076d90ef","userId":"usr_test","periodDays":7,"amount":0}
+2026-11-27T11:51:17.320Z [INFO] 筹备期结束，转入进行中 {"flagId":"flg_bce38535d5d5dbfc328fd91c"}
+2026-11-27T11:51:17.320Z [INFO] 筹备期结束，转入进行中 {"flagId":"flg_024569b67949ad4b6f67bcc8"}
+2026-11-27T11:51:17.321Z [INFO] 筹备期结束，转入进行中 {"flagId":"flg_59d1e633f7d57f14076d90ef"}
+2026-11-27T11:51:17.324Z [INFO] 断卡判定 {"flagId":"flg_59d1e633f7d57f14076d90ef","day":2,"breaks":1,"state":"fail"}
+2026-11-27T11:51:17.329Z [INFO] Flag 结算完成 {"flagId":"flg_59d1e633f7d57f14076d90ef","success":false,"tier":"T0","creditDelta":-3,"refund":0,"deduct":0}
+2026-11-27T11:51:18.319Z [INFO] Flag 已创建 {"flagId":"flg_d13312b526ce382ca49c3b59","userId":"usr_beta","periodDays":7,"amount":0}
+2026-11-27T11:51:18.334Z [INFO] Flag 结算完成 {"flagId":"flg_d13312b526ce382ca49c3b59","success":false,"tier":"T0","creditDelta":-3,"refund":0,"deduct":0}
+2026-11-27T11:51:18.336Z [INFO] Flag 已创建 {"flagId":"flg_ae66a6acdef91e4697752ac4","userId":"usr_pay","periodDays":7,"amount":0}
+2026-11-27T11:51:18.341Z [INFO] Flag 结算完成 {"flagId":"flg_ae66a6acdef91e4697752ac4","success":false,"tier":"T0","creditDelta":-3,"refund":130,"deduct":70}
+2026-11-27T11:51:18.342Z [INFO] Flag 已创建 {"flagId":"flg_4130a565c73e4873e39db98d","userId":"usr_flip_a","periodDays":7,"amount":0}
+2026-11-27T11:51:18.345Z [INFO] Flag 结算完成 {"flagId":"flg_4130a565c73e4873e39db98d","success":false,"tier":"T0","creditDelta":-3,"refund":0,"deduct":0}
+2026-11-27T11:51:18.346Z [INFO] Flag 已创建 {"flagId":"flg_6d53bbfe7dae27e7af29ba13","userId":"usr_flip_b","periodDays":7,"amount":0}
+2026-11-27T11:51:18.348Z [INFO] Flag 结算完成 {"flagId":"flg_6d53bbfe7dae27e7af29ba13","success":false,"tier":"T0","creditDelta":-3,"refund":130,"deduct":70}
+2026-11-27T11:51:18.351Z [INFO] Flag 已创建 {"flagId":"flg_cf45196845894e1c0f520c75","userId":"usr_api","periodDays":7,"amount":0}
+2026-11-27T11:51:18.354Z [INFO] 内测阶段免收押金 {"flagId":"flg_cf45196845894e1c0f520c75","nominalAmount":200}
+2026-11-27T11:51:18.356Z [INFO] Flag 已创建 {"flagId":"flg_e3c5fe4e8e07b66ea18d5f14","userId":"usr_api","periodDays":7,"amount":0}
+2026-11-27T11:51:19.623Z [WARN] 已跳过数据库连接检查（SKIP_DB_CHECK=1）—— 仅用于接口路由冒烟测试
+2026-11-27T11:51:19.655Z [INFO] 定时任务已启动（每 60 秒）
+2026-11-27T11:51:19.671Z [INFO] 亏了 · 后端服务已启动 {"port":3999,"env":"test","apiBaseUrl":"https://api.yourdomain.com"}
+2026-11-27T11:51:19.832Z [INFO] 数据库连接池已创建 {"host":"127.0.0.1","database":"kuile"}
+2026-11-27T11:51:19.844Z [ERROR] 健康检查：数据库连接失败 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:19.853Z [INFO] GET /api/health → 200 (23ms)
+2026-11-27T11:51:20.048Z [ERROR] 健康检查：数据库连接失败 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.049Z [INFO] GET /api/health → 200 (3ms)
+2026-11-27T11:51:20.062Z [WARN] GET /api/flags/my → 400 (3ms)
+2026-11-27T11:51:20.066Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.067Z [WARN] GET /api/flags/my → 400 (3ms)
+2026-11-27T11:51:20.091Z [WARN] POST /api/auth/login → 400 (2ms)
+2026-11-27T11:51:20.094Z [WARN] GET /api/not-exist-xxx → 404 (1ms)
+2026-11-27T11:51:20.098Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.099Z [WARN] GET /api/flags/config → 400 (3ms)
+2026-11-27T11:51:20.105Z [ERROR] 未捕获异常 {"path":"/api/flags","err":"connect ECONNREFUSED 127.0.0.1:3306","stack":"Error: connect ECONNREFUSED 127.0.0.1:3306\n    at Object.query (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:45:34)\n    at E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\routes\\flags.js:113:27\n    at Layer.handle [as handle_request] (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at optionalAuth (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\middleware\\auth.js:123:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"}
+2026-11-27T11:51:20.106Z [ERROR] GET /api/flags → 500 (6ms)
+2026-11-27T11:51:20.111Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.112Z [WARN] GET /api/flags/my → 400 (4ms)
+2026-11-27T11:51:20.119Z [ERROR] 未捕获异常 {"path":"/api/flags/flg_test/checkins","err":"connect ECONNREFUSED 127.0.0.1:3306","stack":"Error: connect ECONNREFUSED 127.0.0.1:3306\n    at Object.query (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:45:34)\n    at E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\routes\\flags.js:281:27\n    at Layer.handle [as handle_request] (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at optionalAuth (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\middleware\\auth.js:123:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"}
+2026-11-27T11:51:20.120Z [ERROR] GET /api/flags/flg_test/checkins → 500 (6ms)
+2026-11-27T11:51:20.129Z [ERROR] 未捕获异常 {"path":"/api/flags/flg_test","err":"connect ECONNREFUSED 127.0.0.1:3306","stack":"Error: connect ECONNREFUSED 127.0.0.1:3306\n    at query (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:45:34)\n    at Object.queryOne (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:53:22)\n    at Object.getFlag (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\services\\flagService.js:97:22)\n    at E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\routes\\flags.js:234:36\n    at Layer.handle [as handle_request] (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at optionalAuth (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\middleware\\auth.js:123:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"}
+2026-11-27T11:51:20.129Z [ERROR] GET /api/flags/flg_test → 500 (7ms)
+2026-11-27T11:51:20.144Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.145Z [WARN] POST /api/flags/flg_test/checkin → 400 (2ms)
+2026-11-27T11:51:20.149Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.150Z [WARN] POST /api/flags/flg_test/cancel → 400 (3ms)
+2026-11-27T11:51:20.153Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.154Z [WARN] GET /api/auth/profile → 400 (3ms)
+2026-11-27T11:51:20.158Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.158Z [WARN] POST /api/auth/logout → 400 (2ms)
+2026-11-27T11:51:20.162Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.163Z [WARN] GET /api/notifications → 400 (4ms)
+2026-11-27T11:51:20.165Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.166Z [WARN] GET /api/notifications/unread-count → 400 (2ms)
+2026-11-27T11:51:20.169Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.170Z [WARN] POST /api/notifications/read → 400 (3ms)
+2026-11-27T11:51:20.174Z [ERROR] 未捕获异常 {"path":"/api/record-cards/flg_test","err":"connect ECONNREFUSED 127.0.0.1:3306","stack":"Error: connect ECONNREFUSED 127.0.0.1:3306\n    at query (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:45:34)\n    at Object.queryOne (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:53:22)\n    at E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\routes\\notifications.js:78:25\n    at Layer.handle [as handle_request] (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at optionalAuth (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\middleware\\auth.js:123:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"}
+2026-11-27T11:51:20.175Z [ERROR] GET /api/record-cards/flg_test → 500 (4ms)
+2026-11-27T11:51:20.178Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.178Z [WARN] GET /api/me/credit-logs → 400 (2ms)
+2026-11-27T11:51:20.184Z [ERROR] 未捕获异常 {"path":"/api/users/usr_test","err":"connect ECONNREFUSED 127.0.0.1:3306","stack":"Error: connect ECONNREFUSED 127.0.0.1:3306\n    at query (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:45:34)\n    at Object.queryOne (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:53:22)\n    at E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\routes\\users.js:24:24\n    at Layer.handle [as handle_request] (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at optionalAuth (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\middleware\\auth.js:123:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"}
+2026-11-27T11:51:20.184Z [ERROR] GET /api/users/usr_test → 500 (4ms)
+2026-11-27T11:51:20.190Z [ERROR] 未捕获异常 {"path":"/api/users/usr_test/flags","err":"connect ECONNREFUSED 127.0.0.1:3306","stack":"Error: connect ECONNREFUSED 127.0.0.1:3306\n    at Object.query (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:45:34)\n    at E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\routes\\users.js:65:27\n    at Layer.handle [as handle_request] (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at optionalAuth (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\middleware\\auth.js:123:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"}
+2026-11-27T11:51:20.191Z [ERROR] GET /api/users/usr_test/flags → 500 (5ms)
+2026-11-27T11:51:20.194Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.196Z [WARN] POST /api/social/flags/flg_test/like → 400 (4ms)
+2026-11-27T11:51:20.199Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.199Z [WARN] POST /api/social/flags/flg_test/watch → 400 (2ms)
+2026-11-27T11:51:20.202Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.202Z [WARN] GET /api/social/flags/flg_test/messages → 400 (2ms)
+2026-11-27T11:51:20.205Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.206Z [WARN] POST /api/social/flags/flg_test/messages → 400 (3ms)
+2026-11-27T11:51:20.210Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.210Z [WARN] POST /api/social/messages/msg_test/reply → 400 (2ms)
+2026-11-27T11:51:20.214Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.215Z [WARN] POST /api/social/follow → 400 (3ms)
+2026-11-27T11:51:20.218Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.218Z [WARN] GET /api/social/following → 400 (2ms)
+2026-11-27T11:51:20.221Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.222Z [WARN] POST /api/social/objections → 400 (3ms)
+2026-11-27T11:51:20.232Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.232Z [WARN] GET /api/social/objections → 400 (9ms)
+2026-11-27T11:51:20.247Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.248Z [WARN] GET /api/witness/tasks → 400 (15ms)
+2026-11-27T11:51:20.252Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.253Z [WARN] GET /api/witness/panel/flg_test → 400 (3ms)
+2026-11-27T11:51:20.257Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.258Z [WARN] POST /api/witness/invite → 400 (3ms)
+2026-11-27T11:51:20.265Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.266Z [WARN] POST /api/witness/respond → 400 (3ms)
+2026-11-27T11:51:20.270Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.270Z [WARN] POST /api/witness/verdict → 400 (2ms)
+2026-11-27T11:51:20.273Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.274Z [WARN] GET /api/witness/pool → 400 (3ms)
+2026-11-27T11:51:20.277Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.278Z [WARN] POST /api/witness/pool/apply → 400 (3ms)
+2026-11-27T11:51:20.280Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.280Z [WARN] POST /api/witness/pool/invite → 400 (1ms)
+2026-11-27T11:51:20.283Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.283Z [WARN] POST /api/witness/recruit → 400 (2ms)
+2026-11-27T11:51:20.286Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.286Z [WARN] GET /api/witness/recruit/flg_test → 400 (2ms)
+2026-11-27T11:51:20.289Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.290Z [WARN] POST /api/witness/recruit/apply → 400 (2ms)
+2026-11-27T11:51:20.293Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.294Z [WARN] POST /api/witness/recruit/accept → 400 (3ms)
+2026-11-27T11:51:20.297Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.298Z [WARN] POST /api/pay/create → 400 (3ms)
+2026-11-27T11:51:20.301Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:51:20.301Z [WARN] GET /api/pay/order/ord_test → 400 (2ms)
+2026-11-27T11:51:20.304Z [ERROR] 微信支付回调处理失败 {"err":"回调缺少验签请求头"}
+2026-11-27T11:51:20.305Z [ERROR] POST /api/pay/notify → 500 (2ms)
+2026-11-27T11:55:18.563Z [INFO] Flag 已创建 {"flagId":"flg_06b902711609e5681c8a916f","userId":"usr_test","periodDays":7,"amount":0}
+2026-11-27T11:55:18.570Z [INFO] 筹备期结束，转入进行中 {"flagId":"flg_06b902711609e5681c8a916f"}
+2026-11-27T11:55:18.572Z [INFO] 打卡已提交，等待 AI 判定 {"flagId":"flg_06b902711609e5681c8a916f","day":1,"weight":69.8}
+2026-11-27T11:55:18.574Z [INFO] 打卡已提交，等待 AI 判定 {"flagId":"flg_06b902711609e5681c8a916f","day":2,"weight":69.5}
+2026-11-27T11:55:18.579Z [INFO] Flag 结算完成 {"flagId":"flg_06b902711609e5681c8a916f","success":true,"tier":"T0","creditDelta":3,"refund":0,"deduct":0}
+2026-11-27T11:55:18.580Z [INFO] Flag 已创建 {"flagId":"flg_49f49275f126c5c3d4bb3926","userId":"usr_test","periodDays":7,"amount":0}
+2026-11-27T11:55:18.582Z [INFO] Flag 结算完成 {"flagId":"flg_49f49275f126c5c3d4bb3926","success":false,"tier":"T0","creditDelta":-3,"refund":0,"deduct":0}
+2026-11-27T11:55:18.582Z [INFO] Flag 已创建 {"flagId":"flg_09b2f80d59fda30bf719f662","userId":"usr_test","periodDays":7,"amount":0}
+2026-11-27T11:55:18.583Z [INFO] 筹备期结束，转入进行中 {"flagId":"flg_06b902711609e5681c8a916f"}
+2026-11-27T11:55:18.583Z [INFO] 筹备期结束，转入进行中 {"flagId":"flg_49f49275f126c5c3d4bb3926"}
+2026-11-27T11:55:18.583Z [INFO] 筹备期结束，转入进行中 {"flagId":"flg_09b2f80d59fda30bf719f662"}
+2026-11-27T11:55:18.584Z [INFO] 断卡判定 {"flagId":"flg_09b2f80d59fda30bf719f662","day":2,"breaks":1,"state":"fail"}
+2026-11-27T11:55:18.585Z [INFO] Flag 结算完成 {"flagId":"flg_09b2f80d59fda30bf719f662","success":false,"tier":"T0","creditDelta":-3,"refund":0,"deduct":0}
+2026-11-27T11:55:19.054Z [INFO] Flag 已创建 {"flagId":"flg_448039b138d51e475faabd24","userId":"usr_beta","periodDays":7,"amount":0}
+2026-11-27T11:55:19.061Z [INFO] Flag 结算完成 {"flagId":"flg_448039b138d51e475faabd24","success":false,"tier":"T0","creditDelta":-3,"refund":0,"deduct":0}
+2026-11-27T11:55:19.063Z [INFO] Flag 已创建 {"flagId":"flg_c75ca47931e0f6152acb8877","userId":"usr_pay","periodDays":7,"amount":0}
+2026-11-27T11:55:19.065Z [INFO] Flag 结算完成 {"flagId":"flg_c75ca47931e0f6152acb8877","success":false,"tier":"T0","creditDelta":-3,"refund":130,"deduct":70}
+2026-11-27T11:55:19.066Z [INFO] Flag 已创建 {"flagId":"flg_bfba8c9508f161a2f744cdeb","userId":"usr_flip_a","periodDays":7,"amount":0}
+2026-11-27T11:55:19.068Z [INFO] Flag 结算完成 {"flagId":"flg_bfba8c9508f161a2f744cdeb","success":false,"tier":"T0","creditDelta":-3,"refund":0,"deduct":0}
+2026-11-27T11:55:19.068Z [INFO] Flag 已创建 {"flagId":"flg_981197393e6f84afeb7b29ed","userId":"usr_flip_b","periodDays":7,"amount":0}
+2026-11-27T11:55:19.069Z [INFO] Flag 结算完成 {"flagId":"flg_981197393e6f84afeb7b29ed","success":false,"tier":"T0","creditDelta":-3,"refund":130,"deduct":70}
+2026-11-27T11:55:19.070Z [INFO] Flag 已创建 {"flagId":"flg_e426c89caee207d080ad3792","userId":"usr_api","periodDays":7,"amount":0}
+2026-11-27T11:55:19.072Z [INFO] 内测阶段免收押金 {"flagId":"flg_e426c89caee207d080ad3792","nominalAmount":200}
+2026-11-27T11:55:19.073Z [INFO] Flag 已创建 {"flagId":"flg_2bf650d55c7d190985a2d9b9","userId":"usr_api","periodDays":7,"amount":0}
+2026-11-27T11:55:19.636Z [WARN] 已跳过数据库连接检查（SKIP_DB_CHECK=1）—— 仅用于接口路由冒烟测试
+2026-11-27T11:55:19.654Z [INFO] 定时任务已启动（每 60 秒）
+2026-11-27T11:55:19.663Z [INFO] 亏了 · 后端服务已启动 {"port":3999,"env":"test","apiBaseUrl":"https://api.yourdomain.com"}
+2026-11-27T11:55:19.804Z [INFO] 数据库连接池已创建 {"host":"127.0.0.1","database":"kuile"}
+2026-11-27T11:55:19.811Z [ERROR] 健康检查：数据库连接失败 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:19.817Z [INFO] GET /api/health → 200 (15ms)
+2026-11-27T11:55:19.970Z [ERROR] 健康检查：数据库连接失败 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:19.971Z [INFO] GET /api/health → 200 (2ms)
+2026-11-27T11:55:19.980Z [WARN] GET /api/flags/my → 400 (2ms)
+2026-11-27T11:55:19.983Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:19.984Z [WARN] GET /api/flags/my → 400 (2ms)
+2026-11-27T11:55:20.000Z [WARN] POST /api/auth/login → 400 (1ms)
+2026-11-27T11:55:20.002Z [WARN] GET /api/not-exist-xxx → 404 (1ms)
+2026-11-27T11:55:20.004Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.005Z [WARN] GET /api/flags/config → 400 (2ms)
+2026-11-27T11:55:20.010Z [ERROR] 未捕获异常 {"path":"/api/flags","err":"connect ECONNREFUSED 127.0.0.1:3306","stack":"Error: connect ECONNREFUSED 127.0.0.1:3306\n    at Object.query (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:45:34)\n    at E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\routes\\flags.js:113:27\n    at Layer.handle [as handle_request] (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at optionalAuth (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\middleware\\auth.js:123:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"}
+2026-11-27T11:55:20.011Z [ERROR] GET /api/flags → 500 (5ms)
+2026-11-27T11:55:20.014Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.014Z [WARN] GET /api/flags/my → 400 (2ms)
+2026-11-27T11:55:20.019Z [ERROR] 未捕获异常 {"path":"/api/flags/flg_test/checkins","err":"connect ECONNREFUSED 127.0.0.1:3306","stack":"Error: connect ECONNREFUSED 127.0.0.1:3306\n    at Object.query (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:45:34)\n    at E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\routes\\flags.js:281:27\n    at Layer.handle [as handle_request] (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at optionalAuth (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\middleware\\auth.js:123:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"}
+2026-11-27T11:55:20.019Z [ERROR] GET /api/flags/flg_test/checkins → 500 (3ms)
+2026-11-27T11:55:20.028Z [ERROR] 未捕获异常 {"path":"/api/flags/flg_test","err":"connect ECONNREFUSED 127.0.0.1:3306","stack":"Error: connect ECONNREFUSED 127.0.0.1:3306\n    at query (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:45:34)\n    at Object.queryOne (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:53:22)\n    at Object.getFlag (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\services\\flagService.js:97:22)\n    at E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\routes\\flags.js:234:36\n    at Layer.handle [as handle_request] (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at optionalAuth (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\middleware\\auth.js:123:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"}
+2026-11-27T11:55:20.028Z [ERROR] GET /api/flags/flg_test → 500 (7ms)
+2026-11-27T11:55:20.034Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.034Z [WARN] POST /api/flags/flg_test/checkin → 400 (1ms)
+2026-11-27T11:55:20.036Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.037Z [WARN] POST /api/flags/flg_test/cancel → 400 (2ms)
+2026-11-27T11:55:20.039Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.040Z [WARN] GET /api/auth/profile → 400 (2ms)
+2026-11-27T11:55:20.042Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.042Z [WARN] POST /api/auth/logout → 400 (1ms)
+2026-11-27T11:55:20.045Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.045Z [WARN] GET /api/notifications → 400 (2ms)
+2026-11-27T11:55:20.047Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.048Z [WARN] GET /api/notifications/unread-count → 400 (2ms)
+2026-11-27T11:55:20.050Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.050Z [WARN] POST /api/notifications/read → 400 (1ms)
+2026-11-27T11:55:20.053Z [ERROR] 未捕获异常 {"path":"/api/record-cards/flg_test","err":"connect ECONNREFUSED 127.0.0.1:3306","stack":"Error: connect ECONNREFUSED 127.0.0.1:3306\n    at query (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:45:34)\n    at Object.queryOne (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:53:22)\n    at E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\routes\\notifications.js:78:25\n    at Layer.handle [as handle_request] (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at optionalAuth (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\middleware\\auth.js:123:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"}
+2026-11-27T11:55:20.054Z [ERROR] GET /api/record-cards/flg_test → 500 (3ms)
+2026-11-27T11:55:20.055Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.056Z [WARN] GET /api/me/credit-logs → 400 (2ms)
+2026-11-27T11:55:20.059Z [ERROR] 未捕获异常 {"path":"/api/users/usr_test","err":"connect ECONNREFUSED 127.0.0.1:3306","stack":"Error: connect ECONNREFUSED 127.0.0.1:3306\n    at query (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:45:34)\n    at Object.queryOne (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:53:22)\n    at E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\routes\\users.js:24:24\n    at Layer.handle [as handle_request] (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at optionalAuth (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\middleware\\auth.js:123:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"}
+2026-11-27T11:55:20.059Z [ERROR] GET /api/users/usr_test → 500 (2ms)
+2026-11-27T11:55:20.062Z [ERROR] 未捕获异常 {"path":"/api/users/usr_test/flags","err":"connect ECONNREFUSED 127.0.0.1:3306","stack":"Error: connect ECONNREFUSED 127.0.0.1:3306\n    at Object.query (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\db.js:45:34)\n    at E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\routes\\users.js:65:27\n    at Layer.handle [as handle_request] (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at optionalAuth (E:\\9.小程序自己做\\02-立了\\正式上线版\\02-后端\\src\\middleware\\auth.js:123:3)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"}
+2026-11-27T11:55:20.063Z [ERROR] GET /api/users/usr_test/flags → 500 (3ms)
+2026-11-27T11:55:20.065Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.066Z [WARN] POST /api/social/flags/flg_test/like → 400 (2ms)
+2026-11-27T11:55:20.068Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.069Z [WARN] POST /api/social/flags/flg_test/watch → 400 (2ms)
+2026-11-27T11:55:20.072Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.072Z [WARN] GET /api/social/flags/flg_test/messages → 400 (2ms)
+2026-11-27T11:55:20.074Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.074Z [WARN] POST /api/social/flags/flg_test/messages → 400 (1ms)
+2026-11-27T11:55:20.077Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.077Z [WARN] POST /api/social/messages/msg_test/reply → 400 (2ms)
+2026-11-27T11:55:20.079Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.080Z [WARN] POST /api/social/follow → 400 (2ms)
+2026-11-27T11:55:20.082Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.082Z [WARN] GET /api/social/following → 400 (1ms)
+2026-11-27T11:55:20.085Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.085Z [WARN] POST /api/social/objections → 400 (2ms)
+2026-11-27T11:55:20.091Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.092Z [WARN] GET /api/social/objections → 400 (6ms)
+2026-11-27T11:55:20.101Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.102Z [WARN] GET /api/witness/tasks → 400 (9ms)
+2026-11-27T11:55:20.105Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.106Z [WARN] GET /api/witness/panel/flg_test → 400 (3ms)
+2026-11-27T11:55:20.109Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.110Z [WARN] POST /api/witness/invite → 400 (3ms)
+2026-11-27T11:55:20.115Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.116Z [WARN] POST /api/witness/respond → 400 (3ms)
+2026-11-27T11:55:20.118Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.119Z [WARN] POST /api/witness/verdict → 400 (2ms)
+2026-11-27T11:55:20.121Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.121Z [WARN] GET /api/witness/pool → 400 (1ms)
+2026-11-27T11:55:20.123Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.123Z [WARN] POST /api/witness/pool/apply → 400 (1ms)
+2026-11-27T11:55:20.125Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.126Z [WARN] POST /api/witness/pool/invite → 400 (2ms)
+2026-11-27T11:55:20.127Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.128Z [WARN] POST /api/witness/recruit → 400 (1ms)
+2026-11-27T11:55:20.129Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.130Z [WARN] GET /api/witness/recruit/flg_test → 400 (2ms)
+2026-11-27T11:55:20.133Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.133Z [WARN] POST /api/witness/recruit/apply → 400 (2ms)
+2026-11-27T11:55:20.135Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.136Z [WARN] POST /api/witness/recruit/accept → 400 (2ms)
+2026-11-27T11:55:20.138Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.138Z [WARN] POST /api/pay/create → 400 (1ms)
+2026-11-27T11:55:20.140Z [ERROR] 鉴权过程出错 {"err":"connect ECONNREFUSED 127.0.0.1:3306"}
+2026-11-27T11:55:20.141Z [WARN] GET /api/pay/order/ord_test → 400 (2ms)
+2026-11-27T11:55:20.142Z [ERROR] 微信支付回调处理失败 {"err":"回调缺少验签请求头"}
+2026-11-27T11:55:20.143Z [ERROR] POST /api/pay/notify → 500 (1ms)
