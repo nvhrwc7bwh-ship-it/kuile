@@ -1,0 +1,3585 @@
+/* ============================================================
+   亏了 · Design System v2
+   参考：小红书（内容卡）/ Keep（数据可视）/ 咕咚（运动风）
+   ============================================================ */
+
+:root{
+  /* ---- 品牌色：高饱和亮橙 ---- */
+  --brand:#FF6B00;
+  --brand-600:#E85A00;
+  --brand-400:#FF8A2B;
+  --brand-tint:#FFF1E4;
+  --brand-tint-2:#FFE0C6;
+
+  /* 品牌渐变端点 */
+  --brand-deep:#C94A00;
+  --brand-lite:#FFA04D;
+
+  /* ---- 强调色（饱和度拉高，与亮橙同族） ---- */
+  --coral:#FF5A3C;         /* 目标/热度（朱橙红） */
+  --coral-tint:#FFEDE8;
+  --amber:#F59300;         /* 提醒/进行中（金橙） */
+  --amber-tint:#FFF4DC;
+  --sky:#3B82F6;           /* 信息（明亮蓝，唯一冷色平衡） */
+  --sky-tint:#EAF2FE;
+  --violet:#8B5CF6;        /* 见证（亮紫） */
+  --violet-tint:#F3EBFF;
+  --rose:#F0413E;          /* 失败/危险（正红） */
+  --rose-tint:#FFECEC;
+  --mint:#0FBE7E;          /* 达成（亮绿） */
+  --mint-tint:#E3F9F0;
+
+  /* ---- 中性：暖白系 ---- */
+  --bg:#FAF7F4;
+  --surface:#FFFFFF;
+  --surface-2:#FDFAF7;
+  --surface-3:#F0E9E1;
+  --line:#F0E8E0;
+  --line-2:#E6DACF;
+
+  --ink:#1C1613;
+  --ink-2:#4A423B;
+  --ink-3:#857A6F;
+  --ink-4:#B3A79A;
+
+  /* ---- 圆角 ---- */
+  --r-xs:8px; --r-sm:12px; --r:16px; --r-lg:20px; --r-xl:26px; --r-full:999px;
+
+  /* ---- 阴影：暖调（带一点点橙棕，不是死黑） ---- */
+  --sh-1:0 1px 2px rgba(74,52,32,.04), 0 1px 3px rgba(74,52,32,.06);
+  --sh-2:0 2px 8px rgba(74,52,32,.07), 0 1px 3px rgba(74,52,32,.04);
+  --sh-3:0 8px 24px rgba(74,52,32,.09), 0 2px 6px rgba(74,52,32,.05);
+  --sh-4:0 16px 48px rgba(74,52,32,.16), 0 4px 12px rgba(74,52,32,.07);
+
+  /* ---- 品牌色阴影（克制使用：只给主角元素） ---- */
+  --sh-brand:0 6px 20px rgba(255,107,0,.34);
+  --sh-brand-sm:0 2px 8px rgba(255,107,0,.32);
+  --sh-brand-md:0 8px 24px rgba(255,107,0,.36);
+  --sh-brand-lg:0 14px 36px rgba(255,107,0,.40);
+  --sh-brand-ring:0 0 0 3px rgba(255,107,0,.14);
+  /* 暖色中性阴影（给卡片浮起感，不带橙调） */
+  --sh-lift:0 1px 2px rgba(74,52,32,.05), 0 4px 12px rgba(74,52,32,.06);
+  --sh-lift-sm:0 1px 2px rgba(74,52,32,.04), 0 2px 8px rgba(74,52,32,.05);
+  --sh-lift-lg:0 4px 12px rgba(74,52,32,.07), 0 12px 32px rgba(74,52,32,.09);
+
+  /* ---- 字体 ---- */
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","HarmonyOS Sans SC",
+         "Microsoft YaHei","Noto Sans CJK SC",system-ui,sans-serif;
+  --font-num:"SF Pro Display",-apple-system,"Helvetica Neue",Inter,system-ui,sans-serif;
+
+  /* ---- 动效 ---- */
+  --ease:cubic-bezier(.32,.72,0,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --spring:cubic-bezier(.34,1.56,.64,1);
+
+  --nav-h:52px;
+  --tab-h:62px;
+}
+
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;}
+body{
+  margin:0;font-family:var(--font);background:#E9E6E1;color:var(--ink);
+  font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  font-variant-numeric:tabular-nums;
+}
+button{font-family:inherit;font-size:inherit;border:0;background:none;cursor:pointer;color:inherit;padding:0;}
+ul,ol{margin:0;padding:0;list-style:none;}
+h1,h2,h3,h4,p{margin:0;font-weight:inherit;}
+a{color:var(--brand);text-decoration:none;}
+img{max-width:100%;}
+input,textarea,select{font-family:inherit;}
+/* SVG 兜底：无显式 width 时默认 16px，避免撑成 300x150 */
+svg:not([width]){width:16px;height:16px;}
+
+/* ============================================================
+   桌面外壳
+   ============================================================ */
+.shell{display:flex;min-height:100vh;}
+
+/* 左侧产品说明栏 */
+.rail{
+  width:290px;flex:0 0 290px;background:#241C17;color:#F5EFE9;
+  display:flex;flex-direction:column;position:sticky;top:0;height:100vh;
+}
+.rail-top{padding:26px 22px 20px;border-bottom:1px solid rgba(255,255,255,.08);}
+/* 左上角品牌标记 —— 柴犬头像（狗头形象，全站统一的品牌符号） */
+.rl-dog{width:26px;height:26px;object-fit:contain;flex:0 0 auto;border-radius:50%;}
+.rail-logo{font-size:26px;font-weight:700;letter-spacing:5px;display:flex;align-items:center;gap:10px;}
+.rail-sub{font-size:12px;color:#8A8177;margin-top:6px;letter-spacing:.4px;}
+.rail-body{flex:1;overflow-y:auto;padding:16px 12px 20px;}
+.rail-body::-webkit-scrollbar{width:4px;}
+.rail-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:4px;}
+.rail-label{font-size:10.5px;color:#7C736A;letter-spacing:1.4px;text-transform:uppercase;
+  margin:16px 10px 8px;font-weight:600;}
+.rail-label:first-child{margin-top:0;}
+.rail-nav{display:flex;flex-direction:column;gap:1px;}
+.rail-nav a{
+  color:#B6ADA2;font-size:13px;padding:8px 11px;border-radius:9px;
+  display:flex;align-items:center;gap:9px;transition:.14s;text-decoration:none;
+}
+.rail-nav a:hover{background:rgba(255,255,255,.06);color:#F5F1EC;}
+.rail-nav a.on{background:var(--brand);color:#fff;font-weight:500;box-shadow:0 2px 10px rgba(169,79,12,.3);}
+.rail-nav a .dot{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.45;flex:0 0 5px;}
+.rail-nav a.on .dot{opacity:1;background:var(--coral);}
+.rail-tips{font-size:12px;color:#968D83;line-height:1.9;padding:0 11px;}
+.rail-tips b{color:#D2CAC0;font-weight:500;}
+.rail-foot{padding:11px 20px;border-top:1px solid rgba(255,255,255,.08);
+  font-size:10.5px;color:#6F665D;font-family:ui-monospace,Menlo,monospace;}
+
+/* 舞台 */
+.stage{
+  flex:1;display:flex;align-items:center;justify-content:center;padding:36px 24px;
+  background:
+    radial-gradient(1200px 600px at 50% -10%, #F2F4F7 0%, #E9E6E1 60%, #E3E5E9 100%);
+}
+
+/* ============================================================
+   设备 —— iPhone 16 黑色款（6.1" / 393×852 pt / 灵动岛 / 黑色铝合金中框）
+   ============================================================ */
+.device{
+  width:417px;height:876px;position:relative;flex:0 0 auto;
+  /* 黑色中框：边缘一道冷调高光（金属反光），主体深黑 */
+  background:
+    linear-gradient(150deg,#4A4A4E 0%,#232326 8%,#0E0E11 22%,#1C1C20 44%,
+                    #08080A 62%,#25252A 78%,#0B0B0E 92%,#3A3A3F 100%);
+  border-radius:69px;padding:12px;
+  box-shadow:
+    0 44px 90px rgba(40,30,22,.30), 0 10px 24px rgba(40,30,20,.16),
+    inset 0 0 0 1px rgba(255,255,255,.16),
+    inset 0 0 0 4px rgba(0,0,0,.7);
+}
+/* 中框内侧的一圈黑色面板边（屏幕四周的 OLED 黑边），让屏幕像"陷"在机身里 */
+.device::before{
+  content:"";position:absolute;inset:11px;border-radius:58px;
+  background:#050506;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.9), 0 0 0 .5px rgba(255,255,255,.10);
+}
+/* 侧键：左侧 Action 按钮 + 音量上下，右侧电源（压在边框外沿） */
+.device::after{
+  content:"";position:absolute;right:-3px;top:222px;width:3.5px;height:98px;
+  background:linear-gradient(90deg,#0A0A0C,#3C3C42 45%,#121215);
+  border-radius:0 2px 2px 0;
+}
+.btn-side{position:absolute;z-index:1;}
+.btn-side.k-action{  /* Action 按钮（iPhone 16 新增，取代静音拨片） */
+  left:-3px;top:104px;width:3.5px;height:30px;
+  background:linear-gradient(270deg,#0A0A0C,#3C3C42 45%,#121215);
+  border-radius:2px 0 0 2px;
+}
+.btn-side.k-volup{
+  left:-3px;top:170px;width:3.5px;height:64px;
+  background:linear-gradient(270deg,#0A0A0C,#3C3C42 45%,#121215);
+  border-radius:2px 0 0 2px;
+}
+.btn-side.k-voldown{
+  left:-3px;top:246px;width:3.5px;height:64px;
+  background:linear-gradient(270deg,#0A0A0C,#3C3C42 45%,#121215);
+  border-radius:2px 0 0 2px;
+}
+.screen{
+  width:100%;height:100%;background:var(--bg);border-radius:58px;overflow:hidden;
+  position:relative;display:flex;flex-direction:column;
+}
+
+/* 状态栏 —— iOS 风格：时间居左，图标组居右，整体与灵动岛垂直居中 */
+.statusbar{
+  height:54px;flex:0 0 54px;display:flex;align-items:center;justify-content:space-between;
+  padding:8px 32px 0;font-size:15px;font-weight:640;letter-spacing:.1px;
+  position:relative;z-index:30;color:var(--ink);
+}
+.statusbar.right{color:#fff;}
+.sb-time{font-variant-numeric:tabular-nums;letter-spacing:.2px;min-width:54px;}
+.sb-icons{display:flex;align-items:center;gap:6px;}
+.sb-cell{display:flex;align-items:flex-end;gap:2px;height:11px;}
+.sb-cell i{width:3.4px;border-radius:1px;background:currentColor;display:block;}
+.sb-cell i:nth-child(1){height:4.5px}.sb-cell i:nth-child(2){height:6.5px}
+.sb-cell i:nth-child(3){height:8.5px}.sb-cell i:nth-child(4){height:11px;opacity:.32}
+.sb-wifi{width:16px;height:12px;position:relative;}
+.sb-wifi svg{display:block;}
+.sb-batt{width:25px;height:12.5px;border:1.3px solid currentColor;border-radius:4px;position:relative;opacity:.92;}
+.sb-batt::before{content:"";position:absolute;left:1.5px;top:1.5px;width:16.5px;height:7.4px;background:currentColor;border-radius:2px;}
+.sb-batt::after{content:"";position:absolute;right:-3.4px;top:3.9px;width:2.2px;height:4.6px;background:currentColor;border-radius:0 1.5px 1.5px 0;opacity:.5;}
+
+/* 灵动岛 —— iPhone 16 尺寸更宽更矮 */
+.island{
+  position:absolute;top:13px;left:50%;transform:translateX(-50%);
+  width:126px;height:36px;background:#000;border-radius:100px;z-index:40;
+  box-shadow:0 0 0 .5px rgba(255,255,255,.14), 0 1px 3px rgba(0,0,0,.5);
+}
+/* 灵动岛内的前摄镜头（偏右） */
+.island::after{
+  content:"";position:absolute;right:13px;top:50%;transform:translateY(-50%);
+  width:11px;height:11px;border-radius:50%;
+  background:radial-gradient(circle at 34% 30%,#2B333D 0%,#0A0D12 46%,#05070A 100%);
+  box-shadow:inset 0 0 2px rgba(120,150,190,.35), 0 0 0 .5px rgba(255,255,255,.10);
+}
+
+/* ============================================================
+   页面容器 + 转场
+   ============================================================ */
+.viewport{
+  flex:1;position:relative;overflow:hidden;
+}
+.screen-scroll{
+  position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;overscroll-behavior-y:contain;
+  scrollbar-width:none;
+}
+.screen-scroll::-webkit-scrollbar{width:0;}
+.screen-scroll::-webkit-scrollbar-thumb{background:transparent;}
+
+.page{
+  padding:0 18px calc(28px + env(safe-area-inset-bottom));
+  animation:pageIn .34s var(--ease-out) both;
+}
+@keyframes pageIn{from{opacity:0;transform:translateY(8px) scale(.995);}to{opacity:1;transform:none;}}
+.page.pop{animation:pagePop .3s var(--spring) both;}
+@keyframes pagePop{from{opacity:0;transform:scale(.94);}to{opacity:1;transform:none;}}
+
+/* ============================================================
+   导航栏（大标题折叠）
+   ============================================================ */
+.nav{
+  position:sticky;top:0;z-index:20;
+  background:color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter:saturate(180%) blur(20px);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);
+  padding:6px 18px 8px;
+}
+.nav-row{
+  height:var(--nav-h);display:flex;align-items:center;gap:10px;
+  transition:height .22s var(--ease);
+}
+.nav-back{
+  width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:rgba(17,19,24,.05);transition:.15s;flex:0 0 32px;
+}
+.nav-back:active{background:rgba(17,19,24,.12);transform:scale(.92);}
+.nav-back svg{width:16px;height:16px;}
+.nav-title{
+  font-size:16.5px;font-weight:650;letter-spacing:.2px;flex:1;min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  opacity:0;transform:translateY(4px);transition:.22s var(--ease);
+}
+.nav-title.big{opacity:1;transform:none;font-size:29px;font-weight:760;letter-spacing:-.7px;line-height:1.2;}
+.nav.scrolled .nav-title{opacity:1;transform:none;}
+.nav.scrolled .nav-row{height:44px;}
+.nav.scrolled .nav-title.big{font-size:16.5px;font-weight:650;letter-spacing:.2px;}
+.nav-actions{display:flex;gap:6px;align-items:center;}
+/* ---- 导航栏「目标人身份条」（见需求规格 R2.9）----
+   ⚠️ 放在【返回键右边】—— 围观者进详情页第一眼要确认「这是谁的局」，
+      身份信息必须在最顶上，不能埋在下面的目标卡里。 */
+.nav-id-slot{
+  display:flex;align-items:center;min-width:0;flex:0 1 auto;
+  margin-left:2px;margin-right:-2px;
+}
+.nav-id{
+  display:flex;align-items:center;gap:5px;min-width:0;
+  font-size:12px;color:var(--ink-2);line-height:1;
+}
+.nav-id .avatar{margin-right:1px;}
+.nav-id-name{font-weight:650;color:var(--ink);white-space:nowrap;}
+.nav-id-days,.nav-id-tier{white-space:nowrap;}
+.nav-id-tier{color:var(--ink-3);}
+.nav-id-sep{color:var(--ink-3);opacity:.6;}
+/* 身份条可点：点击进入「Ta 的主页」（长期档案） */
+.nav-id.tap{cursor:pointer;-webkit-user-select:none;user-select:none;}
+.nav-id.tap:active{opacity:.6;}
+.nav-id.tap:hover .nav-id-name{color:var(--brand);}
+/* ---- 导航栏右侧「周期 · 强度」（90 天 · 强见证 T3）----
+   ⚠️ 用户口径（2026-11-22）：「把90天、强见证T3单独放到屏幕右边。」
+   —— 身份条只留头像 + 名字；周期与档位挪到最右边。 */
+.nav-tier-slot{
+  display:flex;align-items:center;min-width:0;flex:0 0 auto;
+  margin-left:auto;
+}
+.nav-tier{
+  display:flex;align-items:center;gap:5px;
+  font-size:11.5px;color:var(--ink-3);line-height:1;white-space:nowrap;
+}
+.nav-tier-days{font-weight:600;color:var(--ink-2);}
+.nav-tier-name{color:var(--ink-3);}
+/* 押金金额（2026-11-22 用户口径：导航栏右侧改为显示押金金额）
+   ⚠️ 押金是这局的分量，比「强见证 T3」更重要 —— 所以给足字重，不做灰化处理。 */
+.nav-tier-dep{font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;}
+/* ⚠️ 2026-11-23 用户口径：「在右上角天数、押金金额旁边，展示 T 几。」
+   —— T 档 = 见证席背书强度，用轻量描边标出，不抢押金的分量。 */
+.nav-tier-t{
+  font-weight:700;color:var(--brand);font-size:11px;letter-spacing:.3px;
+  padding:1px 6px;border-radius:6px;background:var(--brand-tint);
+}
+/* 导航栏变矮时（滚动后）身份条让位给标题 */
+.nav.scrolled .nav-id{display:none;}
+.nav-btn{
+  width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:rgba(17,19,24,.05);transition:.15s;position:relative;flex:0 0 34px;
+}
+.nav-btn:active{transform:scale(.9);background:rgba(17,19,24,.11);}
+.nav-btn svg{width:18px;height:18px;}
+.nav-btn .badge{
+  position:absolute;top:2px;right:2px;min-width:16px;height:16px;padding:0 4px;
+  background:var(--rose);color:#fff;border-radius:100px;font-size:10px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;border:2px solid var(--bg);
+}
+/* 宽版导航按钮（带文字的）—— ⚠️ 2026-11-24「我的」页右上角「编辑资料」用 */
+.nav-btn.wide{
+  width:auto;height:30px;padding:0 11px;border-radius:100px;gap:5px;
+  font-size:12.5px;font-weight:600;color:var(--ink-2);
+  background:var(--surface);border:1px solid var(--line);
+}
+.nav-btn.wide:active{transform:scale(.96);}
+.nav-btn.wide svg{width:15px;height:15px;}
+/* ⚠️ 2026-11-24 用户口径：「编辑资料几个字不需要用文字，用一个修改的符号表示就行了，
+   用户能看懂了。」—— 所以「我的」页右上角改成【纯图标按钮】。
+   —— 铅笔图标是「改资料」这个动作的通用符号（跟主图库的图标体系一致），
+      四个字是冗余的说明 —— 导航栏右上角只有这一个动作时，图标足够。 */
+.nav-btn.icon-only{
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(17,19,24,.05);
+}
+.nav-btn.icon-only svg{width:18px;height:18px;}
+
+/* ---- 「我的」页个人资料卡（⚠️ 2026-11-24 新增，同日两次改版）----
+   ⚠️ 用户口径（最终版，参照参考图）：
+   「左边头像，右边是名字、ID、性别、省份（不填默认中国），加入亏了XX天。
+    下面文字，点赞、留言、关注（是指用户被关注的数量）见证。手机号码不需要了。」
+   —— 所以是【左头像 + 右侧信息】的横排布局：
+      左：头像（xl 带环）  右：名字 → 一行小标签 → 个性签名
+      底下：四格社交数据（点赞 / 留言 / 关注 / 见证）
+   —— 小标签只写结果、不写字段名（上一版口径）：
+      ID号是别人识别你的号，所以给它等宽字体 + 品牌色，其余走中性底。 */
+.me-card{padding:18px 18px 0;}
+.me-top{display:flex;gap:14px;align-items:flex-start;}
+.me-ava{flex:0 0 66px;width:66px;}
+.me-ava .avatar{width:66px;height:66px;}
+/* ⚠️ 2026-11-24（本轮，用户口径 Part 七①）：头像右下角的【小相机徽标】 ——
+   —— 用户口径：「需支持点击头像，弹出更换头像照片的操作按钮 / 入口。」
+   —— 徽标只是**提示**（这里可以换），真正的入口是【点头像本身】。
+      徽标做成半透明深色小圆 + 白色小笔形，
+      压在头像右下角，不抢头像本身的视觉。 */
+.me-ava{position:relative;cursor:pointer;}
+.me-ava:active .avatar{transform:scale(.97);}
+.me-ava-cam{
+  position:absolute;right:-2px;bottom:-2px;
+  width:22px;height:22px;border-radius:50%;
+  background:rgba(17,19,24,.82);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--surface);
+}
+.me-ava-cam svg{width:11px;height:11px;}
+
+/* ---------- 更换头像的半屏（⚠️ 2026-11-24 本轮新增，见 R2.30⑦） ---------- */
+/* 两个主入口：从相册选 / 拍一张 */
+.ava-pick-actions{display:flex;gap:10px;}
+.ava-pick-act{
+  flex:1;display:flex;align-items:center;justify-content:center;gap:7px;
+  padding:12px 10px;border-radius:var(--r-sm);
+  background:var(--surface-2);border:1px solid var(--line);
+  font-size:13px;font-weight:650;color:var(--ink);
+  cursor:pointer;
+}
+.ava-pick-act:active{transform:scale(.98);}
+.ava-pick-act-ico{
+  width:26px;height:26px;border-radius:9px;flex:0 0 26px;
+  background:var(--brand-tint);color:var(--brand);
+  display:flex;align-items:center;justify-content:center;
+}
+.ava-pick-act-ico svg{width:14px;height:14px;}
+/* 候选头像网格：4 列 */
+.ava-pick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;}
+.ava-pick-cell{
+  position:relative;padding:0;border:0;background:none;cursor:pointer;
+  border-radius:50%;overflow:hidden;aspect-ratio:1/1;
+  box-shadow:0 0 0 2px transparent;transition:.15s var(--ease);
+}
+.ava-pick-cell img{width:100%;height:100%;object-fit:cover;display:block;}
+.ava-pick-cell:active{transform:scale(.96);}
+.ava-pick-cell.on{box-shadow:0 0 0 3px var(--brand);}
+.me-info{flex:1;min-width:0;}
+.me-name{
+  font-size:19px;font-weight:730;letter-spacing:-.3px;line-height:1.25;
+}
+/* 第二行：ID号 —— 浅灰小字，安静地「备查」，不参与属性阅读 */
+.me-id{
+  font-size:12.5px;color:var(--ink-4);margin-top:3px;letter-spacing:.2px;
+}
+/* 第三行：性别 / 年龄 / 省份 / 加入亏了 XX 天 —— 字号再小一点，横向排列 */
+.me-sub{
+  display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;margin-top:5px;
+  font-size:12px;color:var(--ink-3);line-height:1.5;
+}
+.me-sub span{white-space:nowrap;}
+.me-tags{
+  display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;
+}
+
+.me-bio{
+  margin-top:9px;padding:8px 11px;border-radius:var(--r-md);
+  background:var(--brand-tint);color:var(--brand);
+  font-size:12.5px;line-height:1.55;text-align:left;
+}
+
+/* 三格社交数据（点赞 / 关注我 / 我见证过）
+   ⚠️ 2026-11-24 用户口径：「删掉『留言』」—— 从四格变三格。
+   ⚠️ 「我的」页与「Ta 的主页」共用这一套样式（见需求规格 R2.20 ⑫）。 */
+.me-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  margin:16px -18px 0;padding:13px 0 14px;
+  border-top:1px solid var(--line);
+}
+.me-stats.cols3{grid-template-columns:repeat(3,1fr);}
+.me-stat{text-align:center;position:relative;}
+.me-stat + .me-stat::before{
+  content:"";position:absolute;left:0;top:2px;bottom:2px;width:1px;background:var(--line);
+}
+.me-stat-v{
+  font-family:var(--font-num);font-size:19px;font-weight:750;
+  letter-spacing:-.6px;line-height:1.1;color:var(--ink);
+}
+.me-stat-l{
+  font-size:11.5px;color:var(--ink-3);margin-top:3px;
+}
+
+/* 「Ta 的主页」的关注按钮（放在资料卡底部，见需求规格 R2.20 ⑫） */
+.me-follow{
+  padding:0 0 16px;
+}
+.me-follow .btn{margin-top:14px;}
+
+/* ---- 「编辑资料」弹窗（⚠️ 2026-11-24 新增，⚠️ 同日改：整块删掉）----
+   —— 用户口径 Part 二①：编辑资料改成【全屏页】（PAGES.editProfile），
+      居中小框 openEditProfileDialog 已删。样式一并清掉，避免留下死样式。 */
+
+/* ---- 「编辑资料」全屏页（⚠️ 2026-11-24 本轮，用户口径 Part 二）----
+   —— 改资料是**填表**，不是一秒决策 —— 所以要完整的一屏，
+      底部固定一条【保存】。 */
+.edit-profile-card{padding:18px 16px 4px;}
+.edit-profile-card .field{margin-bottom:16px;}
+.edit-profile-card .input:disabled,
+.edit-profile-card .select:disabled{
+  background:var(--bg);color:var(--ink-3);cursor:not-allowed;
+}
+.edit-profile-card .input:disabled::-webkit-input-placeholder{color:var(--ink-4);}
+
+/* ============================================================
+   底部 Tab（带指示滑块）
+   ============================================================ */
+/* ---------- Tab ---------- */
+.tabbar{
+  flex:0 0 auto;height:var(--tab-h);
+  background:color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter:saturate(180%) blur(22px);
+  -webkit-backdrop-filter:saturate(180%) blur(22px);
+  border-top:1px solid var(--line);
+  display:flex;align-items:center;position:relative;z-index:25;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.tab{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:3px;font-size:10.5px;color:var(--ink-4);height:100%;position:relative;
+  transition:color .18s;
+}
+.tab.on{color:var(--brand);font-weight:600;}
+.tab.on svg{filter:drop-shadow(0 2px 5px rgba(169,79,12,.32));}
+.tab svg{width:23px;height:23px;transition:transform .3s var(--spring);}
+.tab.on svg{transform:translateY(-1px) scale(1.06);}
+.tab-badge{
+  position:absolute;top:6px;left:calc(50% + 6px);min-width:15px;height:15px;padding:0 4px;
+  background:var(--rose);color:#fff;border-radius:100px;font-size:9.5px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;border:2px solid var(--surface);
+}
+
+/* ---------- 通知 Tab（2026-11-24 本轮新增） ---------- *//* 分栏切换：全部 / 判定·邀请 */
+.notif-seg{margin:12px 16px 10px;}
+.notif-seg .seg-n{
+  display:inline-block;min-width:16px;height:16px;padding:0 4px;margin-left:3px;
+  border-radius:100px;background:var(--rose);color:#fff;
+  font-size:10px;font-weight:700;line-height:16px;text-align:center;
+  vertical-align:1px;
+}
+.notif-seg button.on .seg-n{background:var(--rose);}
+
+/* 一条通知 */
+/* ⚠️ 2026-11-24（本轮）：通知行压扁 ——
+   —— 原来一条通知占三行（标题 / 正文 / 底部放时间），约 70px 高，
+      一屏只看得到四五条。
+   —— 现在：时间提到【正文行右边】，正文只留一行，底部那行
+      【只在有动作按钮时才出现】—— 一条压到 46px 左右。
+   —— 为什么这样改是安全的：通知是「扫一眼」的列表 ——
+      关键信息在标题里，正文只是补一句上下文；
+      动作按钮是少数派，绝大多数通知本来就没有按钮。 */
+.notif-list{
+  padding:0 16px 20px;display:flex;flex-direction:column;gap:6px;
+}
+/* ---------- 左滑删除（⚠️ 2026-11-24 本轮新增，见 R2.30⑥） ----------
+   —— 结构：
+        .swipe           定位容器（overflow:hidden，裁掉滑出去的部分）
+          .swipe-del     底层【删除按钮】（红色，靠右，固定不动）
+          .swipe-content 上层【内容】（跟着手指左右走）
+   —— 拖动时：给 .swipe-content 加 .dragging（关掉过渡，跟着手指走）
+      松手时：加 .open（停在删除按钮露出来的位置）或者复位
+   —— 为什么不做「直接左滑就删」：通知里可能有「见证席邀请 · 12 小时过期」
+      这种删错了要出事的内容。停在删除按钮上、点一下才删 = 两步确认。 */
+.swipe{
+  position:relative;overflow:hidden;border-radius:var(--r-sm);
+  touch-action:pan-y;
+}
+.swipe-del{
+  position:absolute;top:0;right:0;bottom:0;width:76px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  background:#D9403F;color:#fff;font-size:11px;font-weight:650;
+  border:0;padding:0;cursor:pointer;
+}
+.swipe-del svg{width:16px;height:16px;}
+.swipe-content{
+  position:relative;z-index:1;
+  transition:transform .24s var(--ease);
+  will-change:transform;
+}
+.swipe-content.dragging{transition:none;}
+.swipe.open .swipe-content{transform:translateX(-76px);}
+.notif-row{
+  display:flex;align-items:center;gap:9px;
+  padding:8px 11px;border-radius:var(--r-sm);
+  background:var(--surface);border:1px solid var(--line);
+  transition:.15s var(--ease);
+}
+.notif-row[data-go]{cursor:pointer;}
+.notif-row[data-go]:active{transform:scale(.99);}
+.notif-row.unread{background:var(--brand-tint);border-color:transparent;}
+.notif-ico{
+  flex:0 0 auto;width:28px;height:28px;border-radius:10px;
+  background:var(--surface-3);color:var(--ink-3);
+  display:flex;align-items:center;justify-content:center;
+}
+.notif-row.unread .notif-ico{background:var(--brand);color:#fff;}
+.notif-ico svg{width:15px;height:15px;}
+.notif-main{flex:1;min-width:0;}
+.notif-title{font-size:13.5px;font-weight:650;color:var(--ink);line-height:1.4;}
+/* 正文行：正文 + 时间 + 按钮 同一行
+   ⚠️ 2026-11-24（用户口径改）：原来用 align-items:baseline（基线对齐）——
+      正文 12px、时间 11px、按钮 11px，基线对齐会让正文浮在上面、
+      时间和按钮沉到下面去，整行看起来「偏下」。
+      —— 现在改成 center：三者对同一条水平中线，按钮就正了。 */
+.notif-line{
+  display:flex;align-items:center;gap:10px;margin-top:2px;
+}
+.notif-body{
+  flex:1;min-width:0;
+  font-size:12px;color:var(--ink-3);line-height:1.5;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.notif-foot{
+  display:flex;align-items:center;gap:8px;margin-top:6px;
+  font-size:11px;color:var(--ink-4);
+}
+/* 动作按钮组 —— 挂在【整行的右侧】，跟整行垂直居中
+   ⚠️ 2026-11-24（用户口径改）：原来按钮在【正文行】里面 ——
+      正文行在标题下面，所以按钮整体偏下，看着「吊在下面」。
+      —— 现在按钮提到【整行的右边】，用 align-items:center 对齐整行，
+         按钮就正了（跟标题、正文、时间在同一条水平中线上）。 */
+.notif-acts{flex:0 0 auto;display:flex;align-items:center;gap:6px;}
+/* 时间 —— 跟正文同一行、右对齐 */
+.notif-ts{flex:0 0 auto;opacity:.7;font-size:11px;white-space:nowrap;margin-left:auto;padding-left:8px;}
+/* 动作按钮（去判定 / 接受拒绝 / 查看） */
+.notif-act{
+  padding:3px 10px;border-radius:100px;
+  background:var(--brand);color:#fff;font-size:11px;font-weight:700;
+  white-space:nowrap;
+  display:inline-flex;align-items:center;justify-content:center;
+}
+.notif-act:active{transform:scale(.96);}
+.notif-act.ghost{
+  background:var(--surface-3);color:var(--ink-3);
+}
+.notif-act.expired{
+  background:var(--surface-3);color:var(--ink-4);font-weight:600;
+}
+.notif-dot{
+  flex:0 0 auto;width:7px;height:7px;border-radius:50%;
+  background:var(--rose);margin-top:5px;
+}
+/* 已判定 —— 灰态：做完了的事不该还抢注意力
+   ⚠️ 2026-11-24（用户口径改）：判定完之后通知不消失，
+      变成「已判定」留在原地 —— 灰掉，让用户看得见「做完了」。 */
+.notif-row.done{background:var(--surface);border-color:var(--line);}
+.notif-row.done .notif-ico{background:var(--mint-tint);color:var(--mint);}
+.notif-row.done .notif-title{color:var(--ink-3);font-weight:600;}
+.notif-row.done .notif-body{color:var(--ink-4);}
+
+/* ---------- 首页主 CTA（立 Flag 入口） ---------- */
+.cta-card{
+  width:100%;margin-top:14px;display:flex;align-items:center;gap:12px;
+  padding:14px 16px;border-radius:var(--r);
+  background:linear-gradient(135deg,var(--brand-400),var(--brand-600));
+  color:#fff;box-shadow:var(--sh-brand-md);
+  text-align:left;transition:.16s var(--ease);
+}
+.cta-card:active{transform:scale(.98);}
+/* 降级态：已有进行中的 Flag 时用（见需求规格 R1.6） */
+.cta-card.off{
+  background:var(--surface);color:var(--ink-2);
+  box-shadow:none;border:1.5px solid var(--line-2);
+}
+.cta-card.off .cta-ico{background:var(--surface-3);color:var(--ink-4);}
+.cta-card.off .cta-t{color:var(--ink-2);}
+.cta-card.off .cta-s{color:var(--ink-4);opacity:1;}
+.cta-ico{
+  width:40px;height:40px;border-radius:13px;flex:0 0 40px;
+  background:rgba(255,255,255,.22);
+  display:flex;align-items:center;justify-content:center;
+}
+.cta-ico svg{width:22px;height:22px;stroke:#fff;}
+.cta-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;}
+.cta-t{font-size:15.5px;font-weight:680;letter-spacing:-.2px;}
+.cta-s{font-size:11.5px;opacity:.82;}
+.cta-card > svg{width:18px;height:18px;stroke:#fff;opacity:.7;flex:0 0 18px;}
+
+/* ---------- 数据三联（候选池档案用） ---------- */
+
+/* ============================================================
+   基础组件
+   ============================================================ */
+/* ---------- 空态（冷启动 / 首次登录） ---------- */
+.empty-hero{
+  text-align:center;padding:30px 22px 26px;
+  background:linear-gradient(160deg,var(--brand-tint) 0%,var(--surface) 62%);
+  border-radius:var(--r-lg,20px);box-shadow:var(--sh-lift);
+  margin-top:6px;position:relative;overflow:hidden;
+}
+.empty-hero::after{
+  content:"";position:absolute;right:-46px;top:-46px;
+  width:150px;height:150px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,138,43,.20),transparent 68%);
+  pointer-events:none;
+}
+.empty-ico{
+  width:60px;height:60px;border-radius:19px;margin:0 auto 15px;
+  background:linear-gradient(145deg,var(--brand-400),var(--brand-600));
+  color:#fff;display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--sh-brand-md);
+}
+.empty-ico svg{width:29px;height:29px;stroke:#fff;}
+.empty-t{font-size:19px;font-weight:700;letter-spacing:-.3px;}
+.empty-s{font-size:13px;color:var(--ink-3);line-height:1.75;margin-top:8px;}
+.empty-hint{margin-top:14px;font-size:11.5px;color:var(--ink-4);}
+.empty-hint .info-dot{color:var(--ink-4);}
+
+/* ---------- 调试面板（Demo 专用，右侧） ---------- */
+#devPanel{
+  position:fixed;right:18px;top:18px;width:212px;z-index:900;
+  max-height:calc(100vh - 36px);display:flex;flex-direction:column;
+  background:rgba(36,28,23,.96);color:#F5EFE9;
+  border-radius:15px;padding:14px 13px 12px;
+  box-shadow:0 12px 34px rgba(0,0,0,.28);
+  backdrop-filter:blur(8px);
+  font-size:12px;
+}
+.dp-head{padding:0 2px 11px;border-bottom:1px solid rgba(255,255,255,.1);flex:0 0 auto;}
+.dp-title{font-size:13px;font-weight:700;letter-spacing:.6px;}
+.dp-sub{font-size:11px;color:#8A8177;margin-top:3px;}
+/* ⚠️ 2026-11-24：场景从 8 个增加到 19 个 —— 面板会超高，
+   所以正文区自己滚动，标题和统计条固定。 */
+.dp-body{
+  display:flex;flex-direction:column;gap:6px;padding:11px 0;
+  flex:1 1 auto;overflow-y:auto;min-height:0;
+}
+.dp-body::-webkit-scrollbar{width:4px;}
+.dp-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,.14);border-radius:4px;}
+.dp-body::-webkit-scrollbar-track{background:transparent;}
+/* ⚠️ 2026-11-24 用户口径：「尽量做增加而不是减少」——
+   面板的场景多了（8 → 19 个），所以按「用户生命周期」分了组，
+   视觉上有一个呼吸的空间，不然 19 个按钮糊成一片。 */
+.dp-group{
+  font-size:9.5px;letter-spacing:1.3px;text-transform:uppercase;
+  color:#7C736A;font-weight:600;
+  margin:6px 2px 1px;padding-top:7px;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+.dp-group:first-child{border-top:none;padding-top:0;margin-top:0;}
+.dp-btn{
+  display:block;width:100%;text-align:left;cursor:pointer;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);
+  color:#F5EFE9;border-radius:10px;padding:8px 11px;
+  transition:.15s;appearance:none;font-family:inherit;
+}
+.dp-btn:hover{background:rgba(255,138,43,.18);border-color:rgba(255,138,43,.4);}
+.dp-btn:active{transform:scale(.97);}
+.dp-btn b{display:block;font-size:12.5px;font-weight:650;margin-bottom:2px;}
+.dp-btn span{display:block;font-size:10.5px;color:#9A9188;line-height:1.4;}
+.dp-foot{border-top:1px solid rgba(255,255,255,.1);padding-top:10px;flex:0 0 auto;}
+.dp-stat>div{
+  display:flex;justify-content:space-between;align-items:baseline;
+  font-size:11px;color:#9A9188;padding:2.5px 2px;
+}
+.dp-stat b{color:var(--brand-400);font-size:13px;font-weight:700;font-family:var(--font-num);}
+
+/* 按钮尺寸补充 */
+.btn.lg{height:54px;font-size:16.5px;border-radius:15px;font-weight:650;}
+.btn.lg svg{width:20px;height:20px;stroke:#fff;}
+
+/* 稀疏列表 */
+.list.sparse .row{padding:13px 16px;}
+.list.sparse .row-icon{width:34px;height:34px;border-radius:11px;}
+
+.card{
+  background:var(--surface);border-radius:var(--r);padding:16px;
+  box-shadow:var(--sh-lift);
+}
+.card.flat{box-shadow:none;border:1px solid var(--line);}
+.card.pad-s{padding:12px;}
+.section{margin-top:22px;}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:11px;padding:0 2px;}
+.section-title{font-size:16px;font-weight:680;letter-spacing:-.2px;}
+.section-sub{font-size:12px;color:var(--ink-3);}
+
+.divider{height:1px;background:var(--line);margin:14px 0;}
+.divider.dashed{height:0;border-top:1px dashed var(--line-2);}
+
+/* 按钮 */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  height:48px;padding:0 22px;border-radius:var(--r-sm);
+  background:var(--brand);color:#fff;font-size:15.5px;font-weight:600;letter-spacing:.2px;
+  box-shadow:var(--sh-brand-sm);transition:.16s var(--ease);
+  position:relative;overflow:hidden;
+}
+.btn:active{transform:scale(.975);box-shadow:0 1px 4px rgba(169,79,12,.18);}
+.btn.block{width:100%;}
+.btn.ghost{background:var(--surface);color:var(--ink);box-shadow:none;border:1.5px solid var(--line-2);}
+.btn.ghost:active{background:var(--surface-3);}
+.btn.soft{background:var(--brand-tint);color:var(--brand);box-shadow:none;}
+.btn.soft:active{background:var(--brand-tint-2);}
+.btn.danger{background:var(--rose);box-shadow:0 2px 10px rgba(201,74,79,.22);}
+.btn.warn{background:var(--amber);color:#3D2400;box-shadow:0 2px 10px rgba(217,148,19,.24);}
+.btn.dark{background:var(--ink);box-shadow:0 2px 10px rgba(26,22,19,.2);}
+.btn[disabled]{background:var(--surface-3);color:var(--ink-4);box-shadow:none;pointer-events:none;}
+.btn.sm{height:36px;padding:0 15px;font-size:13.5px;border-radius:10px;}
+.btn.xs{height:30px;padding:0 12px;font-size:12.5px;border-radius:9px;font-weight:550;}
+/* 已订阅状态（2026-11-22 用户口径：订阅后按钮变成「已订阅」）
+   ⚠️ 用「已完成」的绿而不是灰 —— 灰会像禁用态，让人以为不能点了。 */
+.btn.subscribed{background:var(--mint-tint);color:#0A7A51;box-shadow:none;}
+.btn.subscribed:active{background:var(--mint-tint);}
+/* ⚠️ 2026-11-24（本轮）：目标详情页底部的「监督这一局」按钮 ——
+   改成了和广场卡片一样的眼睛图标，一点就监督、再点一下取消。
+   —— 原来它要先进一个独立页面（里面还有三个点不动的假开关），现在两处统一。 */
+.btn.fd-sup{
+  display:flex;align-items:center;justify-content:center;gap:7px;
+}
+.btn.fd-sup svg{width:17px;height:17px;}
+.btn.fd-sup.on{background:var(--mint-tint);color:#0A7A51;box-shadow:none;}
+.btn.fd-sup.on:active{background:var(--mint-tint);}
+.btn.fd-sup .fd-sup-n{
+  font-variant-numeric:tabular-nums;font-weight:700;
+  padding-left:6px;margin-left:2px;border-left:1px solid currentColor;
+  opacity:.62;
+}
+.btn-row{display:flex;gap:10px;}
+.btn-row>*{flex:1;}
+
+/* 标签 */
+.tag{
+  display:inline-flex;align-items:center;gap:4px;
+  padding:3px 9px;border-radius:var(--r-xs);
+  font-size:11.5px;font-weight:600;background:var(--surface-3);color:var(--ink-2);
+  white-space:nowrap;line-height:1.4;
+}
+.tag.brand{background:var(--brand-tint);color:var(--brand);}
+.tag.coral{background:var(--coral-tint);color:#C24A2B;}
+.tag.amber{background:var(--amber-tint);color:#A97108;}
+.tag.sky{background:var(--sky-tint);color:#35648F;}
+.tag.violet{background:var(--violet-tint);color:#6F52A0;}
+.tag.rose{background:var(--rose-tint);color:#B03B40;}
+.tag.mint{background:var(--mint-tint);color:#3F7A58;}
+.tag.outline{background:transparent;border:1px solid var(--line-2);color:var(--ink-3);}
+.tag.lg{font-size:12.5px;padding:4px 11px;border-radius:10px;}
+
+/* 头像 */
+.avatar{
+  width:40px;height:40px;border-radius:50%;flex:0 0 40px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:650;color:#fff;letter-spacing:.5px;
+  background:var(--brand);
+  object-fit:cover;overflow:hidden;
+}
+img.avatar{display:block;}
+.avatar.xs{width:24px;height:24px;flex:0 0 24px;font-size:10.5px;}
+.avatar.sm{width:32px;height:32px;flex:0 0 32px;font-size:12.5px;}
+.avatar.lg{width:52px;height:52px;flex:0 0 52px;font-size:19px;}
+.avatar.xl{width:70px;height:70px;flex:0 0 70px;font-size:26px;}
+.avatar.ring{box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--brand-tint),0 3px 10px rgba(169,79,12,.2);}
+.stack{display:flex;}
+.stack .avatar{margin-left:-10px;border:2.5px solid var(--surface);}
+.stack .avatar:first-child{margin-left:0;}
+
+/* 列表 */
+.list{background:var(--surface);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh-lift-sm);}
+.row{
+  display:flex;align-items:center;gap:12px;padding:14px 16px;
+  border-bottom:1px solid var(--line);transition:background .12s;
+}
+.row:last-child{border-bottom:0;}
+.row.tap:active{background:var(--surface-2);}
+.row-icon{
+  width:34px;height:34px;border-radius:11px;flex:0 0 34px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--surface-3);font-size:16px;
+}
+.row-main{flex:1;min-width:0;}
+/* 名单里可点开看账户的那一行（召集令报名者，见 R5.6） */
+.row-ava{flex:0 0 auto;cursor:pointer;}
+.row-main.tap{cursor:pointer;}
+/* ⚠️ 2026-11-24（本轮）：一行里放【拒绝】【接受】两个按钮
+   —— 用户口径：「需新增『拒绝』按钮，两个按钮大小一致」。
+   —— 两个按钮等宽（min-width 相同）+ 间距固定，
+      不然「拒绝」两个字比「接受」短，视觉上就一大一小。 */
+.row-acts{display:flex;gap:8px;flex:0 0 auto;align-items:center;}
+.row-acts .btn{min-width:64px;}
+.row-title{font-size:14.5px;font-weight:550;letter-spacing:-.1px;}
+.row-sub{font-size:12px;color:var(--ink-3);margin-top:2px;line-height:1.45;}
+.row-val{font-size:14px;color:var(--ink-3);text-align:right;flex-shrink:0;margin-left:auto;
+  font-variant-numeric:tabular-nums;min-width:34px;}
+.row-icon svg{width:16px;height:16px;}
+.row-val.brand{color:var(--brand);font-weight:650;}
+.row-arrow{color:var(--ink-4);flex:0 0 auto;display:flex;margin-left:8px;}
+.row-arrow svg{width:16px;height:16px;}
+/* ⚠️ 2026-11-24（R2.31①）：已结算记录行上的「记录卡」角标删掉了 ——
+   记录卡统一从【目标详情页底部】进（见 R2.31②）。
+   所以 .rc-link / .feed-rc 这两段样式一并清掉 —— 留着就是死样式。 */
+
+/* 表单 */
+.field{margin-bottom:18px;}
+.field-label{
+  font-size:13px;font-weight:600;color:var(--ink-2);margin-bottom:8px;
+  display:flex;align-items:center;gap:5px;
+}
+.field-label .req{color:var(--rose);font-weight:700;}
+.input,.select,.textarea{
+  width:100%;background:var(--surface);border:1.5px solid var(--line);
+  border-radius:var(--r-sm);padding:13px 14px;font-size:15px;color:var(--ink);
+  transition:border-color .16s, box-shadow .16s;appearance:none;
+}
+.input::placeholder,.textarea::placeholder{color:var(--ink-4);}
+.input:focus,.select:focus,.textarea:focus{
+  outline:none;border-color:var(--brand);box-shadow:0 0 0 3.5px var(--brand-tint),0 2px 8px rgba(169,79,12,.10);
+}
+.textarea{resize:none;min-height:90px;line-height:1.6;}
+.select{
+  background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%2379818E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 13px center;padding-right:38px;
+}
+.field-hint{font-size:12px;color:var(--ink-3);margin-top:7px;line-height:1.55;}
+.field-hint.warn{color:#A97108;}
+
+/* ---- 心情 / 体悟输入（见需求规格 R2.11）----
+   ⚠️ 上限 15 字是硬限制 —— maxlength + JS 双重兜底。 */
+.note-input{
+  width:100%;border:1px solid var(--line);border-radius:var(--r-md);
+  padding:11px 13px;font-size:14px;line-height:1.6;color:var(--ink);
+  background:var(--surface-2);resize:none;font-family:inherit;
+  transition:.16s var(--ease);
+}
+.note-input:focus{outline:none;border-color:var(--brand);background:var(--surface);box-shadow:var(--sh-brand-ring);}
+.note-input::placeholder{color:var(--ink-4);}
+/* ⚠️ 2026-11-24（本轮）：心情输入框下方那一行 ——
+   左边是「可选 —— 打卡照是物证…」的说明，右边是字数计数器。
+   —— 计数器从标题旁挪到这里：标题旁挂一个「0 / 15」是"你还没做"的红牌，
+      摆在最显眼的位置反而让人紧张；放到输入框右下角才是常规做法。 */
+.note-foot{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  margin-top:8px;
+}
+.note-foot .field-hint{margin:0;}
+.note-count{font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums;flex:0 0 auto;}
+/* 打卡详情页里展示当天的留言 */
+/* 打卡留言 / 心情（见需求规格 R2.11）
+   ⚠️ 2026-11-22 用户口径：「这个留言的背景色是橙色的，和页面整体风格不搭，
+      调整回跟这个页面其他的框一个风格的白色底框。」
+   —— 所以用 --surface 白底 + 细边线 + 轻投影，和页面里其他 .card 完全一致。 */
+.ev-note{
+  margin-top:10px;padding:13px 15px;border-radius:var(--r);
+  background:var(--surface);border:1px solid var(--line);
+  box-shadow:var(--sh-lift-sm);
+  font-size:13.5px;line-height:1.75;color:var(--ink);
+}
+
+/* ⚠️ 2026-11-23：打卡详情里的【见证席审核最终结果】
+   —— 只要结论，不要人数、不要比例（用户口径：「只需要最终结果就行」）。 */
+.ev-verdict-ico{
+  width:34px;height:34px;flex:0 0 34px;border-radius:11px;
+  display:flex;align-items:center;justify-content:center;
+}
+.ev-verdict-ico svg{width:17px;height:17px;}
+.ev-verdict-ico.mint{background:var(--mint-tint);color:#3F7A58;}
+.ev-verdict-ico.rose{background:var(--rose-tint);color:#B03B40;}
+.ev-verdict-ico.amber{background:var(--amber-tint);color:#A97108;}
+
+/* 分段控件 */
+.seg{
+  display:flex;background:var(--surface-3);border-radius:12px;padding:3px;gap:2px;
+  position:relative;
+}
+.seg button{
+  flex:1;padding:8px 6px;border-radius:9px;font-size:13.5px;font-weight:550;
+  color:var(--ink-3);transition:.2s var(--ease);white-space:nowrap;
+}
+.seg button.on{background:var(--surface);color:var(--ink);box-shadow:var(--sh-lift-sm);}
+
+/* 选项卡片 */
+.opt-grid{display:flex;gap:9px;}
+.opt-grid.col{flex-direction:column;}
+.opt-card{
+  flex:1;border:1.5px solid var(--line);border-radius:var(--r-sm);
+  padding:13px 10px;text-align:center;background:var(--surface);
+  transition:.18s var(--ease);
+}
+.opt-card:active{transform:scale(.97);}
+.opt-card.on{border-color:var(--brand);background:var(--brand-tint);box-shadow:var(--sh-brand-ring);}
+.opt-card .o-t{font-size:14.5px;font-weight:650;letter-spacing:-.2px;}
+.opt-card .o-s{font-size:11.5px;color:var(--ink-3);margin-top:3px;line-height:1.4;}
+.opt-card.on .o-t{color:var(--brand);}
+.opt-card.on .o-s{color:var(--brand);opacity:.72;}
+/* 锁定态（90 天需信用 ≥ 80） */
+.opt-card.locked{
+  border-style:dashed;background:var(--bg-2);opacity:.62;cursor:not-allowed;
+}
+.opt-card.locked .o-t{color:var(--ink-3);}
+.opt-card.locked .o-s{color:var(--ink-3);opacity:.9;}
+
+/* 开关 */
+.switch{
+  width:46px;height:28px;border-radius:100px;background:var(--line-2);
+  position:relative;transition:.24s var(--ease);flex:0 0 46px;
+}
+.switch::after{
+  content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;
+  background:#fff;box-shadow:0 2px 5px rgba(50,34,20,.26);transition:.24s var(--spring);
+}
+.switch.on{background:var(--brand);box-shadow:0 1px 6px rgba(169,79,12,.28);}
+.switch.on::after{left:21px;}
+
+/* 勾选 */
+.check{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:var(--ink-2);line-height:1.6;}
+.check .box{
+  width:21px;height:21px;border-radius:7px;border:1.8px solid var(--line-2);
+  flex:0 0 21px;display:flex;align-items:center;justify-content:center;
+  transition:.16s var(--ease);background:var(--surface);margin-top:1px;
+}
+.check .box svg{width:12px;height:12px;opacity:0;transform:scale(.5);transition:.16s var(--spring);}
+.check.on .box{background:var(--brand);border-color:var(--brand);box-shadow:0 1px 5px rgba(169,79,12,.28);}
+.check.on .box svg{opacity:1;transform:none;}
+
+/* 进度条 */
+.bar{height:5px;border-radius:100px;background:var(--surface-3);overflow:hidden;}
+.bar>i{display:block;height:100%;border-radius:100px;background:var(--brand);
+  transition:width .6s var(--ease-out);position:relative;}
+.bar>i::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3));}
+.bar.amber>i{background:var(--amber);}
+.bar.rose>i{background:var(--rose);}
+.bar.coral>i{background:var(--coral);}
+.bar.mint>i{background:var(--mint);}
+.bar-row{display:flex;justify-content:space-between;font-size:10.5px;color:var(--ink-3);margin-bottom:6px;}
+
+/* 环形进度 */
+.ring{position:relative;flex:0 0 auto;}
+.ring svg{transform:rotate(-90deg);display:block;}
+.ring .ring-t{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+}
+.ring .ring-v{font-family:var(--font-num);font-weight:750;letter-spacing:-1px;line-height:1;}
+.ring .ring-l{font-size:10.5px;color:var(--ink-3);margin-top:2px;}
+
+/* 数据磁贴 */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;}
+.tiles.c2{grid-template-columns:repeat(2,1fr);}
+.tiles.c4{grid-template-columns:repeat(4,1fr);}
+.tile{
+  background:var(--surface);border-radius:var(--r-sm);padding:13px 10px;text-align:center;
+  box-shadow:var(--sh-lift-sm);transition:.16s var(--ease);
+}
+.tile:active{transform:scale(.96);}
+.tile .t-v{font-family:var(--font-num);font-size:21px;font-weight:750;letter-spacing:-.8px;line-height:1.15;}
+.tile .t-l{font-size:11px;color:var(--ink-3);margin-top:4px;line-height:1.3;}
+.tile .t-v.brand{color:var(--brand);}
+.tile .t-v.coral{color:var(--coral);}
+.tile .t-v.amber{color:var(--amber);}
+.tile .t-v.rose{color:var(--rose);}
+.tile .t-v.violet{color:var(--violet);}
+
+/* 说明点 */
+.info-dot{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:17px;height:17px;border-radius:50%;background:var(--sky-tint);color:var(--sky);
+  font-size:11px;font-weight:700;line-height:1;vertical-align:middle;
+  margin-left:5px;cursor:pointer;flex:0 0 17px;border:1px solid #D3E0EE;
+  box-shadow:var(--sh-lift-sm);
+  transition:.16s var(--spring);
+}
+.info-dot:hover{background:var(--sky);color:#fff;border-color:var(--sky);transform:scale(1.12);}
+.info-dot:active{transform:scale(.9);}
+.info-dot.sm{width:15px;height:15px;font-size:10px;margin-left:3px;}
+.info-dot.amber{background:var(--amber-tint);color:#A97108;border-color:#F0DCB4;}
+.info-dot.amber:hover{background:var(--amber);color:#fff;}
+.info-dot.brand{background:var(--brand-tint);color:var(--brand);border-color:var(--brand-tint-2);}
+.info-dot.brand:hover{background:var(--brand);color:#fff;}
+
+/* 可点数值 */
+.tap-val{
+  cursor:pointer;position:relative;
+  border-bottom:1.5px dashed var(--line-2);font-variant-numeric:tabular-nums;
+  transition:.15s;
+}
+.tap-val:hover{color:var(--sky);border-bottom-color:var(--sky);}
+
+/* ============================================================
+   Hero / 内容卡
+   ============================================================ */
+.hero{
+  position:relative;overflow:hidden;border-radius:var(--r-xl);
+  background:linear-gradient(150deg,#FF9A3D 0%,#FF6B00 42%,#E85A00 100%);
+  color:#fff;padding:20px;margin-top:14px;
+  box-shadow:var(--sh-brand-lg);
+}
+.hero::before{
+  content:"";position:absolute;right:-70px;top:-70px;width:200px;height:200px;
+  border-radius:50%;background:rgba(255,255,255,.07);
+}
+.hero::after{
+  content:"";position:absolute;right:20px;bottom:-90px;width:160px;height:160px;
+  border-radius:50%;background:rgba(255,255,255,.05);
+}
+.hero .h-top{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1;}
+.hero .h-label{font-size:11.5px;opacity:.72;letter-spacing:.8px;text-transform:uppercase;font-weight:600;}
+.hero .h-title{font-size:22px;font-weight:730;margin:8px 0 4px;letter-spacing:-.4px;line-height:1.3;position:relative;z-index:1;}
+.hero .h-sub{font-size:13px;opacity:.8;line-height:1.5;position:relative;z-index:1;}
+.hero .h-badge{
+  display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:100px;
+  background:rgba(255,255,255,.16);font-size:11.5px;font-weight:600;backdrop-filter:blur(4px);
+}
+
+/* ============================================================
+   广场信息流 —— 双列瀑布流（小红书式，见需求规格 R2.7）
+   ⚠️ 2026-11-21：单列 4:3 大图占了整屏宽，一屏只看得见 1 张，
+      用户反馈「照片占据的画面太大」→ 改 2 列，封面换竖版 3:4。
+   ============================================================ */
+.feed-grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;align-items:start;
+}
+
+/* ---------- 广场：三个内容视图 + 筛选状态条（2026-11-24 本轮新增） ---------- */
+.sq-seg{margin:12px 16px 10px;}
+.sq-seg button{font-size:13px;}
+
+/* 导航栏上筛选按钮旁边的小标签（当前筛选条件的可读描述） */
+.nav-btn .fp-badge{
+  position:absolute;right:-4px;bottom:-3px;
+  max-width:76px;padding:1px 5px;border-radius:100px;
+  background:var(--brand);color:#fff;font-size:9.5px;font-weight:700;
+  line-height:1.5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  border:1.5px solid var(--surface);
+}
+.nav-btn{position:relative;}
+
+/* 筛选生效时，广场顶部的一条状态条 */
+.sq-filterbar{
+  display:flex;align-items:center;gap:8px;
+  margin:0 16px 10px;padding:7px 11px;border-radius:var(--r-xs);
+  background:var(--brand-tint);color:var(--brand);
+  font-size:11.5px;font-weight:600;
+}
+.sq-filterbar svg{width:13px;height:13px;flex:0 0 auto;}
+.sq-filterbar-x{
+  margin-left:auto;color:var(--ink-3);font-weight:500;
+  text-decoration:underline;text-underline-offset:2px;
+}
+
+/* 内容卡（广场） */
+.feed-card{
+  background:var(--surface);border-radius:var(--r);overflow:hidden;
+  box-shadow:var(--sh-lift);margin-bottom:10px;transition:.2s var(--ease);
+  display:block;position:relative;
+}
+.feed-card:active{transform:scale(.985);box-shadow:var(--sh-lift-sm);}
+/* 瀑布流里的卡片不靠 margin 撑开（用 grid gap） */
+.feed-grid .feed-card{margin-bottom:0;}
+
+/* ---- 封面竖图（3:4）----
+   竖版贴满窄栏不裁切主体；眼睛先落在图上，数据退到图下。
+   ⚠️ .feed-strip（8 格缩略图条）已从广场卡移除，
+      但异议页 / 物证页仍在用同一套格子样式，所以样式保留。 */
+.feed-cover{
+  position:relative;width:100%;aspect-ratio:3/4;
+  overflow:hidden;background:var(--surface-2);
+}
+.feed-cover img{width:100%;height:100%;object-fit:cover;display:block;}
+/* fallback：还没打第一张卡 / 关闭了照片展示 —— 不能长得像「坏了」 */
+.feed-cover-fb{
+  width:100%;height:100%;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:3px;
+  background:linear-gradient(150deg,#FF8A2B 0%,#FF6B00 60%,#E85A00 100%);
+  color:#fff;padding:8px;text-align:center;
+}
+.feed-cover-fb .fcf-l{font-family:var(--font-num);font-size:19px;font-weight:780;letter-spacing:-.8px;line-height:1.15;}
+.feed-cover-fb .fcf-s{font-size:10.5px;opacity:.82;font-weight:550;}
+
+/* 左上角浮层：头像 + 状态 —— 压在图上，不占额外高度
+   窄栏放不下名字，所以 .fcv-name 在双列下只留头像 */
+.feed-cover-top{
+  position:absolute;left:0;right:0;top:0;padding:8px 9px;
+  display:flex;align-items:center;gap:6px;
+  background:linear-gradient(180deg,rgba(0,0,0,.42) 0%,rgba(0,0,0,.16) 60%,transparent 100%);
+}
+.feed-cover-top .avatar{box-shadow:0 0 0 1.5px rgba(255,255,255,.5);}
+.fcv-name{
+  font-size:12px;font-weight:600;color:#fff;flex:1;min-width:0;
+  text-shadow:0 1px 3px rgba(0,0,0,.4);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.feed-cover-top .status-pill{
+  background:rgba(255,255,255,.9);backdrop-filter:blur(4px);
+  padding:2px 6px;font-size:9.5px;
+}
+/* 右下角：补充照片张数（第 1 张即封面） */
+.feed-cover-n{
+  position:absolute;right:8px;bottom:8px;
+  display:flex;align-items:center;gap:3px;
+  padding:3px 7px;border-radius:100px;
+  background:rgba(0,0,0,.48);backdrop-filter:blur(4px);
+  color:#fff;font-size:10px;font-weight:650;
+}
+.feed-cover-n svg{width:11px;height:11px;}
+
+/* 左上角下方：「已关注」角标（见需求规格 R2.14）
+   ⚠️ 关注是【人级】关系 —— 角标标的是「这张卡的作者我关注了」，
+      所以它挂在封面左上角（作者头像下方），不是挂在某一局上。 */
+.feed-followed{
+  position:absolute;left:9px;top:52px;
+  display:flex;align-items:center;gap:3px;
+  padding:2.5px 7px;border-radius:100px;
+  background:rgba(0,0,0,.48);backdrop-filter:blur(4px);
+  color:#fff;font-size:9.5px;font-weight:650;line-height:1.2;
+}
+.feed-followed svg{width:10px;height:10px;stroke-width:3;}
+
+/* 留言框（目标详情页）
+   ⚠️ 2026-11-23 用户口径：「用户留言框和下面的卡片框，两个框距离太近了。」
+   —— 留言框要跟上下都拉开距离，别跟隔壁的卡粘在一起。
+      上面留 22px、下面留 22px。 */
+.msg-box-card{
+  margin-top:22px;margin-bottom:22px;padding:12px 14px;
+}
+.msg-box-card + .section{margin-top:0;}
+
+/* ⚠️ 2026-11-24（本轮）：目标详情页的留言入口 —— 从输入框改成【一行引导按钮】，
+   点了升起广场那个留言半屏（openMsgSheet）。
+   —— 为什么不是输入框：详情页发完留言，用户看不到别人已经说了什么，
+      会重复说别人说过的话；而且全站留言应该只有一种形态、一套数据。 */
+.msg-entry{
+  display:flex;align-items:center;gap:8px;width:100%;
+  padding:9px 12px;border-radius:11px;
+  background:var(--surface-2);border:1px solid var(--line);
+  color:var(--ink-3);font-size:13px;font-weight:500;
+  font-family:inherit;text-align:left;cursor:pointer;
+  transition:border-color .15s,background .15s;
+}
+.msg-entry svg{width:15px;height:15px;flex:0 0 15px;opacity:.7;}
+.msg-entry:active{background:var(--surface-3);border-color:var(--line-2);}
+.msg-entry:active svg{transform:scale(.9);}
+
+/* ⚠️ 2026-11-24（本轮）：留言入口改成【轮播的流动文字】——
+   用户口径：「目标详情里的留言的展示，可以做成流动的文字，
+     这样用户就知道点击可以看到里面的内容，同时还能写留言。」
+
+   —— 为什么是轮播（不是无限滚动）：
+      ① 留言通常就两三条，轮播和无限滚动给用户的价值差别不大，
+         但轮播稳定性便宜得多（真滚动在手机浏览器上容易抖）；
+      ② 内容一长就被裁切；
+      ③ 用户前面已经砍掉了一堆装饰性的东西，加一条无限滚动条跟这个方向不符。
+
+   —— 结构：一条横向轨道，每条留言一个 .mt-item，
+      同一时刻只有一条可见（on），靠 JS 定时切换。 */
+.msg-ticker{
+  display:flex;align-items:center;gap:9px;width:100%;
+  padding:9px 11px;border-radius:11px;
+  background:var(--surface-2);border:1px solid var(--line);
+  font-family:inherit;text-align:left;cursor:pointer;overflow:hidden;
+  transition:border-color .15s,background .15s;
+}
+.msg-ticker:active{background:var(--surface-3);border-color:var(--line-2);}
+.mt-ico{flex:0 0 auto;display:flex;align-items:center;color:var(--ink-3);}
+.mt-ico svg{width:15px;height:15px;opacity:.75;}
+.mt-track{
+  flex:1;min-width:0;position:relative;height:19px;overflow:hidden;
+}
+.mt-item{
+  position:absolute;left:0;top:0;right:0;
+  display:flex;align-items:baseline;gap:7px;
+  font-size:12.5px;line-height:19px;
+  opacity:0;transform:translateY(6px);
+  transition:opacity .35s var(--ease),transform .35s var(--ease);
+  pointer-events:none;
+}
+.mt-item.on{opacity:1;transform:translateY(0);}
+.mt-name{
+  flex:0 0 auto;font-weight:700;color:var(--ink-2);font-size:12px;
+}
+.mt-text{
+  flex:1;min-width:0;color:var(--ink-3);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+/* 右下角：既是「第几条」的进度指示，也是「点进去看全部」的箭头 */
+.mt-count{
+  flex:0 0 auto;display:flex;align-items:center;gap:2px;
+  font-size:11px;color:var(--ink-4);font-variant-numeric:tabular-nums;
+}
+.mt-count svg{width:13px;height:13px;}
+
+/* ---- 图下的数据区：只留三个关键数（体重 / 监督 / 进展） ---- */
+.feed-body{padding:8px 10px 11px;}
+.feed-title{font-size:13px;font-weight:650;line-height:1.38;letter-spacing:-.15px;}
+
+.feed-title.clamp2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+
+/* 数据条：起始体重 → 目标体重
+   ⚠️ 2026-11-23 用户口径：「这个截图中 67.4KG 4.2KG 的数据展示，
+      改为用户定的开始体重和目标体重。」
+   —— 所以这里显示的是【用户自己定的两个数】，不是当前体重、也不是还差多少。 */
+.feed-meta-line{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:6px;margin-top:7px;
+}
+.fml-w{display:flex;align-items:baseline;gap:2px;min-width:0;}
+.fml-w b{
+  font-family:var(--font-num);font-size:17px;font-weight:760;letter-spacing:-.6px;line-height:1;
+}
+.fml-w i{font-size:10px;color:var(--ink-3);font-weight:550;font-style:normal;}
+.fml-arrow{
+  font-size:11px;color:var(--ink-4);font-weight:600;margin:0 4px;
+  white-space:nowrap;
+}
+.fml-diff{
+  font-size:10.5px;font-weight:600;color:var(--ink-3);margin-left:3px;
+  white-space:nowrap;
+}
+.fml-diff.good{color:var(--brand);}
+
+/* 进展条 */
+.feed-prog{margin-top:7px;}
+.feed-prog .bar{margin-bottom:3px;}
+.feed-prog-l{
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:9.5px;color:var(--ink-4);font-variant-numeric:tabular-nums;
+}
+
+/* ⚠️ 2026-11-24 用户口径（改）：
+   「把点赞和留言文字删掉吧，只保留图标就行，不然位置不够了，
+    点赞、留言、监督都显示数值。」
+   —— 这一行现在是三个【图标 + 数字】：① 点赞 ② 留言 ③ 监督（眼睛，可点）
+   —— 窄栏（153px）只放得下「图标 + 数字」，所以文字全删。
+   ⚠️ 横向 padding 交给 .feed-body —— 两层都加会把窄栏撑破。 */
+.feed-actions{
+  display:flex;align-items:center;gap:6px;
+  padding:8px 0 2px;
+}
+/* 三个按钮共用一套样式 */
+.feed-like,.feed-msg,.feed-sup{
+  display:inline-flex;align-items:center;gap:3px;
+  padding:4px 6px;border-radius:100px;
+  font-size:11px;font-weight:650;color:var(--ink-3);
+  background:var(--surface-2);border:none;transition:.15s var(--ease);
+  white-space:nowrap;flex:0 0 auto;line-height:1.2;
+  font-variant-numeric:tabular-nums;
+}
+.feed-like svg,.feed-msg svg,.feed-sup svg{width:13px;height:13px;flex:0 0 13px;}
+.feed-like:active,.feed-msg:active,.feed-sup:active{transform:scale(.9);}
+/* 点过之后颜色变化 —— 未点=灰，点过=品牌橙 */
+.feed-like.on,.feed-sup.on{background:var(--brand-tint);color:var(--brand);}
+.feed-like.on svg,.feed-sup.on svg{stroke-width:2.4;}
+
+/* ⚠️ 2026-11-24（本轮）：这里原来有 .feed-join（广场招募卡片的「参加」按钮区）。
+   —— 招募视图已经改用 recruitStrip()（横条），那段是走不到的死代码 ——
+      连同对应的 CSS 一起删掉，免得后来的人以为卡片上还挂着参加按钮。 */
+
+/* ---------- 广场「招募中」横条（⚠️ 2026-11-24 本轮） ----------
+   原来这个视图走双列大卡片 —— 但招募中的局还在筹备期、连封面照都没有，
+   卡片里是一大块灰色占位，很怪。而且用户在这个视图里只做一件事：
+   看看有没有想参加的。所以改成一条横条。 */
+.recruit-list{
+  padding:0 16px 20px;display:flex;flex-direction:column;gap:8px;
+}
+.recruit-strip{
+  display:flex;align-items:center;gap:10px;
+  padding:11px 12px;border-radius:var(--r-sm);
+  background:var(--surface);border:1px solid var(--line);
+  transition:.15s var(--ease);cursor:pointer;
+}
+.recruit-strip:active{transform:scale(.99);}
+.recruit-strip.joined{background:var(--surface-2);}
+.rs-ava{flex:0 0 auto;}
+.rs-main{flex:1;min-width:0;}
+.rs-title{
+  font-size:13.5px;font-weight:650;color:var(--ink);line-height:1.4;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.rs-sub{
+  display:flex;align-items:center;flex-wrap:wrap;gap:6px;
+  margin-top:3px;font-size:11.5px;color:var(--ink-3);
+}
+/* 倒计时 —— 跟筹备期倒计时同一套做法，真在走 */
+.rs-clock{
+  font-variant-numeric:tabular-nums;font-weight:700;
+  color:var(--brand);letter-spacing:.2px;
+}
+.recruit-strip .btn{flex:0 0 auto;}
+
+/* ---------- 招募详情页（⚠️ 2026-11-24 本轮新增） ---------- */
+.rd-owner{display:flex;align-items:center;gap:12px;padding:14px 14px;}
+.rd-ava{flex:0 0 auto;}
+.rd-owner-name{font-size:15.5px;font-weight:700;color:var(--ink);}
+.rd-owner-id{font-size:11.5px;color:var(--ink-4);margin-top:2px;}
+.rd-owner-sub{
+  display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;
+  font-size:11.5px;color:var(--ink-3);
+}
+.rd-goal{padding:14px;}
+.rd-goal-t{font-size:15px;font-weight:680;color:var(--ink);line-height:1.45;}
+.rd-goal-s{font-size:12.5px;color:var(--ink-3);margin-top:5px;}
+.rd-goal-meta{
+  display:flex;flex-wrap:wrap;gap:8px;margin-top:9px;
+  font-size:11.5px;color:var(--ink-3);
+}
+.rd-status{padding:4px 14px;}
+.rd-st-row{
+  display:flex;align-items:center;gap:10px;
+  padding:11px 0;border-bottom:1px solid var(--line);
+  font-size:12.5px;
+}
+.rd-st-row:last-child{border-bottom:0;}
+.rd-st-k{flex:0 0 auto;color:var(--ink-3);width:64px;}
+/* ⚠️ 2026-11-24（本轮，用户口径 Part 五①）：.rd-st-slots（三个点的占位）**样式删除** ——
+   —— 见证席上限统一 10 人后，点数画 3 个却写着「2 / 10」是自相矛盾的视觉。
+      现在只留一个数字。 */
+.rd-st-v{margin-left:auto;color:var(--ink);font-weight:650;}
+.rd-st-clock{color:var(--brand);font-variant-numeric:tabular-nums;}
+
+/* 留言按钮 —— 点开是半屏留言框 */
+.feed-msg:active{background:var(--brand-tint);color:var(--brand);}
+
+/* ⚠️ 监督按钮（眼睛图标）—— 点了就监督了，颜色改变，再点一次取消 */
+.feed-sup{
+  margin-left:auto;
+  font-size:10.5px;color:var(--ink-4);font-weight:600;
+}
+.feed-sup.on{color:var(--brand);}
+
+/* ⚠️ 2026-11-24 用户口径：「带一点小小的特效就行。」
+   —— 点赞 / 监督点下去之后：图标「涨一下」（scale 弹一下）。
+      用 CSS 关键帧而不是 JS —— 不占主线程，动画也不会跟手延迟。 */
+@keyframes feedPop{
+  0%{transform:scale(1);}
+  35%{transform:scale(1.32);}
+  60%{transform:scale(.92);}
+  100%{transform:scale(1);}
+}
+.feed-like.pop svg,.feed-sup.pop svg{
+  animation:feedPop .42s var(--spring);
+}
+/* 数字也跟着弹一下 —— 让「+1」这件事更明显 */
+@keyframes feedNumPop{
+  0%{transform:scale(1);}
+  40%{transform:scale(1.22);}
+  100%{transform:scale(1);}
+}
+.feed-like.pop span,.feed-sup.pop span{
+  animation:feedNumPop .42s var(--spring);
+  display:inline-block;
+}
+
+/* ============================================================
+   留言半屏（广场卡片点「留言」升起的半屏）
+   ⚠️ 2026-11-23 用户口径：
+      ① 最上面 = 目标人今天拍的照片 + 心情留言 + 时间
+      ② 然后 = 其他围观者的留言（头像 / 名称 / 日期 / 正文 / 独立点赞）
+      ③ 最下面 = 输入框
+      ④ 留言按时间倒序，新的排最高
+   —— 半屏里【没有一个字的说明】：内容自己会说话。
+   ============================================================ */
+.msg-sheet-top{padding-bottom:14px;border-bottom:1px solid var(--line);}
+.ms-head{display:flex;align-items:center;gap:9px;margin-bottom:11px;}
+.ms-name{font-size:14px;font-weight:680;letter-spacing:-.2px;}
+.ms-time{font-size:11.5px;color:var(--ink-3);margin-top:1px;}
+.ms-note{
+  margin-top:11px;padding:11px 13px;
+  background:var(--surface-2);border-radius:var(--r-sm);
+  font-size:13.5px;color:var(--ink-2);line-height:1.65;
+}
+/* 留言列表 */
+.ms-list{padding:4px 0 0;}
+.ms-item{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:12px 0;border-bottom:1px solid var(--line);
+}
+.ms-item:last-child{border-bottom:0;}
+.ms-body{flex:1;min-width:0;}
+.ms-meta{display:flex;align-items:baseline;gap:7px;margin-bottom:3px;}
+.ms-who{font-size:13px;font-weight:650;color:var(--ink);}
+.ms-when{font-size:11px;color:var(--ink-4);}
+.ms-text{font-size:13.5px;color:var(--ink-2);line-height:1.6;word-break:break-word;}
+/* 每条留言自己的点赞按钮 —— 独立于 Flag 的点赞 */
+.ms-like{
+  display:inline-flex;align-items:center;gap:3px;flex:0 0 auto;
+  padding:5px 7px;border-radius:100px;
+  font-size:10.5px;font-weight:650;color:var(--ink-4);
+  background:var(--surface-2);border:none;transition:.15s var(--ease);
+  font-variant-numeric:tabular-nums;line-height:1.2;
+}
+.ms-like svg{width:12px;height:12px;flex:0 0 12px;}
+.ms-like:active{transform:scale(.94);}
+/* 点过之后变品牌色 —— 和广场卡片的点赞同一个反馈 */
+.ms-like.on{background:var(--brand-tint);color:var(--brand);}
+.ms-like.on svg{stroke-width:2.2;}
+.ms-empty{
+  padding:26px 0;text-align:center;font-size:13px;color:var(--ink-4);
+}
+/* 输入框 —— 贴着半屏底部 */
+.ms-input{
+  display:flex;align-items:center;gap:9px;
+  position:sticky;bottom:0;
+  padding:12px 0 2px;
+  background:var(--surface);
+  border-top:1px solid var(--line);
+}
+.ms-input .input{flex:1;min-width:0;}
+
+/* ---- 打卡日历条：最近 8 天的照片 ----
+   断卡那天没有照片 → 空格子（不是灰图）；补卡有照片 + 「补」角标 */
+.feed-strip{
+  display:flex;gap:4px;padding:10px 13px 0;overflow:hidden;
+}
+.fs-cell{
+  flex:1;min-width:0;aspect-ratio:1;border-radius:8px;overflow:hidden;
+  background:var(--surface-2);position:relative;
+}
+.fs-cell img{width:100%;height:100%;object-fit:cover;display:block;}
+.fs-cell.miss{
+  background:var(--surface-3);
+  background-image:repeating-linear-gradient(45deg,rgba(0,0,0,.045) 0 3px,transparent 3px 6px);
+}
+.fs-cell.makeup{box-shadow:inset 0 0 0 1.5px var(--amber);}
+.fs-cell.future{opacity:.35;}
+/* 最新一天：品牌橙细边框 —— 一眼分出卡片的时间新鲜度 */
+.fs-cell.last{box-shadow:inset 0 0 0 2px var(--brand);}
+.fs-badge{
+  position:absolute;top:1px;right:1px;
+  font-size:8px;font-weight:800;line-height:1;
+  background:var(--amber);color:#fff;padding:1.5px 3px;border-radius:3px;
+}
+/* 已看过的物证（异议前置条件，见需求规格 R4.3 ②） */
+.fs-cell.seen{box-shadow:inset 0 0 0 2px var(--mint,#3F7A58);}
+
+.feed-head{display:flex;align-items:center;gap:8px;padding:11px 13px 0;}
+.feed-name{font-size:13px;font-weight:600;}
+.feed-meta{font-size:10.5px;color:var(--ink-3);margin-top:1px;}
+
+/* 卡片主角：当前体重 —— 「我的 Flag」列表页仍在用（.feed-weight） */
+.feed-weight{display:flex;align-items:center;gap:10px;padding:9px 13px 9px;}
+.feed-weight .fw-cur{display:flex;align-items:baseline;gap:2px;}
+.feed-weight .fw-v{
+  font-family:var(--font-num);font-size:27px;font-weight:760;letter-spacing:-1.2px;line-height:1;
+}
+.feed-weight .fw-u{font-size:11.5px;color:var(--ink-3);font-weight:550;}
+.feed-weight .fw-side{
+  padding-left:10px;border-left:1px solid var(--line);line-height:1.35;
+}
+.feed-weight .fw-l{font-size:10px;color:var(--ink-4);}
+.feed-weight .fw-d{font-size:12px;font-weight:650;color:var(--ink-2);margin-top:1px;}
+.feed-weight .fw-d.good{color:var(--brand);}
+.feed-weight .fw-prog{flex:1;min-width:0;padding-left:4px;}
+.feed-weight .fw-prog .bar{margin-bottom:4px;}
+.feed-weight .fw-prog-l{font-size:10px;color:var(--ink-4);text-align:right;font-variant-numeric:tabular-nums;}
+
+.feed-foot{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:8px 13px;background:var(--surface-2);border-top:1px solid var(--line);
+}
+.feed-foot .ff-l{font-size:11.5px;color:var(--ink-3);display:flex;align-items:center;gap:4px;}
+.feed-foot .ff-r{font-size:11.5px;color:var(--brand);font-weight:600;display:flex;align-items:center;gap:3px;}
+
+/* ---------- 取消 Flag 入口（见需求规格 R1.6）----------
+   刻意做得很淡：不抢主行动，但用户找得到。
+   灰色小字 + 顶部细分隔线，不做成按钮的样子。 */
+.feed-cancel{
+  padding:0 13px 10px;background:var(--surface-2);
+  border-top:1px solid var(--line);
+}
+.cancel-link{
+  background:none;border:none;padding:7px 0 0;margin:0;cursor:pointer;
+  font-family:inherit;font-size:11.5px;font-weight:500;
+  color:var(--ink-4);letter-spacing:.1px;
+  text-decoration:underline;text-decoration-color:transparent;
+  text-underline-offset:3px;transition:.15s var(--ease);
+}
+.cancel-link:active{color:var(--rose);text-decoration-color:currentColor;opacity:.75;}
+@media (hover:hover){
+  .cancel-link:hover{color:var(--ink-3);text-decoration-color:currentColor;}
+}
+
+/* 详情页的取消入口（同样走淡色小字口径） */
+.fd-cancel{
+  display:flex;align-items:center;gap:9px;flex-wrap:wrap;
+  padding:4px 2px 0;}
+.fd-cancel .cancel-link{padding-top:0;}
+.fd-cancel-hint{font-size:11px;color:var(--ink-4);}
+
+/* ⚠️ 2026-11-24（本轮，用户口径）：「取消这个 Flag 需按未达标结算，押金不退还」
+   这行小字**居中对齐**。
+   —— 原来 .fd-cancel 是 flex 横排：按钮在左、小字在右 ——
+      小字跟按钮并排，像按钮的一部分，读起来是「取消这个 Flag（押金不退还）」。
+   —— 用户口径要的是「这一行小字居中」——
+      把小字**换行**放到下面一行、整行居中，
+      这样它就是一句独立的说明，而不是按钮的注脚。 */
+.fd-cancel{display:block;text-align:center;padding:6px 2px 0;}
+.fd-cancel .cancel-link{display:block;margin:0 auto;}
+.fd-cancel-hint{display:block;text-align:center;font-size:11px;color:var(--ink-4);margin-top:2px;}
+
+/* ⚠️ 2026-11-24（本轮）：指标卡可点（见证席那张） */
+.metric-tap{
+  background:none;border:0;font:inherit;color:inherit;cursor:pointer;
+  display:block;width:100%;
+}
+.metric-tap .m-l{display:flex;align-items:center;justify-content:center;gap:2px;}
+.metric-tap .m-l svg{width:11px;height:11px;color:var(--ink-4);}
+.metric-tap:active .m-l{color:var(--brand);}
+
+/* ⚠️ 2026-11-24（本轮）：见证席判定节点 —— 节点名可点 */
+.tl-tap{
+  background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer;
+  display:inline-flex;align-items:center;gap:4px;text-align:left;
+}
+.tl-tap svg{width:12px;height:12px;color:var(--ink-4);flex:0 0 auto;}
+.tl-tap:active{color:var(--brand);}
+
+/* ⚠️ 2026-11-24（本轮）：判定汇总半屏里的三行统计 */
+.vd-sum{margin-top:14px;border-top:1px solid var(--line);padding-top:12px;}
+.vd-sum-row{display:flex;align-items:center;gap:9px;padding:7px 0;}
+.vd-sum-row + .vd-sum-row{border-top:1px solid var(--line);}
+.vd-sum-ico{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:0 0 22px;}
+.vd-sum-ico svg{width:13px;height:13px;}
+.vd-sum-ico.mint{background:var(--brand-tint);color:var(--brand);}
+.vd-sum-ico.amber{background:var(--amber-tint);color:#A97108;}
+.vd-sum-ico.rose{background:var(--rose-tint);color:var(--rose);}
+.vd-sum-k{flex:1;font-size:13.5px;font-weight:600;}
+.vd-sum-v{font-size:13.5px;font-weight:700;font-family:var(--font-num);}
+
+/* 「我的 Flag」菜单页的取消入口 —— 排在 打卡历史/立据凭证/分享 之后 */
+.fm-cancel{
+  display:flex;align-items:center;gap:9px;flex-wrap:wrap;
+  padding:14px 2px 0;margin-top:2px;
+  border-top:1px solid var(--line);
+}
+.fm-cancel .cancel-link{padding-top:0;}
+
+/* 状态徽标 */
+.status-pill{
+  display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:100px;
+  font-size:10.5px;font-weight:650;
+}
+.status-pill .pulse{width:6px;height:6px;border-radius:50%;background:currentColor;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.45;transform:scale(.82);}}
+.status-pill.live{background:var(--mint-tint);color:#3F7A58;}
+.status-pill.soon{background:var(--amber-tint);color:#A97108;}
+.status-pill.broke{background:var(--rose-tint);color:#B03B40;}
+.status-pill.done{background:var(--surface-3);color:var(--ink-3);}
+
+/* ============================================================
+   日期轴
+   ============================================================ */
+.timeline{padding:2px 0;}
+.tl{display:flex;gap:14px;position:relative;padding-bottom:20px;}
+.tl:last-child{padding-bottom:0;}
+.tl::before{content:"";position:absolute;left:9px;top:22px;bottom:0;width:2px;background:var(--line);border-radius:2px;}
+.tl:last-child::before{display:none;}
+.tl-dot{
+  width:20px;height:20px;border-radius:50%;border:3px solid var(--line-2);
+  background:var(--surface);flex:0 0 20px;margin-top:2px;z-index:1;transition:.2s;
+}
+.tl.done .tl-dot{background:var(--brand);border-color:var(--brand);}
+.tl.now .tl-dot{border-color:var(--brand);box-shadow:0 0 0 4px var(--brand-tint),0 2px 6px rgba(169,79,12,.22);}
+.tl.fail .tl-dot{background:var(--rose);border-color:var(--rose);}
+/* ⚠️ 2026-11-24：已结算的局里，没走到的节点 = 「这一局没走到这里」
+   —— 灰掉、虚线感，不要用红色（红色是「判定没通过」的语义，这里不是）。 */
+.tl.skip .tl-dot{background:var(--surface-2);border-color:var(--line-2);border-style:dashed;}
+.tl.skip .tl-t{color:var(--ink-4);font-weight:560;}
+.tl.skip .tl-d{color:var(--ink-4);}
+.tl-body{flex:1;min-width:0;padding-top:1px;}
+.tl-t{font-size:14.5px;font-weight:620;letter-spacing:-.1px;}
+.tl-d{font-size:12px;color:var(--ink-3);margin-top:2px;}
+/* ⚠️ 2026-11-23：见证席面板要「清晰知道自己的判定在哪个阶段」
+   —— 所以「我这一票」那个节点要跳出来，不能和其他节点长得一样 */
+.tl.mine .tl-dot{
+  width:26px;height:26px;flex:0 0 26px;margin-top:-2px;
+  border-color:var(--brand);background:var(--brand);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 0 5px var(--brand-tint),0 2px 8px rgba(169,79,12,.26);
+}
+.tl.mine .tl-t{color:var(--brand);font-weight:720;}
+
+/* 日历 */
+/* ---- 详情页打卡照片条（横滑，见需求规格 R2.5） ---- */
+.photo-strip{
+  display:flex;gap:6px;overflow-x:auto;padding:10px 13px 2px;
+  scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;
+}
+.photo-strip::-webkit-scrollbar{height:0;}
+.ps-cell{
+  flex:0 0 78px;height:78px;border-radius:11px;overflow:hidden;position:relative;
+  background:var(--surface-2);scroll-snap-align:start;
+}
+.ps-cell img{width:100%;height:100%;object-fit:cover;display:block;}
+.ps-cell.miss{
+  background:var(--surface-3);
+  background-image:repeating-linear-gradient(45deg,rgba(0,0,0,.045) 0 3px,transparent 3px 6px);
+}
+.ps-cell.makeup{box-shadow:inset 0 0 0 2px var(--amber);}
+.ps-d{
+  position:absolute;left:0;bottom:0;right:0;padding:8px 4px 3px;text-align:center;
+  font-size:9.5px;font-weight:700;color:#fff;
+  background:linear-gradient(transparent,rgba(0,0,0,.55));
+}
+
+/* ---- 围观者版照片条：格子放大（见需求规格 R2.9）----
+   ⚠️ 78px 当「物证索引」够用，当「围观者进页面的第一眼」太小 ——
+      照片内容看不清，「想看照片」的动机就落空了。 */
+.photo-strip.big{gap:8px;padding:12px 13px 4px;}
+.photo-strip.big .ps-cell{
+  flex:0 0 124px;height:124px;border-radius:14px;
+  cursor:pointer;transition:.16s var(--ease);
+}
+.photo-strip.big .ps-cell:active{transform:scale(.96);}
+.photo-strip.big .ps-d{font-size:11px;padding:12px 4px 5px;}
+
+/* 围观者版照片区的小标签 */
+
+/* ---- 「Ta 今天的照片」缩略图行（见需求规格 R2.9）----
+   ⚠️ 1~4 张，一行排完 —— 不横滑。用户明说「一行展示完」，
+      所以格子宽度自适应，4 张刚好占满一行。 */
+.today-row{
+  display:flex;gap:7px;
+}
+/* ⚠️ 2026-11-23 用户口径：「Ta 今天的照片太大了，要求一行能放下 4 个，
+   如果当前只拍了 1 个，剩下三个的位置也要空着。」
+   —— 固定 4 列（flex:0 0 calc((100% - 21px)/4)），不足的格子留空，
+      不再让 1 张照片铺满整行。 */
+.tr-cell{
+  flex:0 0 calc((100% - 21px) / 4);
+  min-width:0;
+  aspect-ratio:1;border-radius:12px;overflow:hidden;
+  position:relative;background:var(--surface-2);
+  cursor:pointer;transition:.16s var(--ease);
+}
+/* ⚠️ 2026-11-24（本轮，用户口径 Part 四）：空位改成【透明底 + 线框】——
+   —— 用户口径：「无照片位置不要写『空位』文字，也不用灰色底，
+      统一用透明底 + 线框占位，占住空白位置即可。」
+   —— 去掉灰色底 + 斜纹底（那看着像「被占用的区域」），
+      改成 1px 虚线框 + 透明底 —— 它是**版面上的一个格子**，不是一块灰补丁。
+   —— 注意：不能用 pointer-events:none —— 这里的空位本来就不该响应任何操作，
+      但 .tr-cell 整体的 cursor 规则要保持一致。 */
+.tr-cell.tr-empty{
+  background:transparent;
+  border:1px dashed var(--line-2);
+  cursor:default;
+}
+.tr-cell:active{transform:scale(.96);}
+.tr-cell img{width:100%;height:100%;object-fit:cover;display:block;}
+.tr-d{
+  position:absolute;left:0;bottom:0;right:0;padding:10px 4px 3px;text-align:center;
+  font-size:9px;font-weight:700;color:#fff;
+  background:linear-gradient(transparent,rgba(0,0,0,.55));
+}
+/* ⚠️ 围观者版不再有独立的生活照画廊区 —— 生活照已并进顶部缩略图行
+   （见需求规格 R2.9）。`.ex-gallery` 本人版仍在用，别删。 */
+
+/* ---- 图片查看器（纯浏览视角，见需求规格 R2.9）----
+   ⚠️ 与「物证详情页」是两回事：
+      物证详情 = 第 N 天的证据（秤读数 / AI 校验 / 水印）
+      查看器   = 一次看一组照片（内容视角），左右滑切换 */
+.pv{
+  position:fixed;inset:0;z-index:60;
+  background:rgba(12,10,8,.94);
+  display:none;flex-direction:column;
+}
+.pv.on{display:flex;}
+.pv-head{
+  display:flex;align-items:center;gap:10px;
+  padding:calc(12px + env(safe-area-inset-top)) 16px 10px;
+  color:#fff;flex:0 0 auto;
+}
+.pv-title{font-size:14px;font-weight:650;flex:1;min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.pv-count{font-size:12px;opacity:.65;font-variant-numeric:tabular-nums;}
+.pv-close{
+  background:rgba(255,255,255,.14);border:none;color:#fff;
+  width:30px;height:30px;border-radius:50%;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;flex:0 0 30px;
+}
+.pv-close svg{width:16px;height:16px;stroke:#fff;}
+.pv-track{
+  flex:1;min-height:0;display:flex;overflow-x:auto;
+  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+}
+.pv-track::-webkit-scrollbar{height:0;}
+.pv-slide{
+  flex:0 0 100%;scroll-snap-align:center;
+  display:flex;align-items:center;justify-content:center;
+  padding:0 12px;
+}
+.pv-slide img{
+  max-width:100%;max-height:100%;object-fit:contain;
+  border-radius:12px;display:block;
+}
+.pv-foot{
+  flex:0 0 auto;padding:12px 16px calc(16px + env(safe-area-inset-bottom));
+  color:rgba(255,255,255,.72);font-size:11.5px;text-align:center;
+}
+.pv-dots{display:flex;gap:5px;justify-content:center;margin-top:8px;}
+.pv-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.28);}
+.pv-dot.on{background:var(--brand);}
+.pv-link{
+  background:none;border:none;color:var(--brand);font-size:12.5px;font-weight:600;
+  padding:4px 8px;cursor:pointer;margin:2px 0;
+}
+
+/* ---- 物证详情页的打卡照片（见需求规格 R2.5） ---- */
+.ev-photo{
+  position:relative;border-radius:var(--r-xl);overflow:hidden;
+  aspect-ratio:1;background:var(--surface-2);
+}
+.ev-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+.ev-photo.ev-miss{
+  aspect-ratio:auto;height:190px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;color:#fff;
+  background:linear-gradient(150deg,#FF8A2B 0%,#FF6B00 60%,#E85A00 100%);
+}
+.ev-wm{
+  position:absolute;left:0;right:0;bottom:0;padding:16px 12px 9px;
+  font-size:10.5px;color:rgba(255,255,255,.9);font-weight:550;
+  background:linear-gradient(transparent,rgba(0,0,0,.55));
+}
+.ev-badge{
+  position:absolute;top:10px;left:10px;
+  background:var(--amber);color:#fff;font-size:10.5px;font-weight:750;
+  padding:3px 8px;border-radius:100px;
+}
+
+/* 打卡日历（我的打卡历史 / 详情页） */
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;}.cal-h{font-size:10.5px;color:var(--ink-4);text-align:center;padding-bottom:4px;font-weight:600;}
+.cal-d{
+  aspect-ratio:1;border-radius:9px;background:var(--surface-2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11.5px;color:var(--ink-4);font-weight:550;transition:.15s;
+}
+.cal-d.done{background:var(--brand-tint);color:var(--brand);font-weight:700;}
+.cal-d.today{box-shadow:0 0 0 2px var(--brand),0 2px 6px rgba(169,79,12,.18);font-weight:700;color:var(--brand);}
+.cal-d.miss{background:var(--rose-tint);color:var(--rose);font-weight:700;}
+.cal-d.makeup{background:var(--amber-tint);color:#A97108;font-weight:700;position:relative;}
+.cal-d.makeup::after{content:"补";position:absolute;top:1px;right:3px;font-size:8px;font-weight:800;opacity:.85;}
+.cal-d.void{background:repeating-linear-gradient(45deg,var(--surface-3) 0 4px,var(--surface-2) 4px 8px);color:var(--ink-4);}
+.cal-d.future{opacity:.42;}
+.cal-legend{display:flex;gap:14px;margin-top:12px;flex-wrap:wrap;font-size:11.5px;color:var(--ink-3);}
+.cal-legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px;}
+/* ⚠️ 2026-11-24（本轮）：日历「只标断卡」版式（.cal-lite）
+   —— 用户口径：「日历日期中，仅对断卡当天做小标记，正常打卡日期不添加标记。」
+   —— 原来每种状态都是**整格底色**：打卡=淡绿、断卡=粉、补卡=黄、未打卡=灰。
+      九十个格子满屏都是底色 = 满屏都是标记 —— 标记就等于没有标记。
+   —— 现在：素面为主（统一浅底 + 灰字），
+      **只有断卡当天**带一个小圆点 + 红字，其余日期不加任何标记。
+   —— 补卡不加标记：补回来了就不算异常（异常是「断了没补」）。 */
+.cal-lite .cal-d{background:var(--surface-2);color:var(--ink-4);}
+.cal-lite .cal-d.done{background:var(--surface-2);color:var(--ink-4);font-weight:550;}
+.cal-lite .cal-d.makeup{background:var(--surface-2);color:var(--ink-4);font-weight:550;}
+.cal-lite .cal-d.makeup::after{display:none;}
+.cal-lite .cal-d.future{opacity:.42;}
+/* 断卡当天：小圆点标记 + 红字（唯一被标记的异常） */
+.cal-lite .cal-d.brk{
+  background:var(--rose-tint);color:var(--rose);font-weight:750;position:relative;
+}
+.cal-lite .cal-d.brk::after{
+  content:"";position:absolute;top:3px;right:4px;
+  width:5px;height:5px;border-radius:50%;background:var(--rose);
+}
+.cal-lite .cal-d.today{box-shadow:0 0 0 2px var(--brand);color:var(--brand);font-weight:700;}
+/* 图例里的小圆点（对应「断卡当天」标记）
+   ⚠️ 选择器要压过 .cal-legend i（那是个方块色块，10×10），
+   所以这里带上 .cal-legend 前缀提高优先级。 */
+.cal-legend i.cal-dot-mark{
+  display:inline-block;width:8px;height:8px;border-radius:50%;
+  background:var(--rose);margin-right:5px;vertical-align:0px;
+}
+/* ⚠️ 2026-11-24（本轮）：日历折叠头右侧的断卡计数 */
+.cal-brk{
+  font-size:11.5px;color:var(--ink-3);font-weight:600;
+  margin-left:auto;padding:0 8px;
+}
+.brk-card.danger .cal-brk{color:var(--rose);}
+.brk-card.dead .cal-brk{color:var(--ink-4);}
+/* ⚠️ 2026-11-24（本轮）：打卡日历默认收起的折叠头 ——
+   标题栏那一行就是折叠按钮，整行可点，高度给足一点方便点。 */
+.cal-fold-btn{
+  padding:13px 14px;font-size:13px;color:var(--ink-2);font-weight:650;
+  justify-content:space-between;
+}
+.cal-fold-btn svg{width:15px;height:15px;color:var(--ink-4);}
+.fold .cal{padding:0 14px 4px;}
+.fold .cal-legend{padding:0 14px 14px;margin-top:12px;}
+
+/* ============================================================
+   记录卡（分享图）
+   ============================================================ */
+.receipt{
+  border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh-4);
+  background:linear-gradient(160deg,#fff 0%,#FAF8F5 100%);
+  position:relative;
+}
+.receipt-head{
+  background:linear-gradient(150deg,var(--brand-lite),var(--brand-600));
+  color:#fff;padding:24px 22px 22px;position:relative;overflow:hidden;
+}
+.receipt-head::after{
+  content:"";position:absolute;right:-50px;top:-50px;width:170px;height:170px;
+  border-radius:50%;background:rgba(255,255,255,.07);
+}
+.receipt-head .rc-kicker{font-size:11.5px;opacity:.75;letter-spacing:1.2px;font-weight:600;position:relative;z-index:1;}
+.receipt-head .rc-title{font-size:22px;font-weight:730;margin:8px 0 5px;letter-spacing:-.5px;line-height:1.3;position:relative;z-index:1;}
+.receipt-head .rc-sub{font-size:12.5px;opacity:.78;position:relative;z-index:1;}
+.receipt-body{padding:20px 22px 22px;}
+.receipt-weight{display:flex;align-items:baseline;gap:9px;justify-content:center;margin-bottom:16px;}
+.receipt-weight .w-from{font-family:var(--font-num);font-size:17px;color:var(--ink-4);text-decoration:line-through;}
+.receipt-weight .w-arrow{color:var(--ink-4);font-size:15px;}
+.receipt-weight .w-to{font-family:var(--font-num);font-size:38px;font-weight:780;letter-spacing:-2px;color:var(--brand);}
+.receipt-weight .w-unit{font-size:14px;color:var(--ink-3);font-weight:500;}
+.receipt-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.receipt-stat{text-align:center;padding:11px 4px;background:var(--surface-2);border-radius:var(--r-xs);}
+.receipt-stat .rs-v{font-family:var(--font-num);font-size:19px;font-weight:750;letter-spacing:-.7px;}
+.receipt-stat .rs-l{font-size:10.5px;color:var(--ink-3);margin-top:3px;}
+.receipt-foot{
+  padding:14px 22px 20px;display:flex;align-items:center;justify-content:space-between;
+  border-top:1px solid var(--line);
+}
+.receipt-quote{
+  margin:0 22px 18px;padding:12px 14px;background:var(--brand-tint);border-radius:var(--r-xs);
+  font-size:13px;line-height:1.65;color:var(--brand);position:relative;
+}
+.receipt-quote::before{content:"“";position:absolute;left:6px;top:-2px;font-size:24px;opacity:.3;font-family:Georgia,serif;}
+.receipt-quote span{position:relative;}
+
+/* ⚠️ 2026-11-24 用户口径：挣了的记录卡要体现「赚回押金 + 达成目标」的骄傲感
+   —— 所以卡里加一块【拿到了什么】：三行，每行一个维度。
+   —— 失败卡复用同一块结构（改内容），保证两种结局同规格。 */
+.rc-proud{margin:0 22px 18px;border-radius:var(--r-xs);overflow:hidden;border:1px solid var(--line);}
+.rc-proud-row{
+  display:flex;align-items:baseline;gap:9px;padding:11px 13px;
+  background:var(--surface-2);
+}
+.rc-proud-row + .rc-proud-row{border-top:1px solid var(--line);}
+.rc-proud-row .rpp-k{
+  flex:0 0 auto;font-size:10.5px;font-weight:700;color:var(--ink-4);
+  letter-spacing:.6px;width:30px;
+}
+.rc-proud-row .rpp-v{
+  flex:0 0 auto;font-family:var(--font-num);font-size:15px;font-weight:750;
+  letter-spacing:-.4px;color:var(--brand);
+}
+.rc-proud-row .rpp-d{
+  flex:1;min-width:0;font-size:11.5px;color:var(--ink-3);text-align:right;
+}
+
+/* ⚠️ 2026-11-24 用户口径：记录卡上加 4 个互动计数（点赞 / 留言 / 监督 / 见证席） */
+.rc-counts{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px;
+}
+.rc-count{
+  display:flex;flex-direction:column;align-items:center;gap:2px;
+  padding:11px 4px;background:var(--surface-2);border-radius:var(--r-xs);
+}
+.rc-count .rcc-ico{color:var(--ink-4);display:flex;}
+.rc-count .rcc-v{font-family:var(--font-num);font-size:16px;font-weight:750;letter-spacing:-.5px;}
+.rc-count .rcc-l{font-size:10.5px;color:var(--ink-3);}
+
+/* ============================================================
+   记录卡 —— 分享海报（2026-11-24 用户口径）
+   ------------------------------------------------------------
+   1. 「用户点击『分享这张记录卡』，直接这个这卡片，包括下面的 4 个记录，
+       截一张图分享就很好。」
+      —— 所以【凭据主体 + 4 个互动计数 + 品牌落款】必须裹在同一个 .rc-poster 里：
+         它是「一张可分享的图」的完整边界。
+   2. 「增加产品的名字『亏了』，如何表现不会突兀但是人能看到？」
+      —— 品牌出现在两个位置：
+         · 卡头右上角一枚小徽标（视线第一落点，一眼认出来）
+         · 卡底一行落款（标记 +「亏了」+ slogan，图片流出时的署名）
+   ============================================================ */
+.rc-poster{
+  border-radius:var(--r-xl);
+  background:linear-gradient(160deg,#fff 0%,#FAF8F5 100%);
+  box-shadow:var(--sh-4);
+  padding-bottom:4px;
+  overflow:hidden;
+}
+/* 海报里的凭据主体 —— 去掉自身的外阴影（外层 .rc-poster 已经有） */
+.rc-poster .receipt{box-shadow:none;border-radius:0;background:transparent;}
+/* 海报是一整张图 —— 凭据主体下沿的锯齿边不再单独出现（否则会在计数区留一道痕） */
+.rc-poster .receipt::after{display:none;}
+/* 海报里的 4 个计数 —— 收进卡内的留白节奏 */
+.rc-poster .rc-counts{margin:14px 22px 0;}
+
+/* ---- 品牌标记：全站统一用狗头形象（assets/dog_new.png） ---- */
+.rcb-dog{object-fit:contain;flex:0 0 auto;display:block;}
+
+/* ---- 卡头右上角品牌徽标 ---- */
+.rc-badge{
+  position:absolute;right:16px;top:15px;z-index:2;
+  display:flex;align-items:center;gap:5px;
+  padding:3px 9px 3px 6px;border-radius:100px;
+  background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.24);
+  backdrop-filter:blur(4px);
+}
+/* 徽标压在品牌橙渐变上 —— 狗头加一圈白底，才不会糊在橙色里看不清 */
+.rc-badge .rcb-dog{
+  width:21px;height:21px;border-radius:50%;
+  background:rgba(255,255,255,.96);
+  padding:2px;
+  box-shadow:0 1px 3px rgba(0,0,0,.16);
+}
+.rc-badge .rcb-word{
+  color:#fff;font-size:11.5px;font-weight:700;letter-spacing:2px;line-height:1;
+  text-shadow:0 1px 2px rgba(0,0,0,.12);
+}
+
+/* ---- 卡底品牌落款 ---- */
+.rc-brand{
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  padding:15px 22px 16px;margin-top:2px;
+}
+.rc-brand .rcb-dog{width:20px;height:20px;}
+.rc-brand .rcb-name{
+  font-size:13px;font-weight:750;letter-spacing:3px;color:var(--ink);line-height:1;
+}
+.rc-brand .rcb-sep{width:1px;height:11px;background:var(--line-2);flex:0 0 1px;}
+.rc-brand .rcb-slogan{font-size:11.5px;color:var(--ink-3);letter-spacing:.3px;line-height:1;}
+
+/* ============================================================
+   分享半屏 —— 记录卡直发（2026-11-24 用户口径）
+   ------------------------------------------------------------
+   「用户点击『分享这张记录卡』，直接这个这卡片，包括下面的 4 个记录，
+    截一张图分享就很好。」
+   —— 半屏顶部就是那张海报本身（所见即所得），下面是渠道。
+   ============================================================ */
+.share-sheet .sheet-body{
+  padding:12px 16px 16px;
+  display:flex;flex-direction:column;gap:10px;
+  flex:1 1 auto;min-height:0;
+  overflow:hidden;   /* 海报区自己缩放，渠道按钮永远在底部 */
+}
+/* 分享半屏：整屏升起（像系统分享面板）—— 海报要一次露全 */
+.sheet.share-sheet{height:100%;max-height:100%;}
+/* 分享半屏不需要标题栏占位（标题信息量低，海报才是主角） */
+.sheet.share-sheet .sheet-head{padding:10px 16px 8px;}
+.sheet.share-sheet .sheet-title{font-size:15px;}
+.share-poster-wrap{
+  background:var(--surface-2);border-radius:var(--r-lg);
+  padding:12px;display:flex;justify-content:center;align-items:flex-start;
+  border:1px solid var(--line);
+  flex:1 1 auto;min-height:0;overflow:hidden;
+}
+/* 海报是整张图 —— 完整展示，绝不截断（分享出去的就是这一整张）。
+   外层 .share-poster-scale 由 JS 按可用高度算出缩放比，
+   .rc-poster 绝对定位在里面，缩放后仍占满 scale 盒子的高度。 */
+.share-poster-scale{position:relative;width:280px;flex:0 0 280px;}
+.share-poster-scale .rc-poster{
+  position:absolute;top:0;left:0;width:280px;
+  transform-origin:top left;
+  box-shadow:var(--sh-3);
+}
+/* 半屏里的海报是缩略图 —— 用整体等比缩放，不改字号（改了会失真） */
+.share-tip{
+  margin-top:0;text-align:center;font-size:11.5px;color:var(--ink-4);letter-spacing:.2px;
+  flex:0 0 auto;
+}
+.share-channels{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:6px;
+  flex:0 0 auto;
+}
+.share-ch{
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  padding:11px 2px 9px;border-radius:var(--r-sm);
+  background:var(--surface-2);transition:.15s var(--ease);
+}
+.share-ch:active{transform:scale(.95);background:var(--surface-3);}
+.share-ch .sc-ico{
+  width:40px;height:40px;border-radius:13px;display:flex;
+  align-items:center;justify-content:center;color:#fff;
+}
+.share-ch .sc-l{font-size:11.5px;color:var(--ink-2);font-weight:600;line-height:1.2;text-align:center;}
+.share-ch .sc-ico svg{width:20px;height:20px;}
+.sc-wx{background:#2BAF3B;}
+.sc-moments{background:#3B82F6;}
+.sc-xhs{background:#F0413E;}
+.sc-save{background:var(--ink-3);}
+
+/* 锯齿边 */
+.receipt::after{
+  content:"";position:absolute;left:0;right:0;bottom:-7px;height:14px;
+  background:
+    radial-gradient(circle at 7px 0, transparent 0 7px, #FAF8F5 7.5px) 0 0/14px 14px repeat-x;
+}
+
+/* ============================================================
+   押金卡
+   ============================================================ */
+.vault{
+  border-radius:var(--r-xl);padding:20px;color:#fff;position:relative;overflow:hidden;
+  background:linear-gradient(155deg,#FF8A2B 0%,#FF6B00 55%,#E85A00 100%);
+  box-shadow:var(--sh-brand-md);
+}
+.vault::before{
+  content:"";position:absolute;right:-50px;top:-50px;width:170px;height:170px;
+  border-radius:50%;background:rgba(255,255,255,.06);
+}
+.vault .v-amount{font-family:var(--font-num);font-size:36px;font-weight:780;letter-spacing:-1.6px;line-height:1.1;margin-top:4px;}
+.vault .v-sub{font-size:12.5px;opacity:.92;margin-top:3px;}
+.vault .v-div{height:1px;background:rgba(255,255,255,.3);margin:14px 0 12px;}
+/* 橙底白字：所有文字一律用白/近白，任何彩色（尤其红）压在这块橙渐变上都读不清 */
+.vault-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:5px 0;position:relative;z-index:1;}
+.vault-row .k{color:rgba(255,255,255,.9);}
+.vault-row .v{color:#fff;font-weight:700;font-variant-numeric:tabular-nums;}
+.vault-row .v.gain{color:rgba(255,255,255,.86);font-weight:600;}
+.vault-row .v.loss{color:#fff;font-weight:780;}
+.vault-row .v.dim{color:rgba(255,255,255,.72);font-weight:500;}
+/* 橙底上的折叠区标题：默认灰字在橙渐变上看不清 */
+.vault .fold{border-top-color:rgba(255,255,255,.26);}
+.vault .fold-btn{color:rgba(255,255,255,.92);}
+.vault .fold.open .fold-btn{color:#fff;}
+/* 损失金额：橙底上不能压红色，改用白字 + 深色描边拉开层次 */
+.vault .v-amount.loss{color:#fff;text-shadow:0 1px 3px rgba(150,45,0,.35);}
+
+/* ⚠️ 2026-11-24（本轮）：「失败你会损失」卡的文字一律居中
+   —— 用户口径：「卡片内 "175 元" "信用 60 分" "普通失败扣 35" 等文字居中对齐」
+   —— 为什么要居中：这一块现在只剩**一个数字**，左对齐的话
+      大数字孤零零挂在左边、下面那行小字更小，视觉上是散的。
+      居中之后它就是一个「结论」—— 用户扫一眼就知道要亏多少。 */
+.vault.vault-center{text-align:center;}
+.vault.vault-center .v-amount{margin-top:2px;}
+.vault.vault-center .v-sub{margin-top:6px;opacity:.94;}
+
+/* 首次免费（押金 0 元）的卡片配色（见需求规格 R10.4）
+   ⚠️ 2026-11-25（本轮，用户口径）：0 元档**只改文案结构，颜色保持原来的薄荷绿** ——
+   —— 「卡片颜色换了，文案不换」指的是：文案对齐有金额的版本（0 元 + 信用信息），
+      但**绿色保留** —— 绿色 = 这一局照常加分、是一次性新人礼，
+      与橙色（要真金白银押钱）区分开。
+   —— 所以 .zero-vault 现在只负责**配色**，
+      之前那套「左对齐 + 30px 字号 + 说明文字容器」已随文案改版删除。 */
+.vault.zero-vault{
+  background:linear-gradient(155deg,#12C98A 0%,#0FBE7E 52%,#0A9A66 100%);
+  box-shadow:var(--sh-lift-lg);
+}
+
+/* 押金档位 —— 2×2 网格 */
+/* ---------- 押金档位选择（一行排完，⚠️ 2026-11-24 本轮） ----------
+   ⚠️ 用户口径：「多个金额选项框宽高保持一致，尽量在同一行内横向排完（4 个或 5 个）」
+   —— 原来是 2 列网格（4 个档位排成 2 行），现在改成一行 5 列 / 4 列的 flex。
+   —— 宽高一致：等分宽度 + 固定最小高度，档位多了也不会变成两行参差的样子。
+   —— 说明文字（「信用分不够」「首次免费」）字号压小一档，才塞得下。 */
+.dep-grid{
+  display:flex;gap:7px;align-items:stretch;
+}
+/* 5 个档位（含首次免费 0 元档）→ 更窄；4 个档位 → 稍宽 */
+.dep-grid.g5 .dep-pick{flex:1 1 0;min-width:0;padding:9px 5px;gap:4px;justify-content:center;}
+.dep-grid.g4 .dep-pick{flex:1 1 0;min-width:0;padding:10px 7px;gap:5px;}
+.dep-pick{
+  /* ⚠️ 2026-11-25（本轮，用户口径）：卡片内顺序改成
+        **金额 → 说明文字 → 选中小圈**（圆圈在最下面）。
+     —— 竖排（flex-direction: column）+ 水平居中。
+        金额是主体，说明文字是金额的注解，圆圈是选中徽记（最后一层）。
+     —— ⚠️ 用 flex-start + 小圈 margin-top:auto：
+        各卡的行数不同（0 元档有「首次免费」、锁定档有「信用分不够」、
+        普通档只有金额），若整体垂直居中，圆圈会落在不同高度、参差不齐。
+        改成【金额顶部对齐、圆圈贴底】，一排圆圈在同一条水平线上。 */
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+  gap:5px;padding:11px 6px;
+  background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r);
+  transition:.18s var(--ease);box-shadow:var(--sh-lift-sm);
+  /* ⚠️ 宽高一致 —— 同一行里每个框都一样高 */
+  min-height:78px;box-sizing:border-box;
+}
+.dep-pick.on{border-color:var(--brand);background:var(--brand-tint);box-shadow:var(--sh-brand-ring);}
+.dep-pick:active{transform:scale(.985);}
+/* 锁定档位：超出信用上限，灰、不可点 */
+.dep-pick.lock{background:var(--surface-2);border-color:var(--line);box-shadow:none;opacity:.62;cursor:not-allowed;}
+.dep-pick.lock:active{transform:none;}
+.dep-pick.lock .dep-v{color:var(--ink-3);}
+.dep-radio{
+  width:18px;height:18px;border-radius:50%;border:2px solid var(--line-2);flex:0 0 18px;
+  display:flex;align-items:center;justify-content:center;transition:.16s;
+  /* ⚠️ 2026-11-25（本轮）：圆圈移到卡片最下面 → 靠 margin-top:auto 贴底，
+     这样一排卡片的圆圈在同一条水平线上（各卡行数不同也不会参差）。 */
+  margin-top:auto;
+}
+.dep-pick.on .dep-radio{border-color:var(--brand);}
+.dep-pick.on .dep-radio::after{content:"";width:9px;height:9px;border-radius:50%;background:var(--brand);}
+/* ⚠️ 一行排 5 个时，字号要压小一档才塞得下 */
+.dep-grid.g5 .dep-s{font-size:10px;margin-top:0;line-height:1.3;}
+.dep-grid.g5 .dep-radio{width:15px;height:15px;flex:0 0 15px;border-width:1.5px;}
+.dep-grid.g5 .dep-pick.on .dep-radio::after{width:7px;height:7px;}
+/* ⚠️ 2026-11-25（本轮，用户口径）：说明文字（「首次免费」「信用分不够」）
+   现在排在**金额的下面、圆圈的上面** —— 它是金额的注解，圆圈在最底。 */
+.dep-s{font-size:11.5px;color:var(--ink-3);margin-top:0;line-height:1.35;text-align:center;}
+.dep-v{font-family:var(--font-num);font-size:18px;font-weight:750;letter-spacing:-.5px;}
+/* ⚠️ 2026-11-24（本轮）：一行排 5 个时金额不能折行 ——
+   「1000 元」在 65px 宽的框里会断成两行，整个框就被撑高，
+   四个框的高度也就跟着参差不齐了（用户要求「宽高保持一致」）。
+   —— 所以 nowrap + 数字用稍小的字号。 */
+.dep-v{white-space:nowrap;}
+.dep-grid.g5 .dep-v{font-size:14px;letter-spacing:-.4px;}
+/* ⚠️ 2026-11-24（本轮，Part III）：金额 + 小圈整体居中 */
+.dep-pick .dep-v{text-align:center;width:100%;}
+.dep-pick.on .dep-s{color:var(--brand);opacity:.8;}
+
+/* 首次免费档（见需求规格 R10.4）
+   ⚠️ 它不是「更便宜的档位」，是【一次性新人礼】—— 所以用虚线边框做视觉区分，
+      提示「这是白给的、只有一次」。选中也保留绿色（= 有分值的承诺）。 */
+.dep-pick.zero{border-style:dashed;border-color:var(--mint);background:var(--mint-tint);}
+.dep-pick.zero .dep-v{color:#0A7A51;}
+.dep-pick.zero .dep-s{color:#0A7A51;font-weight:650;}
+.dep-pick.zero.on{border-style:solid;background:var(--mint-tint);border-color:var(--mint);box-shadow:var(--sh-lift-sm);}
+.dep-pick.zero.on .dep-radio{border-color:var(--mint);}
+.dep-pick.zero.on .dep-radio::after{background:var(--mint);}
+.dep-pick.zero.on .dep-v{color:#0A7A51;}
+.dep-pick.zero.on .dep-s{color:#0A7A51;opacity:1;}
+
+/* ============================================================
+   信用分
+   ============================================================ */
+.credit-panel{
+  background:var(--surface);border-radius:var(--r-xl);padding:24px 20px;
+  box-shadow:var(--sh-lift-lg);text-align:center;position:relative;overflow:hidden;
+}
+.credit-panel::before{
+  content:"";position:absolute;left:50%;top:-70px;transform:translateX(-50%);
+  width:230px;height:230px;border-radius:50%;
+  background:radial-gradient(circle,rgba(169,79,12,.08),transparent 70%);
+}
+.credit-v{font-family:var(--font-num);font-size:52px;font-weight:780;letter-spacing:-2.5px;line-height:1;}
+/* ⚠️ 2026-11-24 用户口径：「② 号旁边的 88，加『优秀』两个字。
+     ③ 号『优秀 · 距下一等级还差 2 分』改为『距下一等级还差 2 分』。」
+   —— 等级名从原来那个胶囊里搬过来，贴在分数右边（小一号，带等级色）；
+      胶囊就只负责写「距下一等级还差 N 分」这一句提示了（中性底色，不再抢戏）。 */
+.credit-v-tier{
+  font-family:var(--font);font-size:15px;font-weight:700;letter-spacing:0;
+  margin-left:8px;vertical-align:middle;
+  background:var(--brand-tint);color:var(--brand);
+  padding:3px 10px;border-radius:100px;
+}
+/* 等级色（.lv-* 复用同一套语义色，但改成实底文字色，不带底色 —— 因为这里已经有底色了）
+   ⚠️ 2026-11-25（本轮修复）：信用分是 **5 档**（受限·普通·良好·优秀·卓越），
+      之前「良好」和「优秀」共用 .lv-good —— 70 分和 80 分在页面上看起来一模一样，
+      但押金上限差一倍（1000 vs 2000）、失败扣收差 5 个点（30% vs 25%）。
+      现在「优秀」单独用 .lv-great（薄荷绿），五档五色、可区分。
+      语义色对应：受限=玫红(危险) / 普通=琥珀(提醒) / 良好=天蓝(信息)
+                 / 优秀=薄荷绿(进阶) / 卓越=品牌橙(最高) */
+.credit-v-tier.lv-good{background:var(--sky-tint);color:#35648F;}
+.credit-v-tier.lv-great{background:var(--mint-tint);color:#0A7C52;}
+.credit-v-tier.lv-normal{background:var(--amber-tint);color:#A97108;}
+.credit-v-tier.lv-limited{background:var(--rose-tint);color:#B03B40;}
+.credit-v-tier.lv-excellent{background:var(--brand-tint);color:var(--brand);}
+.credit-lv{display:inline-flex;align-items:center;gap:6px;margin-top:9px;padding:4px 14px;border-radius:100px;font-size:13px;font-weight:650;background:var(--surface-3);color:var(--ink-3);}
+.lv-excellent{background:var(--brand-tint);color:var(--brand);}
+.lv-great{background:var(--mint-tint);color:#0A7C52;}
+.lv-good{background:var(--sky-tint);color:#35648F;}
+.lv-normal{background:var(--amber-tint);color:#A97108;}
+.lv-limited{background:var(--rose-tint);color:#B03B40;}
+.credit-scale{display:flex;justify-content:space-between;font-size:10.5px;color:var(--ink-4);margin-top:7px;}
+
+/* ============================================================
+   判定
+   ============================================================ */
+.verdict-list{display:flex;flex-direction:column;gap:9px;}
+.verdict-opt{
+  display:flex;align-items:flex-start;gap:12px;padding:14px;
+  background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r);
+  transition:.18s var(--ease);box-shadow:var(--sh-lift-sm);
+}
+.verdict-opt:active{transform:scale(.985);}
+.verdict-opt.on{border-color:var(--brand);background:var(--brand-tint);box-shadow:var(--sh-brand-ring);}
+.verdict-ico{
+  width:34px;height:34px;border-radius:11px;flex:0 0 34px;
+  display:flex;align-items:center;justify-content:center;font-size:16px;background:var(--surface-3);
+}
+.verdict-t{font-size:15px;font-weight:650;letter-spacing:-.2px;}
+.verdict-d{font-size:12.5px;color:var(--ink-3);margin-top:3px;line-height:1.5;}
+.verdict-opt.pass .verdict-ico{background:var(--mint-tint);color:#3F7A58;}
+.verdict-opt.doubt .verdict-ico{background:var(--amber-tint);color:#A97108;}
+.verdict-opt.cheat .verdict-ico{background:var(--rose-tint);color:#B03B40;}
+
+/* quorum */
+.quorum{
+  background:var(--brand-tint);border-radius:var(--r);padding:14px;
+  border:1px solid var(--brand-tint-2);
+}
+.quorum.warn{background:var(--amber-tint);border-color:#F0DCB4;}
+.quorum .q-t{font-size:13.5px;font-weight:680;color:var(--brand);margin-bottom:4px;}
+.quorum.warn .q-t{color:#A97108;}
+.quorum .q-s{font-size:12.5px;color:var(--brand);opacity:.82;line-height:1.55;}
+.quorum.warn .q-s{color:#A97108;opacity:.85;}
+
+/* ============================================================
+   见证席面板（见需求规格 R5.2.1）
+   ⚠️ 2026-11-23 用户口径：本轮见证席面板重做成【完整 Flag 视图 + 判定进度条】，
+      「你的判定」三选一移到点开节点时弹，面板正文只留聚焦点。
+   ============================================================ */
+/* 顶部三格摘要 */
+.wf-summary{
+  display:flex;background:var(--surface);border-radius:var(--r-md);
+  padding:13px 0;margin:12px 0 14px;box-shadow:var(--sh-lift-sm);
+}
+.wf-sum{flex:1;text-align:center;position:relative;}
+.wf-sum + .wf-sum::before{
+  content:"";position:absolute;left:0;top:3px;bottom:3px;width:1px;background:var(--line-2);
+}
+.wf-sum-v{font-family:var(--font-num);font-size:20px;font-weight:780;letter-spacing:-.6px;line-height:1.15;}
+.wf-sum-v.brand{color:var(--brand);}
+.wf-sum-l{font-size:10.5px;color:var(--ink-4);margin-top:3px;}
+
+/* Flag 头部 */
+.wf-head{padding:15px 16px 12px;background:var(--surface-2);}
+.wf-goal{
+  font-size:14.5px;font-weight:650;line-height:1.45;margin-top:11px;letter-spacing:-.2px;
+}
+
+/* 节点条：我判到第几步了 */
+.wf-steps{
+  display:flex;gap:0;padding:14px 10px 12px;
+  border-top:1px solid var(--line);background:var(--surface-2);
+  overflow-x:auto;
+}
+.wf-steps::-webkit-scrollbar{display:none;}
+.wf-step{
+  flex:1 1 0;min-width:64px;text-align:center;position:relative;padding:0 3px;
+}
+.wf-step + .wf-step::before{
+  content:"";position:absolute;left:-50%;top:11px;width:100%;height:2px;background:var(--line-2);
+}
+.wf-step.done + .wf-step::before,
+.wf-step.now + .wf-step::before{background:var(--brand);}
+.wf-step-dot{
+  width:24px;height:24px;border-radius:50%;margin:0 auto 6px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11.5px;font-weight:700;position:relative;z-index:1;
+  background:var(--surface);border:2px solid var(--line-2);color:var(--ink-3);
+}
+.wf-step.done .wf-step-dot{background:var(--brand);border-color:var(--brand);color:#fff;}
+.wf-step.now .wf-step-dot{
+  border-color:var(--brand);color:var(--brand);
+  box-shadow:0 0 0 4px var(--brand-tint),0 2px 6px rgba(169,79,12,.22);
+}
+.wf-step-name{font-size:11px;font-weight:600;line-height:1.3;color:var(--ink-2);}
+.wf-step.now .wf-step-name{color:var(--brand);font-weight:700;}
+/* 待判那一步可点 —— 点它就弹三选一（用户口径：「点击到需要判定的节点，三选一」） */
+.wf-step.tap{cursor:pointer;}
+.wf-step.tap:active{transform:scale(.97);}
+.wf-step-day{font-size:9.5px;color:var(--ink-4);margin-top:2px;}
+.wf-step-flag{
+  display:inline-block;margin-top:5px;font-size:9.5px;font-weight:700;
+  padding:2px 6px;border-radius:var(--r-xs);
+  background:var(--brand);color:#fff;letter-spacing:.3px;
+}
+.wf-step-flag.done{background:var(--surface-3);color:var(--ink-3);}
+/* ⚠️ 2026-11-23 用户口径：「清晰知道自己的判定在那个阶段」
+   —— 「我这一票 · 第 N / M 个节点」标在节点条上，一眼看出站在哪一步。
+      节点条里的「去判定」按钮也跟着这个节点走 —— 点它弹三选一。 */
+.wf-step .btn{margin-top:7px;padding:5px 11px;font-size:11.5px;}
+.wf-step .btn svg{width:12px;height:12px;}
+
+/* 聚焦点：轮到你判的那一步 */
+.wf-act{
+  padding:15px 16px 16px;
+  background:var(--brand-tint);border-top:1px solid var(--brand-tint-2);
+}
+/* ⚠️ 2026-11-23 用户口径：「轮到你判 · 第 7 天「中期称重」，还剩 6 小时 · 见证门槛进度 1/2
+   删掉，找个合适的地方显示判定还剩多少时间就够了。」
+   —— 标题 + 倒计时徽章同一行：还剩多久是【行动压力】，必须一眼看到、不能藏进副标题。 */
+.wf-act-head{
+  display:flex;align-items:center;gap:10px;margin-bottom:14px;
+}
+.wf-act-t{font-size:14.5px;font-weight:700;color:var(--brand);letter-spacing:-.2px;flex:1;min-width:0;line-height:1.4;}
+.wf-act-timer{
+  display:inline-flex;align-items:center;gap:4px;flex:0 0 auto;
+  padding:4px 9px;border-radius:100px;
+  background:var(--surface);color:var(--brand);
+  font-size:11.5px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;
+}
+.wf-act-timer svg{width:12px;height:12px;flex:0 0 12px;}
+.wf-act-timer.done{background:var(--surface-3);color:var(--ink-4);}
+.wf-act-s{font-size:12px;color:var(--brand);opacity:.82;margin-top:3px;}
+/* ⚠️ 2026-11-23 用户口径：「在『去判定』的按钮上方，展示用户本次打卡的照片就行了，
+   还是 4 张照片放一行，没有四张也占位，用户可以点击放大任意一张。」
+   —— 照片行直接用围观者那套 .tr-cell（固定 4 列 + 空位补齐）。
+   ⚠️ 2026-11-24（本轮，用户口径 Part 四①）：「本次打卡的物证」标题**删掉**，
+      .wf-shots-t 样式一并删除 —— 照片行自己说得清楚。 */
+.wf-shots{margin:0 0 14px;}
+.wf-act-row{
+  display:flex;align-items:center;gap:10px;margin:13px 0 14px;
+  background:var(--surface);border-radius:var(--r-sm);padding:11px 14px;
+}
+.wf-act-metric{flex:1;text-align:center;}
+.wf-act-metric .m-v{font-family:var(--font-num);font-size:17px;font-weight:780;letter-spacing:-.5px;line-height:1.2;}
+.wf-act-metric .m-v.brand{color:var(--brand);}
+.wf-act-metric .m-l{font-size:10.5px;color:var(--ink-4);margin-top:3px;}
+
+/* ⚠️ 2026-11-23 用户口径：「把见证席面板中的判定怎么算、见证门槛、物证怎么判删了。」
+   —— 底部说明条（.wf-foot）整条删除：说明已经在右上角那个「?」里，
+      底部再挂三个问号 = 同一件事两个入口。
+      删掉后卡片底部那条横线也跟着没了，卡片收得更紧。 */
+
+/* ============================================================
+   留言板
+   ============================================================ */
+.msg{display:flex;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);}
+.msg:last-child{border-bottom:0;}
+.msg-bubble{
+  background:var(--surface-2);border-radius:4px 14px 14px 14px;padding:10px 13px;
+  flex:1;font-size:13.5px;line-height:1.6;
+}
+.msg-meta{font-size:11px;color:var(--ink-4);margin-top:5px;}
+.msg.mine{flex-direction:row-reverse;}
+.msg.mine .msg-bubble{background:var(--brand-tint);border-radius:14px 4px 14px 14px;}
+.msg.mine .msg-meta{text-align:right;}
+
+/* 目标人回声（见需求规格 3.5.1） */
+.msg-reply{
+  margin-top:8px;padding:9px 11px;border-radius:12px;
+  background:var(--brand-tint);border-left:2.5px solid var(--brand);
+  display:flex;flex-direction:column;gap:3px;
+}
+.msg-reply .mr-tag{
+  font-size:10.5px;font-weight:700;color:var(--brand);letter-spacing:.3px;
+}
+.msg-reply .mr-text{font-size:13px;line-height:1.55;color:var(--ink);}
+.msg-reply .mr-time{font-size:10.5px;color:var(--ink-4);}
+
+/* 实时动态流（见需求规格 3.5） */
+.act{padding:6px 16px 14px;}
+.act-row{
+  display:flex;gap:10px;align-items:flex-start;
+  padding:10px 0;border-bottom:1px solid var(--line);
+}
+.act-row:last-of-type{border-bottom:0;}
+.act-ico{
+  flex:0 0 auto;width:26px;height:26px;border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--bg-2);color:var(--ink-3);
+}
+.act-ico svg{width:15px;height:15px;}
+.act-txt{font-size:13px;line-height:1.55;color:var(--ink-2);}
+.act-txt b{color:var(--ink);font-weight:650;}
+.act-q{color:var(--brand);font-weight:600;}
+.act-time{font-size:11px;color:var(--ink-4);margin-top:3px;}
+/* 回声事件：唯一公开的留言相关内容，视觉上要一眼看出是"回应" */
+.act-row.echo .act-ico{background:var(--brand-tint);color:var(--brand);}
+.act-row.echo{background:linear-gradient(90deg,var(--brand-tint) 0%,transparent 78%);border-radius:10px;padding-left:8px;margin-left:-8px;}
+.chips{display:flex;gap:8px;flex-wrap:wrap;}
+.chip{
+  padding:8px 14px;border-radius:100px;background:var(--surface);border:1.5px solid var(--line);
+  font-size:13px;color:var(--ink-2);transition:.16s var(--ease);font-weight:500;
+}
+.chip:active{transform:scale(.94);}
+.chip.on{background:var(--brand);border-color:var(--brand);color:#fff;font-weight:600;box-shadow:var(--sh-brand-sm);}
+
+/* ============================================================
+   立据凭证
+   ============================================================ */
+.voucher{
+  background:linear-gradient(150deg,#FF8A2B 0%,#FF6B00 100%);color:#fff;border-radius:var(--r-xl);padding:22px;
+  position:relative;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  box-shadow:var(--sh-4);
+}
+.voucher::before,.voucher::after{
+  content:"";position:absolute;width:16px;height:16px;border-radius:50%;
+  background:var(--bg);top:50%;margin-top:-8px;
+}
+.voucher::before{left:-8px;}
+.voucher::after{right:-8px;}
+.voucher .v-no{font-size:11px;color:rgba(255,255,255,.72);letter-spacing:2px;}
+/* ⚠️ 2026-11-22 用户口径：「立据 · 编号 A7K3M9 居中。」 */
+.voucher .v-no.center{text-align:center;}
+.voucher .v-line{height:1px;background:rgba(255,255,255,.25);margin:13px 0;}
+.voucher .v-kv{display:flex;gap:12px;font-size:12.5px;padding:4px 0;line-height:1.55;}
+.voucher .v-k{color:rgba(255,255,255,.72);width:60px;flex:0 0 60px;}
+.voucher .v-v{color:#fff;flex:1;}
+.voucher .v-foot{
+  text-align:center;font-size:12px;color:rgba(255,255,255,.78);margin-top:16px;line-height:1.7;
+  font-family:var(--font);
+}
+.voucher .v-qr{
+  width:92px;margin:16px auto 0;text-align:center;
+}
+.voucher .v-qr-img{
+  width:92px;height:92px;display:block;border-radius:10px;background:#fff;
+  box-shadow:0 2px 10px rgba(0,0,0,.16);
+}
+.voucher .v-qr-cap{
+  font-size:10.5px;color:rgba(255,255,255,.9);margin-top:6px;
+  font-family:var(--font);letter-spacing:.5px;
+}
+
+/* ---------- 发起成功页（见 D10.3.3） ---------- */
+/* 大标题：承诺已经立下 —— 第一屏就说清「立下了什么」 */
+.created-hero{text-align:center;padding:4px 0 14px;}
+.created-hero-t{
+  font-size:23px;font-weight:750;letter-spacing:-.5px;color:var(--ink);
+}
+.created-hero-s{
+  font-size:13px;color:var(--ink-3);margin-top:6px;line-height:1.6;
+}
+
+/* 立据里的邀请块 —— 立据不只是一张凭证，是一份邀请 */
+.voucher .v-invite{
+  margin-top:16px;padding:15px 16px;border-radius:14px;
+  background:rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.28);
+}
+.voucher .v-invite-t{
+  font-size:15px;font-weight:750;color:#fff;letter-spacing:-.2px;
+  font-family:var(--font);
+}
+/* ⚠️ 2026-11-22 用户口径：「邀请你成为我的见证 居中。」 */
+.voucher .v-invite-t.center{text-align:center;}
+.voucher .v-invite-d{
+  font-size:12.5px;color:rgba(255,255,255,.9);margin-top:7px;line-height:1.75;
+  font-family:var(--font);
+}
+
+/* 筹备期回入口 —— 目标详情页顶部横幅（见 R2.16）
+   ⚠️ 2026-11-22 用户口径：发起成功页在 24 小时有效期内要能反复进入。
+      入口放在本人版详情页的顶部 —— 那是用户从「进入我的 Flag」走出来后
+      唯一还能看到「这个局还没定死」的地方。 */
+.prep-back{
+  margin-bottom:12px;padding:14px 16px;border-radius:var(--r-lg);
+  background:var(--mint-tint);border:1px solid #BFE3D2;
+}
+.prep-back-t{
+  font-size:14.5px;font-weight:680;color:#2E6047;
+  display:flex;align-items:center;gap:6px;
+}
+.prep-back-t svg{width:16px;height:16px;flex:0 0 16px;}
+.prep-back-d{
+  font-size:12.5px;color:#3F7A58;margin-top:5px;line-height:1.65;
+}
+
+/* 筹备期倒计时 —— 数字单独一行，醒目（真实时钟逐秒递减） */.prep-timer{
+  margin-top:12px;padding:16px 16px;border-radius:var(--r-lg);
+  background:linear-gradient(150deg,var(--brand-400) 0%,var(--brand-600) 100%);
+  box-shadow:0 10px 28px rgba(169,79,12,.24);
+  text-align:center;
+}
+.prep-timer .pt-label{
+  font-size:11.5px;font-weight:600;color:rgba(255,255,255,.82);
+  letter-spacing:2px;font-family:var(--font);
+}
+.prep-timer .pt-clock{
+  font-family:var(--font-num);font-size:40px;font-weight:800;color:#fff;
+  letter-spacing:1px;line-height:1.1;margin-top:6px;
+  text-shadow:0 2px 10px rgba(0,0,0,.22);
+  font-variant-numeric:tabular-nums;
+}
+.prep-timer .pt-clock.done{font-size:26px;}
+.prep-timer .pt-note{
+  font-size:12.5px;color:rgba(255,255,255,.9);margin-top:11px;line-height:1.7;
+  text-align:left;font-family:var(--font);
+}
+.prep-timer .pt-note b{color:#fff;font-weight:700;}
+
+/* ============================================================
+   阶梯 / 飞轮
+   ============================================================ */
+
+.step{display:flex;gap:14px;align-items:flex-start;position:relative;padding-bottom:22px;}
+.step:last-child{padding-bottom:0;}
+.step::before{content:"";position:absolute;left:17px;top:36px;bottom:0;width:2px;background:var(--line);}
+.step:last-child::before{display:none;}
+
+.flywheel{display:flex;flex-direction:column;gap:0;}
+
+/* ============================================================
+   弹层
+   ============================================================ */
+.scrim{
+  position:absolute;inset:0;background:rgba(10,12,15,.45);
+  z-index:60;opacity:0;pointer-events:none;transition:opacity .28s var(--ease);
+  backdrop-filter:blur(1px);
+}
+.scrim.on{opacity:1;pointer-events:auto;}
+.sheet{
+  position:absolute;left:0;right:0;bottom:0;z-index:61;
+  background:var(--surface);border-radius:26px 26px 0 0;
+  max-height:84%;transform:translateY(102%);transition:transform .38s var(--ease);
+  display:flex;flex-direction:column;box-shadow:0 -8px 40px rgba(50,34,20,.22);
+  touch-action:none;
+}
+.sheet.on{transform:translateY(0);}
+/* ⚠️ 留言半屏：半高 + 底部留白收紧（输入框要贴着屏幕底部） */
+.sheet.msg-sheet{max-height:64%;}
+.sheet.msg-sheet .sheet-body{padding:16px 18px 14px;}
+.sheet.grabbing{transition:none;}
+.sheet-handle{
+  width:38px;height:4px;border-radius:100px;background:var(--line-2);
+  margin:10px auto 0;flex:0 0 auto;cursor:grab;
+}
+.sheet-head{
+  display:flex;align-items:center;gap:12px;padding:14px 20px 12px;
+  border-bottom:1px solid var(--line);flex:0 0 auto;
+}
+.sheet-title{flex:1;font-size:17px;font-weight:700;letter-spacing:-.3px;}
+.sheet-close{
+  width:30px;height:30px;border-radius:50%;background:var(--surface-3);color:var(--ink-3);
+  display:flex;align-items:center;justify-content:center;transition:.15s;flex:0 0 30px;
+}
+.sheet-close:active{transform:scale(.9);background:var(--line-2);}
+.sheet-body{padding:18px 20px 30px;overflow-y:auto;line-height:1.75;color:var(--ink-2);font-size:14.5px;}
+.sheet-body::-webkit-scrollbar{width:0;}
+.sheet-body h4{
+  font-size:14.5px;color:var(--ink);font-weight:680;margin:20px 0 8px;
+  letter-spacing:-.1px;display:flex;align-items:center;gap:6px;
+}
+.sheet-body h4:first-child{margin-top:0;}
+.sheet-body h4::before{
+  content:"";width:3px;height:14px;border-radius:2px;background:var(--brand);flex:0 0 3px;
+}
+.sheet-body p{margin-bottom:11px;}
+.sheet-body ul{margin:0 0 12px;}
+.sheet-body li{position:relative;padding-left:16px;margin-bottom:7px;font-size:14px;}
+.sheet-body li::before{
+  content:"";position:absolute;left:4px;top:10px;width:5px;height:5px;border-radius:50%;
+  background:var(--ink-4);
+}
+.sheet-body table{width:100%;border-collapse:separate;border-spacing:0;margin:10px 0 16px;font-size:12.5px;table-layout:auto;}
+.sheet-body th,.sheet-body td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;word-break:break-word;}
+.sheet-body th{
+  background:var(--surface-2);font-weight:650;color:var(--ink);font-size:12px;
+  position:sticky;top:0;white-space:nowrap;
+}
+.sheet-body td:first-child,.sheet-body th:first-child{white-space:nowrap;}
+/* 首列内容较长时允许换行，避免整张表被撑出横向滚动 */
+.sheet-body td:first-child{white-space:normal;min-width:72px;}
+.sheet-body th:first-child{white-space:normal;min-width:72px;}
+.sheet-body th:first-child{border-top-left-radius:8px;}
+.sheet-body th:last-child{border-top-right-radius:8px;}
+.sheet-body tr:last-child td{border-bottom:0;}
+
+/* ---- 广场筛选面板（半屏抽屉，见需求规格 R2.15）----
+   ⚠️ 筛选是【调节动作】不是【页面】—— 做成从底部升起的抽屉，
+      广场留在背景里，用户调完能直接看到结果。
+   抽屉内容用自己的排版（.filter-panel），不复用 .section ——
+   .section 的标题字号 16px + 上下 margin 22px 在抽屉里太散。 */
+.filter-panel{margin:-4px 0 0;}
+.filter-panel .fp-sec{margin-bottom:20px;}
+.filter-panel .fp-sec:last-of-type{margin-bottom:16px;}
+.filter-panel .fp-t{
+  font-size:14px;font-weight:680;color:var(--ink);
+  letter-spacing:-.1px;margin-bottom:9px;
+}
+.filter-panel .fp-sub{font-size:11.5px;color:var(--ink-3);margin:-5px 0 9px;line-height:1.6;}
+.filter-panel .fp-cta{margin-top:4px;}
+/* 抽屉底部的「清除条件 + 查看 N 个」两栏 */
+.filter-panel .fp-foot{
+  display:flex;gap:10px;align-items:center;margin-top:4px;
+}
+.filter-panel .fp-foot .fp-clear{flex:0 0 auto;}
+/* ⚠️ 2026-11-24（本轮）：筛选抽屉的底部按钮不再通栏 ——
+   「清除条件」和「查看 N 个 Flag」并排：
+   清除是常用的退路，跟主按钮抢一列会让人少一个出口。 */
+.filter-panel .fp-foot .fp-cta{flex:1;}
+/* 抽屉里的 chips / seg 字号略收 —— 抽屉比整页窄，字大一点会挤 */
+.filter-panel .chip{padding:7px 13px;font-size:12.5px;}
+.filter-panel .seg button{padding:7px 5px;font-size:13px;}
+.sheet-body .callout{
+  border-radius:var(--r-sm);padding:13px 15px;font-size:13.5px;margin:12px 0;line-height:1.65;
+  border-left:3px solid;
+}
+.sheet-body .c-info{background:var(--sky-tint);border-color:var(--sky);color:#35648F;}
+.sheet-body .c-warn{background:var(--amber-tint);border-color:var(--amber);color:#96650A;}
+.sheet-body .c-danger{background:var(--rose-tint);border-color:var(--rose);color:#A03439;}
+.sheet-body .c-good{background:var(--brand-tint);border-color:var(--brand);color:#9C4308;}
+
+/* 弹层内的提示块：good / warn / danger / note 四档
+   （info.js 里用的是 class="good" 这类写法，之前只有 .note 全局版，导致弹层里全是裸文本） */
+.sheet-body .good,
+.sheet-body .warn,
+.sheet-body .danger,
+.sheet-body .note{
+  border-radius:var(--r-sm);padding:12px 14px;font-size:13.5px;line-height:1.7;
+  margin:12px 0;border-left:3px solid transparent;
+}
+.sheet-body .good{background:var(--brand-tint);border-left-color:var(--brand);color:#8A3D06;}
+.sheet-body .warn{background:var(--amber-tint);border-left-color:var(--amber);color:#8A5F08;}
+.sheet-body .danger{background:var(--rose-tint);border-left-color:var(--rose);color:#9A3237;}
+.sheet-body .note{background:var(--surface-2);border-left-color:var(--line-2);color:var(--ink-3);}
+.sheet-body .good b,.sheet-body .warn b,.sheet-body .danger b{color:inherit;font-weight:700;}
+.sheet-body .good + .good,
+.sheet-body .warn + .warn,
+.sheet-body .danger + .danger,
+.sheet-body .note + .note{margin-top:0;}
+
+/* 弹层内的要点列表：加左侧竖线，和正文段落区分开 */
+.sheet-body ul.key{
+  list-style:none;margin:10px 0 14px;padding:0;
+  border-left:2px solid var(--brand-tint-2);
+}
+.sheet-body ul.key li{
+  padding:2px 0 2px 14px;margin-bottom:8px;font-size:14px;line-height:1.7;
+}
+.sheet-body ul.key li::before{display:none;}
+.sheet-body ul.key li:last-child{margin-bottom:0;}
+
+/* 弹层内的步骤流程（用于状态机 / 结算时序 / 生命周期） */
+.sheet-body ol.flow{
+  list-style:none;counter-reset:flow;margin:10px 0 16px;padding:0;
+}
+.sheet-body ol.flow li{
+  counter-increment:flow;position:relative;padding:0 0 12px 32px;margin:0;
+  font-size:14px;line-height:1.7;
+}
+.sheet-body ol.flow li::before{
+  content:counter(flow);position:absolute;left:0;top:1px;
+  width:21px;height:21px;border-radius:50%;background:var(--brand-tint);color:var(--brand);
+  font-size:11.5px;font-weight:700;display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-num);
+}
+.sheet-body ol.flow li::after{
+  content:"";position:absolute;left:10px;top:24px;bottom:0;width:1px;background:var(--line);
+}
+.sheet-body ol.flow li:last-child{padding-bottom:0;}
+.sheet-body ol.flow li:last-child::after{display:none;}
+.sheet-body ol.flow li b{color:var(--ink);font-weight:680;}
+
+.sheet-body .mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;background:var(--surface-2);padding:2px 6px;border-radius:4px;}
+.sheet-body .big{
+  font-family:var(--font-num);font-size:19px;font-weight:750;color:var(--ink);
+  text-align:center;padding:14px;background:var(--surface-2);border-radius:var(--r-sm);margin:12px 0;
+}
+
+/* 居中弹窗 */
+.dialog{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.9);
+  width:300px;background:var(--surface);border-radius:20px;padding:24px 20px 18px;
+  z-index:62;opacity:0;pointer-events:none;transition:.26s var(--spring);
+  box-shadow:var(--sh-4);text-align:center;
+}
+.dialog.on{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1);}
+.dialog-title{font-size:17px;font-weight:700;margin-bottom:8px;letter-spacing:-.2px;}
+.dialog-body{font-size:14px;color:var(--ink-3);line-height:1.6;}
+.dialog-actions{display:flex;gap:10px;margin-top:20px;}
+/* ⚠️ 2026-11-24（本轮）：两个按钮等宽、居中
+   —— 用于「确认支付」这类场合：一宽一窄会被读成「取消是主体」，
+      等宽之后两个按钮是同一级别的两个选项。 */
+.dialog-actions.dlg-actions-even{justify-content:center;}
+/* ⚠️ 2026-11-24（本轮，用户口径 Part 三①）：两个按钮**等宽 + 居中** ——
+   —— 用户口径：「首次申请进入见证席时弹出的小弹窗，下方『取消』『申请』两个按钮
+      需居中对齐、大小一致；当前按钮偏左，需调整。」
+   —— 为什么：`.dialog-actions` 默认是 `display:flex`（左对齐），
+      两个按钮的宽度由内容撑开 —— 「取消」两个字、「申请」两个字，
+      加上「还差 N 次」那种长文案，宽度天然不一样，于是整排歪在左边。
+   —— 修法：两个按钮各占**同样的宽**，整排**居中**：
+      ① `flex:1 1 0` —— 两个按钮等分整行宽度（不管文案长短）
+      ② `justify-content:center` —— 整排在弹窗里居中
+   —— 为什么不用 `min-width`：那样只是「至少一样宽」，
+      文案长的那个还是会把另一个挤歪。
+   —— ⚠️ 还有个坑：`flex:1 1 0` 算的是**内容盒**，
+      而 `.btn.ghost` 带 1.5px 边框、`.btn` 不带 ——
+      两个按钮的边框宽度不同，就会差出那 1.5×2 = 3px。
+      所以这里给这一组按钮**统一 1.5px 边框**（主按钮用透明色），
+      这样才是真正的「一样大」。 */
+.dialog-actions.dlg-actions-even .btn{
+  flex:1 1 0;min-width:0;
+  display:inline-flex;align-items:center;justify-content:center;
+  border:1.5px solid transparent;
+}
+.dialog-actions.dlg-actions-even .btn.ghost{border-color:var(--line-2);}
+/* ⚠️ 「申请成为见证席」小框 —— 两个按钮等宽居中（见 R2.30③） */
+.dialog.dlg-apply .dialog-actions{justify-content:center;}
+/* 判定三选一小框（见需求规格 R5.2）—— 比普通 dialog 宽一点，容得下三行说明 */
+.dialog.dlg-pick{width:340px;padding:20px 18px 16px;}
+.dialog.dlg-pick .dialog-title{text-align:center;margin-bottom:12px;}
+.dialog.dlg-pick .verdict-list{gap:8px;}
+.dialog.dlg-pick .verdict-opt{padding:11px 12px;gap:10px;box-shadow:none;background:var(--surface-2);}
+.dialog.dlg-pick .verdict-opt.on{background:var(--brand-tint);}
+.dialog.dlg-pick .verdict-ico{width:30px;height:30px;flex:0 0 30px;border-radius:10px;font-size:14px;}
+.dialog.dlg-pick .verdict-t{font-size:14px;}
+.dialog.dlg-pick .verdict-d{font-size:11.5px;}
+.dialog.dlg-pick .dialog-actions{margin-top:16px;}
+
+/* ⚠️ 2026-11-24 用户口径：点赞的【短语选择弹窗】已删除 ——
+   「点赞删除掉短语选择，就改成一个普通的点击按钮，点了变色，
+    带一点小小的特效就行。」
+   —— 所以 .dlg-like 的样式整块删除（连同 openLikePicker / LIKE_PHRASES）。 */
+
+/* 「申请成为见证席」小框（见需求规格 R5.9.2.3）
+   ⚠️ 2026-11-23 用户口径：申请入口在见证席面板，点了弹【页面中间的小框】，
+      当场评估够不够格 —— 不再有独立页面。小框要装下门槛卡，所以要更宽。 */
+.dialog.dlg-apply{width:340px;padding:20px 18px 16px;}
+.dialog.dlg-apply .dialog-title{text-align:center;margin-bottom:12px;}
+.dialog.dlg-apply .dialog-body{font-size:13px;}
+.dialog.dlg-apply .dialog-actions{margin-top:16px;}
+.dialog.dlg-apply .wa-req{margin:0 0 12px;}
+/* ⚠️ 2026-11-24 用户口径：「这个页面简化，信息太多了，不用太多解释性的说明。」
+   —— 原来有「够格了 / 还差一点点」两个结论块 + 四行明细（担保人 / 平台审核 /
+      判定次数 / 漏报误报），现在**整块删掉**。
+   —— 剩下的信息只有三样：门槛是什么、当前进度、够不够格 ——
+      门槛卡（.wa-req）已经把这三样说完了，再加一段话就是重复。
+   —— 所以 .wa-dlg-ok / .wa-dlg-no / .wa-dlg-list / .wa-dlg-li 的样式一并删除。 */
+
+/* Toast */
+.toast{
+  position:absolute;left:50%;bottom:96px;transform:translate(-50%,14px);
+  background:rgba(17,19,24,.94);color:#fff;font-size:13.5px;font-weight:500;
+  padding:11px 18px;border-radius:100px;z-index:70;
+  opacity:0;pointer-events:none;transition:.26s var(--ease);
+  max-width:82%;text-align:center;box-shadow:var(--sh-3);backdrop-filter:blur(8px);
+}
+.toast.on{opacity:1;transform:translate(-50%,0);}
+
+/* ============================================================
+   其他
+   ============================================================ */
+.empty{text-align:center;padding:60px 30px;color:var(--ink-4);}
+.empty .e-ico{font-size:44px;opacity:.3;margin-bottom:14px;}
+.empty .e-t{font-size:15px;color:var(--ink-3);margin-bottom:6px;font-weight:550;}
+.empty .e-s{font-size:13px;line-height:1.7;}
+
+.sticky-cta{
+  position:sticky;bottom:0;margin:20px -18px 0;
+  padding:14px 18px calc(18px + env(safe-area-inset-bottom));
+  background:linear-gradient(to top,var(--bg) 62%,transparent);
+  backdrop-filter:blur(8px);
+  z-index:5;
+}
+
+.muted{color:var(--ink-3);}
+.tiny{font-size:11.5px;}
+.center{text-align:center;}
+.mt{margin-top:14px;}
+
+.note{
+  background:var(--surface-2);border-radius:var(--r-sm);padding:12px 14px;
+  font-size:12.5px;color:var(--ink-3);line-height:1.65;
+}
+.note.brand{background:var(--brand-tint);color:#9C4308;}
+.note.amber{background:var(--amber-tint);color:#96650A;}
+.note.sky{background:var(--sky-tint);color:#35648F;}
+.note.rose{background:var(--rose-tint);color:#A03439;}
+
+/* ---------- 申请见证席：门槛高亮卡（见需求规格 R16.2.2） ----------
+   ⚠️ 2026-11-24 用户口径（改）：「成为见证席的理由，简化为累计完成 10 次互动就行了，
+      点赞或留言，同时这个页面简化，信息太多了，不用太多解释性的说明。」
+   —— 门槛卡放在小框【最上面】，用深色高对比块，一眼就看到。
+   —— 原来卡下面还有「够格了 / 还差一点点」两个结论块 + 四行明细，现在全删了，
+      卡本身就是全部的信息。 */
+.wa-req{
+  background:linear-gradient(150deg,#4A3A32 0%,#2E241E 100%);
+  border-radius:var(--r-lg);padding:16px 16px 14px;color:#fff;
+  box-shadow:0 10px 26px rgba(46,36,30,.24);
+}
+.wa-req-top{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+}
+.wa-req-tag{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:11.5px;font-weight:600;color:#FFD9B0;letter-spacing:.3px;
+}
+.wa-req-tag svg{width:14px;height:14px;flex:0 0 14px;}
+.wa-req-count{
+  font-family:var(--font-num);font-size:13px;font-weight:700;
+  color:rgba(255,255,255,.72);
+}
+.wa-req-count.ok{color:#9FE0B0;}
+.wa-req-title{
+  font-size:24px;font-weight:800;letter-spacing:-.4px;line-height:1.2;
+  margin-top:10px;
+  /* ⚠️ 2026-11-24 用户口径：「累计互动 10 次 · 点赞或留言都算 1 次
+     调整为居中，目前是偏左的。」
+     —— 这两行是门槛卡的主文案，居中才像一张「资格卡」而不是一行说明文字。 */
+  text-align:center;
+}
+.wa-req-sub{
+  font-size:13px;color:rgba(255,255,255,.8);line-height:1.55;margin-top:5px;
+  text-align:center;
+}
+.wa-req-sub b{color:#FFD9B0;font-weight:700;}
+.wa-req-bar{
+  height:5px;border-radius:100px;background:rgba(255,255,255,.16);
+  overflow:hidden;margin-top:13px;
+}
+.wa-req-bar i{
+  display:block;height:100%;border-radius:100px;
+  background:linear-gradient(90deg,#FF9A3D,#FF7A1A);
+  transition:width .4s var(--ease);
+}
+.wa-req-foot{
+  margin-top:10px;font-size:12px;line-height:1.5;
+}
+.wa-req-yes{
+  display:inline-flex;align-items:center;gap:5px;color:#9FE0B0;font-weight:600;
+}
+.wa-req-yes svg,.wa-req-no svg{width:15px;height:15px;flex:0 0 15px;}
+.wa-req-no{
+  display:inline-flex;align-items:center;gap:5px;color:#FFC79B;
+}
+/* 「四项收益明细 ?」的引导（指向弹层） */
+
+/* ---------- 打卡页：随机词 + 打卡照 + 打卡说明（见需求规格 R2.8） ----------
+   2026-11-21 简化：删掉「照片必须包含三样东西」「AI 轻量校验」
+   「照片会公开」「避开他人」四块，把拍照要求收进「打卡说明」折叠区。 */
+.ci-hero{
+  background:linear-gradient(150deg,#FF8A2B 0%,#FF6B00 60%,#E85A00 100%);
+  border-radius:var(--r-xl);padding:20px 18px 16px;color:#fff;
+  position:relative;overflow:hidden;
+}
+.ci-hero::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 40%,rgba(255,255,255,.07),transparent 70%);
+  pointer-events:none;
+}
+.ci-hero-tag{
+  font-size:12px;opacity:.72;letter-spacing:1.5px;font-weight:600;text-align:center;
+}
+.ci-hero-word{
+  font-size:38px;font-weight:780;letter-spacing:13px;
+  margin:8px 0 16px;color:#fff;text-align:center;
+  text-indent:13px;   /* 抵消字距造成的右侧空隙 */
+}
+
+/* 打卡照（物证）—— 空态是拍照按钮，已拍是缩略图 + 重拍 */
+.ci-shot{position:relative;z-index:1;}
+.ci-shot-empty{
+  width:100%;border:2px dashed rgba(255,255,255,.3);border-radius:var(--r-lg);
+  padding:26px 16px;background:rgba(255,255,255,.05);
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  color:#fff;font-family:inherit;cursor:pointer;
+}
+.ci-shot-ico{display:block;margin-bottom:6px;}
+.ci-shot-ico svg{width:34px;height:34px;}
+.ci-shot-t{font-size:14px;font-weight:600;}
+.ci-shot-s{font-size:11.5px;opacity:.6;}
+/* 已拍：缩略图 */
+.ci-shot-img{
+  width:100%;aspect-ratio:4/3;object-fit:cover;display:block;
+  border-radius:var(--r-lg);background:rgba(255,255,255,.08);
+}
+.ci-shot-retake{
+  position:absolute;right:9px;bottom:9px;
+  display:flex;align-items:center;gap:5px;
+  padding:6px 12px;border-radius:100px;border:none;
+  background:rgba(0,0,0,.52);backdrop-filter:blur(4px);
+  color:#fff;font-size:12px;font-weight:600;font-family:inherit;cursor:pointer;
+}
+.ci-shot-retake svg{width:14px;height:14px;}
+
+/* 「打卡说明」折叠区（照片要求收在这里） */
+.ci-hero .fold{border-top:1px solid rgba(255,255,255,.18);margin-top:14px;padding-top:12px;}
+.ci-hero .fold-btn{color:rgba(255,255,255,.9);font-weight:600;font-size:12.5px;}
+.ci-hero .fold-btn svg{width:14px;height:14px;}
+.ci-hero .fold.open .fold-btn svg{transform:rotate(180deg);}
+.ci-hero .fold-body{opacity:0;}
+.ci-hero .fold.open .fold-body{opacity:1;}
+.ci-guide{padding-top:10px;display:flex;flex-direction:column;gap:11px;}
+.ci-guide-row{display:flex;align-items:flex-start;gap:10px;}
+.ci-guide-ico{
+  width:28px;height:28px;border-radius:9px;flex:0 0 28px;
+  background:rgba(255,255,255,.18);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+}
+.ci-guide-ico svg{width:16px;height:16px;}
+.ci-guide-t{font-size:13px;font-weight:650;color:#fff;}
+.ci-guide-s{font-size:12px;color:rgba(255,255,255,.72);margin-top:1px;line-height:1.5;}
+
+/* ---------- 补充照片区块（见需求规格 R2.6 / R2.8） ----------
+   打卡页：最多 3 张生活照，第 1 张即封面图。
+   ⚠️ 2026-11-21 简化：只留缩略图 + 「+」号框，不要文案、不要按钮条 */
+.ex-grid{
+  display:flex;gap:9px;flex-wrap:wrap;margin-top:12px;
+}
+.ex-cell{
+  position:relative;width:88px;height:88px;border-radius:12px;overflow:hidden;
+  background:var(--surface-2);flex:0 0 88px;
+}
+.ex-cell img{width:100%;height:100%;object-fit:cover;display:block;}
+/* 封面图：品牌橙描边 + 「封面」角标 —— 一眼知道哪张是首页图 */
+.ex-cell.cover{box-shadow:0 0 0 2px var(--brand),0 2px 8px rgba(169,79,12,.22);}
+.ex-badge{
+  position:absolute;left:0;bottom:0;right:0;
+  background:rgba(255,107,0,.92);color:#fff;
+  font-size:9px;font-weight:700;line-height:1;
+  padding:3px 0;text-align:center;font-style:normal;letter-spacing:.5px;
+}
+.ex-del{
+  position:absolute;top:3px;right:3px;
+  width:20px;height:20px;border-radius:50%;
+  background:rgba(0,0,0,.52);color:#fff;border:none;padding:0;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+}
+.ex-del svg{width:11px;height:11px;}
+/* 「设为封面」：非封面的那张才给这个入口 */
+.ex-set{
+  position:absolute;left:0;right:0;bottom:0;
+  background:rgba(0,0,0,.52);color:#fff;border:none;padding:4px 0;
+  font-size:9.5px;font-weight:650;font-family:inherit;cursor:pointer;
+  letter-spacing:.3px;
+}
+/* 加图按钮：虚线框 —— 看起来像"还能加"，不是死按钮
+   ⚠️ 2026-11-21 简化：只留「+」号，不要「加一张」文字（窄方框放不下字） */
+.ex-add{
+  width:88px;height:88px;flex:0 0 88px;border-radius:12px;
+  border:1.5px dashed var(--line-2);background:var(--surface-2);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--ink-3);cursor:pointer;font-family:inherit;
+}
+.ex-add:active{background:var(--surface-3);}
+.ex-add svg{width:22px;height:22px;}
+/* 说明条 */
+
+/* 现拍 / 相册 两个按钮 */
+.ex-acts{display:flex;gap:8px;margin-top:12px;}
+.ex-acts .btn{flex:1;display:flex;align-items:center;justify-content:center;gap:5px;}
+.ex-acts .btn svg{width:15px;height:15px;}
+
+/* ---------- 详情页生活照画廊（见需求规格 R2.6） ---------- */
+.ex-gallery{display:flex;gap:8px;flex-wrap:wrap;}
+.eg-cell{
+  position:relative;width:104px;height:104px;border-radius:13px;overflow:hidden;
+  background:var(--surface-2);flex:0 0 104px;
+}
+.eg-cell img{width:100%;height:100%;object-fit:cover;display:block;}
+.eg-cell.cover{box-shadow:0 0 0 2px var(--brand),0 2px 10px rgba(169,79,12,.22);}
+.eg-badge{
+  position:absolute;left:0;bottom:0;right:0;
+  background:rgba(255,107,0,.92);color:#fff;
+  font-size:9.5px;font-weight:700;line-height:1;
+  padding:3.5px 0;text-align:center;font-style:normal;letter-spacing:.5px;
+}
+
+/* ---------- 立 Flag 分步引导（见「立 Flag 分步流程」） ---------- */
+/* 顶部 4 步进度条 */
+.wiz-steps{display:flex;align-items:center;margin:2px 0 16px;}
+.wiz-step{display:flex;align-items:center;flex:1;}
+.wiz-step:last-child{flex:0 0 auto;}
+.wiz-dot{
+  width:22px;height:22px;border-radius:50%;flex:0 0 auto;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;color:var(--ink-3);
+  background:var(--surface-3);border:1.5px solid var(--line);
+}
+.wiz-dot.on{background:var(--brand);border-color:var(--brand);color:#fff;}
+.wiz-dot.done{background:var(--brand-tint);border-color:var(--brand);color:var(--brand);}
+.wiz-bar{flex:1;height:2px;background:var(--line);margin:0 5px;border-radius:2px;}
+.wiz-bar.done{background:var(--brand);}
+
+/* 步骤引导条 —— 每步开头一句话说明 */
+.wiz-lead{
+  display:flex;gap:9px;align-items:flex-start;
+  background:var(--brand-tint);color:#9C4308;
+  border-radius:var(--r-sm);padding:13px 14px;
+  font-size:13px;line-height:1.7;
+}
+.wiz-lead .wl-t{font-weight:750;font-size:13.5px;display:block;margin-bottom:3px;letter-spacing:-.1px;}
+.wiz-lead b{font-weight:750;}
+
+/* 单行提示变体（见需求规格 R2.16 ①）
+   ⚠️ 「周期越长，押金要求越高，完成后增加的信用分越多。」是 24 个汉字，
+      按 13px 排会折成 2 行。这里把它压成**一行**：
+      收窄内边距 + 缩到 12px + 负字距，并禁止换行。
+   —— 文字内容一个字都不能改，只能靠排版把它塞进一行。 */
+.wiz-lead-1line{padding:12px 12px;gap:8px;}
+.wiz-lead-1line .wl-1line{
+  display:block;font-size:11.5px;line-height:1.6;
+  white-space:nowrap;letter-spacing:-.35px;
+}
+.wiz-lead-1line .wl-t{font-size:13px;margin-bottom:2px;}
+
+/* 分步引导里的输入组 */
+.wiz-2col{display:flex;gap:10px;}
+.wiz-2col .field{flex:1;margin-bottom:0;}
+
+/* 启动页 */
+.splash{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:0 36px;text-align:center;
+  background:var(--bg);z-index:50;
+}
+.splash .sp-logo{font-size:52px;font-weight:780;letter-spacing:11px;
+  animation:spIn .9s var(--ease-out) both;}
+@keyframes spIn{from{opacity:0;transform:translateY(14px);letter-spacing:22px;}to{opacity:1;transform:none;}}
+.splash .sp-q{font-size:24px;line-height:1.5;font-weight:680;letter-spacing:-.5px;white-space:nowrap;margin-top:22px;
+  animation:spIn .7s .40s var(--ease-out) both;}
+.splash .sp-s{font-size:14px;color:var(--ink-3);line-height:1.75;margin:16px 0 46px;
+  animation:spIn .7s .65s var(--ease-out) both;}
+.splash .sp-btn{animation:spPress .8s .90s var(--ease-out) both;width:200px;}
+/* 按钮用缩放而非位移 —— 视觉上更接近"按印" */
+@keyframes spPress{from{opacity:0;transform:scale(.92);}to{opacity:1;transform:none;}}
+.splash .sp-foot{position:absolute;bottom:34px;font-size:11px;color:var(--ink-4);}
+
+/* ============================================================
+   登录页
+   ============================================================ */
+/* 登录页：整体位置固定，切换微信/手机号时画面完全不动
+   1. padding-top 固定 —— 狗头永远在 152px，不随内容高度变化
+   2. .login-card 高度固定（见下）—— 两态卡片等高，后续元素位置也就锁死 */
+.login-page{
+  padding:152px 20px 10px;position:relative;overflow:hidden;min-height:100%;
+}
+
+/* 装饰色块背景层 —— 延续原大色块的弧线语言，拆成几块大面积淡色弧形铺在底层
+   （内容层全部浮在它上面 z-index:1；色块之间留白，避免糊成一片） */
+.login-deco{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+/* 底色：顶部一小片品牌暖调，往下淡出，让页面整体不素但不压内容 */
+.login-deco::before{
+  content:'';position:absolute;left:-10%;right:-10%;top:-6%;height:56%;
+  background:radial-gradient(120% 100% at 50% 0%, rgba(255,107,0,.16), rgba(255,107,0,0) 72%);
+}
+.login-deco .ld-arc{position:absolute;display:block;}
+/* 右上：品牌橙大弧，切进页面一角 */
+.login-deco .ld-a{
+  width:250px;height:250px;border-radius:50%;
+  top:-118px;right:-104px;
+  background:var(--brand);opacity:.34;
+}
+/* 左下：浅一档的橙弧，与右上形成对角呼应 */
+.login-deco .ld-b{
+  width:280px;height:280px;border-radius:50%;
+  bottom:-142px;left:-132px;
+  background:var(--brand-400);opacity:.26;
+}
+/* 左侧中段：细圆环弧，打破大面积色块的闷 */
+.login-deco .ld-c{
+  width:150px;height:150px;border-radius:50%;
+  top:44%;left:-84px;
+  border:9px solid var(--brand);background:none;opacity:.20;
+}
+/* 右上偏下：一条斜向淡色带，衔接标题区与卡片区 */
+.login-deco .ld-d{
+  width:300px;height:96px;border-radius:999px;
+  right:-92px;top:31%;transform:rotate(-18deg);
+  background:var(--brand-tint-2);opacity:.6;
+}
+/* 右下：补一块小弧，平衡对角，避免下半屏发空 */
+.login-deco .ld-e{
+  width:210px;height:210px;border-radius:50%;
+  right:-96px;bottom:-108px;
+  background:var(--brand);opacity:.20;
+}
+
+/* 上半部分：柴犬头像 + 大字「亏了」（无标语） */
+.login-top{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;}
+.login-top .lh-dog{width:92px;height:92px;object-fit:contain;margin-top:2px;}
+.login-top .lh-logo{font-size:40px;font-weight:800;letter-spacing:8px;color:var(--ink);margin-top:0;}
+
+/* 登录方式切换 —— 药丸分段控件（可左右拖拽跟手切换）
+   指示块 .seg-thumb 用 transform 定位，选中态 = 品牌橙底白字 */
+.login-tabs{
+  position:relative;z-index:1;display:flex;margin:12px 2px 0;
+  padding:4px;background:var(--surface-2);border-radius:999px;
+  isolation:isolate;
+}
+.login-tabs .seg-thumb{
+  position:absolute;top:4px;left:4px;height:calc(100% - 8px);width:0;
+  border-radius:999px;background:var(--brand);
+  box-shadow:0 2px 6px rgba(169,79,12,.22);
+  transition:transform .26s var(--ease),width .26s var(--ease);
+  z-index:0;pointer-events:none;
+}
+/* 拖拽中 / 手动定位：指示块跟手，取消过渡 */
+.login-tabs.dragging .seg-thumb,
+.login-tabs .seg-thumb.no-anim{transition:none;}
+.login-tabs button{
+  position:relative;z-index:1;
+  flex:1 1 0;min-width:0;
+  background:none;border:none;padding:0;cursor:pointer;
+  font-family:inherit;font-size:15px;font-weight:600;
+  color:var(--ink-3);
+  transition:color .2s var(--ease);
+  height:38px;line-height:38px;text-align:center;
+  border-radius:999px;
+  -webkit-user-select:none;user-select:none;
+  touch-action:pan-y;
+}
+.login-tabs button.on{color:#fff;}
+
+/* 表单卡片 —— 高度固定，两态（微信 / 手机号）等高
+   这样切 Tab 时狗头、标题、Tab、卡片、页脚的位置全部纹丝不动
+
+   ⚠️ 2026-11-22 用户口径：「微信登录的页面，跟手机登录相比，框内留白的地方太多了，
+      我希望你压缩一下 —— 实质是压缩留白区域的尺寸，切换时整体画面不动。」
+
+   【压缩留白的做法】
+   留白不是靠调高卡片高度来的，是靠**把内容本身压紧**：
+     · 输入框上下 padding 13px → 10px（输入框从 49px 高降到 43px）
+     · 输入框之间的间距 10px → 8px
+     · 登录按钮 48px → 42px
+     · 卡片内边距 16/18px → 13/14px
+     · 勾选框下方留白 14px → 10px
+   手机号态内容一共省下约 24px —— 卡片固定高度跟着降到 206px，
+   **微信态那 24px 的留白就被吃掉了**（原来微信态的按钮离上下边各差 60px+）。
+
+   【为什么不做 height:auto】
+   自适应高度会让卡片在切 Tab 时长高变矮 → 下方的「先吃瓜围观」和底部协议链接
+   跟着上下跳 → 用户说的「整体画面不动」就破了。
+   固定高度 + 两面板绝对定位叠加 + 透明度交叉淡入 = 切换时**什么都不动**。 */
+.login-card{position:relative;z-index:1;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:13px 14px 14px;box-shadow:var(--sh-2);margin-top:14px;
+  height:206px;
+  display:flex;flex-direction:column;}
+
+/* 面板容器 —— 撑满勾选框下方的剩余高度，两个面板叠在里面 */
+.login-panes{position:relative;flex:1;min-height:0;}
+
+/* 两个面板：一次只显示一种登录方式
+   ⚠️ 两态都【绝对定位铺满】面板容器 —— 高度永远相同，
+      切换时不会出现「一个撑开、另一个收缩」的位移。 */
+.login-pane{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;justify-content:center;
+  opacity:0;pointer-events:none;
+  /* ⚠️ 用对称缓动（不是 --ease-out）—— --ease-out 是「前重后轻」，
+     淡入淡出会几乎在前 1/3 就结束，两个面板**从不同时可见**，
+     看起来还是像「替换」而不是「交叉渐变」。
+     对称缓动让两块内容在中间点各占一半 —— 这才是真正的交叉淡入。 */
+  transition:opacity .26s cubic-bezier(.4,0,.2,1);
+}
+.login-pane.on{opacity:1;pointer-events:auto;}
+
+/* 登录态里的表单：收紧间距，保证一屏放得下 */
+.login-pane .field{margin-bottom:8px;}
+.login-pane .field:last-of-type{margin-bottom:12px;}
+/* 登录卡片里的输入框：上下 padding 收窄（全局 13px → 10px），
+   只影响登录页 / 登录浮层，不动其他页面的表单 */
+.login-card .input{padding:10px 13px;font-size:14.5px;}
+.login-card .btn{height:42px;font-size:15px;}
+
+/* 微信绿色胶囊 */
+.btn.wx{background:#07C160;color:#fff;border:none;font-weight:650;}
+.btn.wx:active{filter:brightness(.93);}
+.btn.wx svg{width:18px;height:18px;}
+/* 微信按钮禁用态：真的变灰（放在 .btn.wx 之后才能覆盖绿色底） */
+.btn.wx.disabled,.btn.wx[disabled],
+.login-card .btn.wx.disabled,.login-card .btn.wx[disabled],
+.login-sheet .btn.wx.disabled,.login-sheet .btn.wx[disabled]{
+  background:var(--surface-3);color:var(--ink-4);box-shadow:none;
+  opacity:1;pointer-events:none;
+}
+
+/* 验证码并排 */
+.code-row{display:flex;gap:8px;}
+.code-btn{flex:0 0 auto;height:40px;}
+
+/* 协议勾选 —— 在卡片内、登录按钮上方 */
+.login-check{margin:0 0 10px;padding:0;}
+.login-check .box{border-radius:6px;}
+.login-check b{font-weight:650;color:var(--ink);}
+
+/* 登录按钮：未勾选协议时禁用 —— 灰底灰字（不是半透明） */
+.btn[disabled],.btn.disabled{opacity:.42;pointer-events:none;}
+.login-card .btn.disabled,.login-card .btn[disabled],
+.login-sheet .btn.disabled,.login-sheet .btn[disabled]{
+  background:var(--surface-3);color:var(--ink-4);
+  box-shadow:none;opacity:1;pointer-events:none;
+}
+/* 分步引导底部按钮：未勾选时禁用 —— 灰底灰字（不是半透明） */
+.wiz-cta .btn.disabled,.wiz-cta .btn[disabled]{
+  background:var(--surface-3);color:var(--ink-4);
+  box-shadow:none;opacity:1;pointer-events:none;
+}
+
+/* 先吃瓜围观 */
+.guest-link{position:relative;z-index:1;display:block;width:100%;text-align:center;font-size:13.5px;
+  color:var(--ink-3);background:none;border:none;padding:9px 0 2px;margin-top:8px;cursor:pointer;font-family:inherit;}
+.guest-link:hover{color:var(--brand);}
+
+/* 底部协议链接 */
+.login-foot{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:10px;
+  margin-top:6px;font-size:11px;color:var(--ink-4);}
+.login-foot .sep{opacity:.5;}
+
+/* ============================================================
+   信息降噪：折叠区 / 精简行 / 主角数字
+   ============================================================ */
+
+/* 可折叠的次要信息 */
+.fold{
+  border-top:1px solid var(--line);
+  margin-top:12px;padding-top:10px;
+}
+.fold-btn{
+  display:flex;align-items:center;gap:5px;font-size:12.5px;color:var(--ink-3);
+  font-weight:550;transition:.15s;width:100%;
+}
+.fold-btn svg{width:14px;height:14px;transition:transform .26s var(--ease);}
+.fold.open .fold-btn svg{transform:rotate(180deg);}
+.fold-body{
+  display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s var(--ease);
+  opacity:0;
+}
+.fold.open .fold-body{grid-template-rows:1fr;opacity:1;}
+.fold-inner{overflow:hidden;}
+
+/* 精简信息行（比 .row 更轻） */
+.mini{display:flex;align-items:center;gap:8px;padding:7px 0;font-size:13px;color:var(--ink-2);}
+.mini + .mini{border-top:1px solid var(--line);}
+.mini-k{color:var(--ink-3);flex:0 0 auto;}
+.mini-v{margin-left:auto;font-weight:600;font-variant-numeric:tabular-nums;}
+.mini svg{width:15px;height:15px;flex:0 0 15px;color:var(--ink-4);}
+
+/* 主角数字块 */
+.lead{
+  display:flex;align-items:baseline;gap:8px;justify-content:center;
+  padding:6px 0 2px;
+}
+.lead .l-v{font-family:var(--font-num);font-size:44px;font-weight:780;letter-spacing:-2.4px;line-height:1;}
+.lead .l-u{font-size:14px;color:var(--ink-3);font-weight:550;}
+.lead-sub{text-align:center;font-size:12.5px;color:var(--ink-3);margin-top:5px;}
+/* ⚠️ 2026-11-23 用户口径：「『67.4KG』改为展示『71.2 → 63.2 kg』。」
+   —— 主角数字是【起始 → 目标】两个数，中间一个箭头；
+      两个数用同一个字号，靠箭头分隔，不做主次 —— 起始和目标一样重要。 */
+.lead-range .l-v{font-size:34px;letter-spacing:-1.6px;}
+.lead-range .l-arrow{
+  font-size:20px;color:var(--ink-4);font-weight:500;line-height:1;
+  margin:0 2px;
+}
+/* ⚠️ 2026-11-23 用户口径：「『90 天备孕前减 8 公斤，把体检指标拉回正常。』文字只能一行。」
+   —— 目标标题单行、超出省略号。 */
+.fd-title{
+  font-size:17px;font-weight:700;line-height:1.45;letter-spacing:-.3px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+/* ⚠️ 2026-11-24（本轮，用户口径 Part 五③）：**本人视角**的身份小标签
+   （头像 + 名字 + 天数 · 档位）**提到页面上方**，独立于目标卡。
+   —— 之前它混在卡里，跟标题、指标挤在一起，看起来像卡的一部分。
+      提到卡外，它是【一条独立的信息】，跟围观者版的导航栏身份条逻辑一致。 */
+.fd-mine-id{
+  display:flex;align-items:center;gap:10px;
+  padding:11px 14px;margin-bottom:12px;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);
+}
+
+/* 主体数字 + 次级数字 */
+.hero-nums{display:flex;align-items:flex-end;margin:16px 0 14px;}
+.hn{flex:1;text-align:center;position:relative;}
+.hn + .hn::before{content:"";position:absolute;left:0;top:4px;bottom:2px;width:1px;background:var(--line);}
+.hn .hn-v{font-family:var(--font-num);font-size:20px;font-weight:750;letter-spacing:-.7px;line-height:1.15;}
+.hn .hn-l{font-size:10.5px;color:var(--ink-4);margin-top:4px;}
+.hn .hn-v.good{color:var(--brand);}
+.hn .hn-v.bad{color:var(--rose);}
+.hn .hn-v.hot{color:var(--coral);}
+
+/* ---- Hero（橙底）里的数字行：改成高对比白字 ----
+   ⚠️ 2026-11-22 用户口径：「我的FLAG配色有问题，现在的文字是浅灰色，底色是橙色，非常不清晰，
+      卡片内的字选择白色或者纯黑色（你来搭），另外这个卡片里的起始和对应的数字没有居中，偏左了，调整下。」
+   —— 问题出在 .hn-l 用了 --ink-4（浅灰 #B3A79A）压在橙渐变上，
+      .hn-v.good 更是用了品牌橙压品牌橙（完全看不见）。
+      这里在 .hero 作用域内统一改成白字 + 半透明白的分隔线，
+      并把「起始」那个偏左的 text-align:left 去掉（HTML 已改）。 */
+.hero .hero-nums{margin:14px 0 14px;}
+.hero .hn{text-align:center;}
+.hero .hn .hn-v{color:#fff;font-weight:780;}
+.hero .hn .hn-v.good{color:#fff;}
+.hero .hn .hn-l{color:rgba(255,255,255,.86);font-weight:600;margin-top:5px;}
+.hero .hn + .hn::before{background:rgba(255,255,255,.28);}
+/* Hero 里的进度条说明行也是浅灰压橙 —— 一并提亮 */
+.hero .bar-row{color:rgba(255,255,255,.92);font-weight:550;}
+/* 押金金额（2026-11-22 用户口径：首页「我的 Flag」要展示押金金额） */
+.hero .h-dep{
+  display:inline-block;margin-top:2px;padding:3px 10px;border-radius:100px;
+  background:rgba(255,255,255,.2);backdrop-filter:blur(4px);
+  font-size:12px;font-weight:700;color:#fff;letter-spacing:.2px;
+  position:relative;z-index:1;
+}
+
+/* ============================================================
+   首页 · 筹备期版本（见需求规格 R1.1.3）
+   ⚠️ 2026-11-22 用户口径：刚立完 Flag 的 24 小时内，主视觉是
+      【显眼的 24 小时倒计时】+【见证席申请情况】+【已有见证人数】，
+      点进去是发起成功页（分享 / 看见证席申请 / 邀请人见证）——
+      因为这时候还没能正式开始打卡，这一段的任务是【招人】。
+   —— 所以这套样式刻意做成「深色倒计时块 + 白底招人卡」：
+      橙色渐变是「进行中」的主视觉，筹备期改成深色更有「还没开始」的重量感。
+   ============================================================ */
+.prep-hero{
+  background:linear-gradient(150deg,#4A3A32 0%,#2E241E 100%);
+  box-shadow:0 12px 30px rgba(46,36,30,.28);
+}
+.prep-badge{
+  background:rgba(255,255,255,.16);
+  color:#FFD9B0;
+}
+/* 倒计时块 —— 整块是这页最显眼的元素 */
+.prep-clock-block{
+  position:relative;z-index:1;
+  margin:16px 0 4px;padding:18px 16px 15px;border-radius:var(--r-lg);
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.18);
+  text-align:center;
+}
+/* ⚠️ 2026-11-24（本轮，用户口径）：倒计时块改为【不可点击】——
+   —— cursor:default 去掉手型光标 —— 原来它跟着整张卡是 pointer，
+      看着就是可点的。
+   —— 注意：这里【不能】用 pointer-events:none ——
+      那会让点击穿透到外层的 .prep-hero（那才是带 data-go 的），
+      结果还是被带进立据页。真正的拦截在 app.js 里：
+      命中 [data-no-nav] 就直接 return，不执行任何跳转。 */
+.prep-clock-block.prep-clock-static{cursor:default;}
+/* ⚠️ 2026-11-24（本轮，用户口径 Part 一①）：筹备期首页的灰色「我的 Flag」卡
+   —— 整张卡改为【仅作展示、不可点击】。
+   —— 视觉上要明确「这是一张展示卡」：去掉可点的按压反馈、去掉手型光标。
+   —— 真正的拦截在 app.js：命中 [data-no-nav] 直接 return（不执行任何跳转）。
+   —— 注意：这里【不能】用 pointer-events:none ——
+      那样点击会穿透到外层任何带 data-go 的元素。 */
+.prep-hero.prep-hero-static{cursor:default;}
+.prep-hero.prep-hero-static:active{transform:none;}
+.prep-clock-block .pcb-label{
+  font-size:11.5px;font-weight:600;color:rgba(255,255,255,.72);
+  letter-spacing:2px;
+}
+.prep-clock-block .pcb-clock{
+  font-family:var(--font-num);font-size:44px;font-weight:800;color:#fff;
+  letter-spacing:2px;line-height:1.08;margin-top:7px;
+}
+.prep-clock-block .pcb-clock.done{font-size:24px;letter-spacing:1px;}
+.prep-clock-block .pcb-note{
+  font-size:12px;color:rgba(255,255,255,.78);margin-top:8px;line-height:1.6;
+}
+.prep-clock-block .pcb-note b{color:#FFD9B0;}
+
+/* 招人状态四格 —— 已有见证 / 收到申请 / 待接受 / 当前档位 */
+.prep-recruit{
+  display:flex;position:relative;z-index:1;
+  margin:16px 0 0;padding:13px 0 12px;border-radius:14px;
+  background:rgba(255,255,255,.08);
+}
+.prep-recruit .pr-cell{flex:1;text-align:center;position:relative;}
+.prep-recruit .pr-cell + .pr-cell::before{
+  content:"";position:absolute;left:0;top:3px;bottom:1px;width:1px;
+  background:rgba(255,255,255,.16);
+}
+.prep-recruit .pr-v{
+  font-family:var(--font-num);font-size:21px;font-weight:780;color:#fff;
+  letter-spacing:-.6px;line-height:1.15;
+}
+/* 档位名是中文（独自打卡 / 轻见证 / 标准见证 / 强见证）——
+   字号比数字小一档，且不跟随数字的字距负值，否则一格放不下。 */
+.prep-recruit .pr-v-txt{
+  font-family:var(--font);font-size:13.5px;font-weight:680;
+  letter-spacing:-.2px;line-height:1.5;padding-top:4px;
+}
+.prep-recruit .pr-l{
+  font-size:10.5px;color:rgba(255,255,255,.74);margin-top:4px;font-weight:550;
+}
+
+/* 坑位进度条 + 说明 */
+.prep-bar-row{position:relative;z-index:1;margin-top:14px;}
+.prep-bar-row .bar{background:rgba(255,255,255,.18);}
+.prep-bar-row .bar i{background:#FFD9B0;}
+.prep-bar-note{
+  font-size:11.5px;color:rgba(255,255,255,.8);margin-top:7px;line-height:1.6;
+}
+.prep-bar-note b{color:#FFD9B0;}
+
+/* 筹备期的动作卡 —— 主次：分享立据 > 召集令 > 候选池 */
+.prep-actions{padding:16px;}
+.prep-act-h{margin-bottom:2px;}
+.prep-actions .btn{margin-top:10px;}
+
+/* 精选指标条（替代密集四宫格） */
+.metrics{
+  display:flex;gap:0;background:var(--surface-2);border-radius:var(--r-sm);
+  padding:11px 0;margin:14px 0;
+  box-shadow:inset 0 1px 2px rgba(74,52,32,.04);
+}
+.metric{flex:1;text-align:center;position:relative;padding:0 4px;}
+.metric + .metric::before{content:"";position:absolute;left:0;top:3px;bottom:3px;width:1px;background:var(--line-2);}
+.metric .m-v{font-family:var(--font-num);font-size:16.5px;font-weight:750;letter-spacing:-.5px;line-height:1.2;}
+.metric .m-l{font-size:10.5px;color:var(--ink-4);margin-top:3px;}
+.metric .m-v.good{color:var(--brand);}
+.metric .m-v.bad{color:var(--rose);}
+.metric .m-v.hot{color:var(--coral);}
+
+/* 关键提示条 */
+.kicker{
+  display:flex;align-items:center;gap:9px;padding:11px 13px;
+  border-radius:var(--r-sm);font-size:13px;line-height:1.5;
+}
+.kicker svg{width:16px;height:16px;flex:0 0 16px;}
+.kicker.brand{background:var(--brand-tint);color:#9C4308;}
+.kicker.amber{background:var(--amber-tint);color:#96650A;}
+.kicker.rose{background:var(--rose-tint);color:#A03439;}
+.kicker.sky{background:var(--sky-tint);color:#35648F;}
+.kicker.muted{background:var(--surface-2);color:var(--ink-3);}
+
+/* 「我的这一局现在是什么状态」横幅
+   ⚠️ 2026-11-24 用户口径：「为了让整个 demo 更接近真实的软件的使用的感觉……」
+   —— 真实软件里，用户的 Flag 会落在各种【中间状态】上：
+      押金被扣了 / 申诉审核中 / 断卡了 / 挣回来了。
+      这些状态以前造不出来（没有对应 STATE 字段），所以现在补上。
+
+   —— 为什么是横幅而不是卡片 —— 它是【状态提示】，不是【内容】。
+      位置在目标卡上面，用户一进来就知道「我这一局现在怎么样」。
+      跟 .kicker 一样是「一行说清一件事」，但多了一个标题 + 一行说明，
+      能承载「申诉审核中」这种有过程的状态。 */
+.st-banner{
+  display:flex;align-items:flex-start;gap:11px;
+  margin:0 0 12px;padding:12px 13px;
+  border-radius:var(--r-sm);border:1px solid transparent;
+}
+.st-banner.amber{background:var(--amber-tint);border-color:#F0DDB4;color:#8A5D08;}
+.st-banner.rose{background:var(--rose-tint);border-color:#F2C9CB;color:#9A3236;}
+.st-banner.mint{background:var(--mint-tint);border-color:#C9E4D4;color:#356B48;}
+.st-ico{flex:0 0 auto;padding-top:1px;}
+.st-ico svg{width:17px;height:17px;}
+.st-main{flex:1;min-width:0;}
+.st-t{font-size:14px;font-weight:680;line-height:1.35;}
+.st-d{font-size:11.5px;opacity:.82;margin-top:2px;line-height:1.5;}
+.st-r{font-size:12px;margin-top:6px;padding-top:6px;border-top:1px solid rgba(0,0,0,.06);
+  line-height:1.55;opacity:.9;}
+.st-banner .btn.ghost{
+  flex:0 0 auto;align-self:center;
+  background:rgba(255,255,255,.7);border-color:rgba(0,0,0,.08);
+  color:inherit;font-weight:600;
+}
+.st-banner .btn.ghost:hover{background:#fff;}
+
+/* 申诉进度条（4 步）
+   ⚠️ 2026-11-24：申诉是一个【有进度的流程】，所以要给用户看到走到哪一步了。
+   —— 纯文字的「审核中」不够 —— 用户想知道「我等多久了 / 还要等多久」。
+      4 个步骤：已提交 → 材料核验 → 人工复核 → 出结果。 */
+.ap-steps{
+  display:flex;align-items:flex-start;gap:0;margin-top:9px;
+}
+.ap-step{
+  flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;
+  position:relative;min-width:0;
+}
+.ap-step::before{
+  content:'';position:absolute;top:9px;left:-50%;width:100%;height:2px;
+  background:rgba(0,0,0,.08);
+}
+.ap-step:first-child::before{display:none;}
+.ap-step i{
+  width:19px;height:19px;border-radius:50%;flex:0 0 19px;
+  display:flex;align-items:center;justify-content:center;
+  font-style:normal;font-size:10px;font-weight:700;
+  background:rgba(255,255,255,.6);color:inherit;opacity:.5;
+  position:relative;z-index:1;
+}
+.ap-step i svg{width:11px;height:11px;}
+.ap-step span{font-size:9.5px;opacity:.55;white-space:nowrap;line-height:1.2;}
+.ap-step.done i{background:currentColor;opacity:1;color:#fff;}
+.ap-step.done i svg{stroke:#fff;}
+.ap-step.done::before{background:currentColor;opacity:.35;}
+.ap-step.done span{opacity:.8;}
+.ap-step.now i{background:#fff;opacity:1;box-shadow:0 0 0 2px currentColor;}
+.ap-step.now span{opacity:1;font-weight:650;}
+
+/* 断卡状态卡（见需求规格 9.1–9.5）
+   紧凑单行版：标题 + 额度点 + 「还能断 N 次」+ 问号
+   —— 断卡很重要，但它是「状态」不是「内容」，不该占一整块卡 */
+.brk-card{padding:11px 14px;}
+.brk-card.danger{background:var(--rose-tint);border-color:#F2C9CB;}
+.brk-card.dead{background:var(--surface-2);opacity:.92;}
+
+.brk-msg{
+  font-size:12.5px;line-height:1.6;color:var(--ink-2);
+  background:var(--surface-2);border-radius:10px;padding:9px 12px;margin-top:9px;
+}
+.brk-msg b{color:var(--ink);font-weight:700;}
+.brk-msg.danger{background:#fff;color:#8E2B30;}
+.brk-msg.danger b{color:#8E2B30;}
+.brk-msg.dead{background:var(--surface-3);color:var(--ink-3);}
+.brk-msg.dead b{color:var(--ink-2);}
+/* ⚠️ 2026-11-24（本轮，用户口径 Part 一①）：.brk-ratio 样式**整个删除** ——
+   —— 「已断 N / M，X 月 X 日未打卡，12 小时内可补」这句话整句不展示了。
+      断卡次数在**折叠头右侧**（「断卡 0/2 次」），断在哪一天在**日历小圆点**上，
+      这两处都已经说清楚了，展开后再讲一遍是重复。
+   —— 保留的 .brk-msg（超上限 / 再断 1 次就结束）是【告警】，不是重复。 */
+
+/* ---------- 补卡提醒卡（首页，⚠️ 2026-11-24 新增） ----------
+   「断卡的提醒我不建议放目标详情这里，放到首页『今天还没打卡』的下面，
+     做一个提醒。因为今天的打卡和昨天的补卡是可以同步进行的，
+     只不过补卡倒计时 12 小时而已。」
+   —— 所以它是【和打卡卡并列的一张卡】，不是 banner：
+      打卡卡是主行动（今天打），补卡卡是补救（昨天补），两件事各做各的。 */
+.mk-card{
+  padding:13px 15px;
+  border-left:3px solid var(--amber);
+  background:var(--amber-tint);
+}
+.mk-top{display:flex;align-items:center;gap:11px;}
+.mk-ico{
+  width:34px;height:34px;border-radius:11px;flex:0 0 34px;
+  background:rgba(255,255,255,.72);color:#A97108;
+  display:flex;align-items:center;justify-content:center;
+}
+.mk-ico svg{width:18px;height:18px;}
+.mk-main{flex:1;min-width:0;}
+.mk-t{font-size:14.5px;font-weight:680;color:var(--ink);line-height:1.35;}
+.mk-d{font-size:12px;color:#8A5A0B;margin-top:2px;}
+.mk-d b{font-weight:750;font-variant-numeric:tabular-nums;}
+.mk-card .btn{flex:0 0 auto;}
+.kicker b{font-weight:680;}
+
+/* 图标行（替代 emoji） */
+.icon-row{display:flex;align-items:center;gap:10px;padding:11px 0;}
+.icon-row .ir-ico{
+  width:30px;height:30px;border-radius:10px;flex:0 0 30px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--surface-3);color:var(--ink-2);
+}
+.icon-row .ir-ico svg{width:16px;height:16px;}
+.icon-row .ir-t{font-size:13.5px;font-weight:550;}
+.icon-row .ir-s{font-size:11.5px;color:var(--ink-3);margin-top:1px;}
+
+/* 稀疏列表 */
+.sparse .row{padding:12px 16px;}
+.sparse .row-icon{width:30px;height:30px;flex:0 0 30px;border-radius:10px;}
+.sparse .row-icon svg{width:16px;height:16px;}
+.sparse .row-title{font-size:14px;font-weight:550;}
+.sparse .row-sub{font-size:11.5px;}
+
+/* 标签行更紧凑 */
+.tags{display:flex;gap:5px;flex-wrap:wrap;}
+.tags .tag{font-size:11px;padding:2.5px 8px;}
+
+/* 勾选项 */
+.chk{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:12.5px;color:var(--ink-2);line-height:1.5;}
+.chk svg{width:14px;height:14px;flex:0 0 14px;color:var(--brand);}
+.chk span{flex:1;min-width:0;}
+
+/* 数字等宽，避免跳动 */
+.num{font-variant-numeric:tabular-nums;font-family:var(--font-num);}
+
+/* ============================================================
+   响应式
+   ============================================================ */
+
+@media (max-width:1080px){
+  .rail{display:none;}
+  .stage{padding:20px 12px;}
+  .device{width:100%;max-width:417px;height:min(876px,calc(100vh - 40px));}
+}
+@media (max-width:440px){
+  .device{width:100%;height:100vh;border-radius:0;padding:0;box-shadow:none;}
+  .device::before{display:none;}
+  .btn-side{display:none;}
+  .screen{border-radius:0;}
+  .statusbar,.island{display:none;}
+  .stage{padding:0;}
+}

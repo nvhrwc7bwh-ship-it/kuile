@@ -1,0 +1,109 @@
+<view class="page">
+  <view class="status-bar"></view>
+
+  <!-- 步骤指示 -->
+  <view class="steps">
+    <view class="step {{step >= 1 ? 'on' : ''}}"><text>1 立什么</text></view>
+    <view class="step-line {{step >= 2 ? 'on' : ''}}"></view>
+    <view class="step {{step >= 2 ? 'on' : ''}}"><text>2 立多久</text></view>
+    <view class="step-line {{step >= 3 ? 'on' : ''}}"></view>
+    <view class="step {{step >= 3 ? 'on' : ''}}"><text>3 支付</text></view>
+  </view>
+
+  <!-- ① 立什么 -->
+  <block wx:if="{{step === 1}}">
+    <view class="card">
+      <view class="field">
+        <text class="label">标题（公开可见）</text>
+        <input class="input" placeholder="例：婚礼前 90 天，瘦到能穿回那件西装"
+               value="{{title}}" bindinput="onTitle" maxlength="60" />
+      </view>
+
+      <view class="field">
+        <text class="label">为什么（可选）</text>
+        <input class="input" placeholder="例：同事都说我胖了两年了"
+               value="{{reason}}" bindinput="onReason" maxlength="120" />
+      </view>
+
+      <view class="field">
+        <text class="label">起始体重（kg）</text>
+        <input class="input" type="digit" placeholder="例：68.4"
+               value="{{startWeight}}" bindinput="onStartWeight" />
+      </view>
+
+      <view class="field">
+        <text class="label">目标体重（kg）</text>
+        <input class="input" type="digit" placeholder="例：60.0"
+               value="{{targetWeight}}" bindinput="onTargetWeight" />
+      </view>
+    </view>
+
+    <view class="pad">
+      <button class="btn btn-primary" bindtap="nextFromStep1">下一步</button>
+    </view>
+  </block>
+
+  <!-- ② 立多久 -->
+  <block wx:elif="{{step === 2}}">
+    <view class="card">
+      <text class="card-title">选一个周期</text>
+      <view class="period-list">
+        <view class="period {{periodDays === p.days ? 'on' : ''}} {{p.allowed ? '' : 'off'}}"
+              wx:for="{{periods}}" wx:key="days"
+              data-days="{{p.days}}" bindtap="selectPeriod">
+          <view class="period-left">
+            <text class="period-days">{{p.label}}</text>
+            <text class="period-sub">{{p.sub}}</text>
+            <text class="period-free" wx:if="{{p.free}}">新人免费</text>
+          </view>
+          <view class="period-right">
+            <text class="period-dep" wx:if="{{!p.free}}">{{p.depositMin}}~{{p.depositMax}} 元</text>
+            <text class="period-off" wx:if="{{!p.allowed}}">{{p.disabledReason}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="pad">
+      <button class="btn btn-primary" bindtap="nextFromStep2">下一步</button>
+    </view>
+  </block>
+
+  <!-- ③ 确认并支付 -->
+  <block wx:else>
+    <view class="card">
+      <text class="card-title">确认</text>
+      <view class="kv"><text class="k">标题</text><text class="v">{{title}}</text></view>
+      <view class="kv"><text class="k">周期</text><text class="v">{{periodDays}} 天</text></view>
+      <view class="kv"><text class="k">体重目标</text><text class="v">{{startWeight}} → {{targetWeight}} kg</text></view>
+      <view class="kv"><text class="k">见证判定</text><text class="v">{{periodDays === 7 ? 2 : (periodDays === 14 ? 3 : 4)}} 次</text></view>
+    </view>
+
+    <view class="card">
+      <text class="card-title">押金</text>
+      <view wx:if="{{isFree}}" class="free-box">
+        <text class="free-title">新人保护：第 1 个 Flag 免费</text>
+        <text class="free-sub">你的第一个 7 天或 14 天 Flag 不用押押金</text>
+      </view>
+      <view wx:else class="deposit-list">
+        <view class="deposit {{depositIndex === index ? 'on' : ''}} {{item.disabled ? 'off' : ''}}"
+              wx:for="{{depositOptions}}" wx:key="amount"
+              data-index="{{index}}" bindtap="selectDeposit">
+          <text class="deposit-label">{{item.label}}</text>
+          <text class="deposit-off" wx:if="{{item.disabled}}">{{item.disabledReason}}</text>
+        </view>
+      </view>
+      <text class="t-muted t-small tip" wx:if="{{!isFree}}">
+        达标全额退还；失败按信用分等级扣收一部分，剩下退给你。
+      </text>
+    </view>
+
+    <view class="pad">
+      <button class="btn btn-primary" bindtap="submit"
+              loading="{{submitting}}" disabled="{{submitting}}">
+        {{submitting ? '处理中…' : (isFree ? '确认立 Flag' : '确认并支付 ' + depositAmount + ' 元')}}
+      </button>
+      <button class="btn btn-plain back-btn" bindtap="back">上一步</button>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>亏了 · App 原型</title>
+<link rel="stylesheet" href="css/app.css?v=2313">
+</head>
+<body>
+
+<div class="shell">
+  <!-- 左侧产品导览 -->
+  <aside class="rail">
+    <div class="rail-top">
+      <div class="rail-logo"><img class="rl-dog" src="assets/dog_new.png" alt="亏了"><span>亏了</span></div>
+      <div class="rail-sub">App 交互原型 · 40 页 / 41 条规则</div>
+    </div>
+    <div class="rail-body">
+      <div class="rail-label">主流程</div>
+      <nav class="rail-nav" id="railNav"></nav>
+      <div class="rail-label">怎么用</div>
+      <div class="rail-tips">
+        <b>蓝色 ?</b> —— 点开看规则说明<br>
+        <b>虚线数字</b> —— 点开看算法<br>
+        <b>底部 Tab</b> —— 切换主场景<br>
+        <b>左栏</b> —— 直达任意页面<br>
+        <b>右侧面板</b> —— 切换演示状态<br>
+        说明弹层可<b>下拉关闭</b>
+      </div>
+      <div class="rail-label">当前状态</div>
+      <div class="rail-tips" id="railState">首次登录（空态）</div>
+    </div>
+    <div class="rail-foot" id="railRoute"></div>
+  </aside>
+
+  <!-- 设备 -->
+  <main class="stage">
+    <div class="device">
+      <span class="btn-side k-action"></span>
+      <span class="btn-side k-volup"></span>
+      <span class="btn-side k-voldown"></span>
+      <div class="screen" id="screen">
+        <div class="statusbar">
+          <span class="sb-time">9:41</span>
+          <span class="sb-icons">
+            <span class="sb-cell"><i></i><i></i><i></i><i></i></span>
+            <span class="sb-wifi"><svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M7.5 9.6 9.6 7.3a3.4 3.4 0 0 0-4.2 0zM3.6 5.2 5 6.7a5.4 5.4 0 0 1 5 0l1.4-1.5a7.4 7.4 0 0 0-7.8 0zM.6 2 2 3.5a10 10 0 0 1 11 0L14.4 2a12 12 0 0 0-13.8 0z" fill="currentColor"/></svg></span>
+            <span class="sb-batt"></span>
+          </span>
+        </div>
+        <div class="island"></div>
+
+        <div class="viewport" id="viewport"></div>
+
+        <nav class="tabbar" id="tabbar"></nav>
+
+        <div class="scrim" id="scrim"></div>
+        <div class="sheet" id="sheet">
+          <div class="sheet-handle"></div>
+          <div class="sheet-head">
+            <div class="sheet-title" id="sheetTitle"></div>
+            <button class="sheet-close" id="sheetClose"></button>
+          </div>
+          <div class="sheet-body" id="sheetBody"></div>
+        </div>
+
+        <!-- 图片查看器（纯浏览视角，见需求规格 R2.9）-->
+        <div class="pv" id="pv">
+          <div class="pv-head">
+            <div class="pv-title" id="pvTitle"></div>
+            <div class="pv-count" id="pvCount"></div>
+            <button class="pv-close" id="pvClose"></button>
+          </div>
+          <div class="pv-track" id="pvTrack"></div>
+          <div class="pv-foot" id="pvFoot"></div>
+        </div>
+
+        <div class="toast" id="toast"></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+window.__errors = [];
+window.onerror = function(msg, src, line){
+  window.__errors.push(msg + ' @' + (src||'').split('/').pop() + ':' + line);
+  document.title = 'JSERR: ' + msg;
+  return false;
+};
+</script>
+<!-- ⚠️ 2026-11-24：脚本都带版本号（?v=）——
+     —— 原因：改了 js/ 里的文件后，浏览器仍跑缓存的旧版本，
+        改完代码「看着没生效」，排查起来很浪费时间。
+        每次改动 js/css，把版本号 +1 即可强制刷新。 -->
+<script src="js/info.js?v=2313"></script>
+<script src="js/avatars.js?v=2313"></script>
+<script src="js/data.js?v=2313"></script>
+<script src="js/state.js?v=2313"></script>
+<script src="js/pages.js?v=2313"></script>
+<script src="js/app.js?v=2313"></script>
+<script src="js/devpanel.js?v=2313"></script>
+<script>
+document.getElementById('sheetClose').innerHTML = ICON.close;
+document.getElementById('pvClose').innerHTML = ICON.close;
+</script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<view class="page">
+  <view class="status-bar"></view>
+
+  <!-- 模式一：单个局的见证面板 -->
+  <!-- ⚠️ 这里只判断 mode，不要加 && panel ——
+       panel 是异步加载的，加上去的话在数据到达之前会掉进 else 分支，
+       页面会闪一下「我的见证任务」。 -->
+  <block wx:if="{{mode === 'panel'}}">
+    <view class="navbar">
+      <view class="navbar-back" bindtap="onBack">‹</view>
+      <text class="navbar-title">见证席面板</text>
+      <view class="navbar-back"></view>
+    </view>
+
+    <view class="card intro">
+      <text class="intro-title">这一局有 {{panel.judgeCount}} 个判定节点</text>
+      <text class="intro-sub">
+        已接受见证席 {{panel.quorum.acceptedCount}} 位，
+        {{panel.quorum.met ? '成局条件满足' : '还差 ' + (panel.quorum.need - panel.quorum.acceptedCount) + ' 位才成局'}}
+      </text>
+    </view>
+
+    <view class="card" wx:for="{{panel.nodes}}" wx:key="index">
+      <view class="node-head">
+        <text class="node-title">{{item.name}}</text>
+        <text class="tag {{item.agg.outcome === 'cheat' ? 'tag-red' : (item.agg.outcome === 'pass' ? 'tag-green' : 'tag-gray')}}">
+          {{item.agg.outcome === 'cheat' ? '判作弊' : (item.agg.outcome === 'pass' ? '通过' : (item.agg.outcome === 'doubt' ? '存疑' : '未判定'))}}
+        </text>
+      </view>
+      <text class="node-sub">第 {{item.day}} 天 · 通过 {{item.agg.pass}} · 判作弊 {{item.agg.cheatVotes}} · 存疑 {{item.agg.doubt}} · 未响应 {{item.agg.none}}</text>
+
+      <view class="votes">
+        <view class="vote" wx:for="{{item.votes}}" wx:for-item="v" wx:key="witnessId">
+          <view class="v-avatar">{{v.name[0]}}</view>
+          <text class="v-name">{{v.name}}</text>
+          <text class="v-dec {{v.decision === 'pass' ? 'ok' : (v.decision === 'cheat' ? 'bad' : 'mid')}}">
+            {{v.decision === 'pass' ? '通过' : (v.decision === 'cheat' ? '判作弊' : (v.decision === 'doubt' ? '存疑' : '未响应'))}}
+          </text>
+        </view>
+      </view>
+
+      <button class="btn btn-primary btn-sm" wx:if="{{panel.isWitness}}" data-node="{{item.index}}" bindtap="openJudge">
+        我来判定
+      </button>
+    </view>
+
+    <view class="card" wx:if="{{!panel.isWitness}}">
+      <text class="t-muted t-small">你不是这一局的见证席，可以围观但不能判定。</text>
+    </view>
+  </block>
+
+  <!-- 模式二：我的全部见证任务 -->
+  <block wx:else>
+    <view class="navbar">
+      <view class="navbar-back"></view>
+      <text class="navbar-title">我的见证任务</text>
+      <view class="navbar-back"></view>
+    </view>
+
+    <view class="card task" wx:for="{{tasks}}" wx:key="flag.id" data-id="{{item.flag.id}}" bindtap="goTaskFlag">
+      <view class="task-head">
+        <text class="task-title">{{item.flag.title}}</text>
+        <text class="tag {{item.pending > 0 ? 'tag-orange' : 'tag-green'}}">
+          {{item.pending > 0 ? '待判定 ' + item.pending : '已完成'}}
+        </text>
+      </view>
+      <text class="task-sub">{{item.flag.owner.name}} · {{item.flag.days}} 天 · 目标 {{item.flag.targetWeight}} kg</text>
+
+      <view class="nodes-mini">
+        <view class="nm" wx:for="{{item.nodes}}" wx:for-item="n" wx:key="index">
+          <text class="nm-name">{{n.name}}</text>
+          <text class="nm-dec {{n.decision === 'pass' ? 'ok' : (n.decision === 'cheat' ? 'bad' : (n.decision === 'doubt' ? 'mid' : 'none'))}}">
+            {{n.decision === 'pass' ? '通过' : (n.decision === 'cheat' ? '作弊' : (n.decision === 'doubt' ? '存疑' : '待判'))}}
+          </text>
+        </view>
+      </view>
+    </view>
+
+    <view class="empty" wx:if="{{tasks.length === 0}}">
+      还没有见证任务。<text class="t-green">去广场看看有什么可以见证的。</text>
+    </view>
+  </block>
+
+  <!-- 判定弹层 -->
+  <view class="mask" wx:if="{{showJudge}}" bindtap="closeJudge">
+    <view class="sheet" catchtap="noop">
+      <text class="sheet-title">{{judgeNode ? judgeNode.name : ''}}</text>
+      <text class="sheet-sub">你的判定不可反悔，会公开并影响信用分</text>
+
+      <view class="dec-list">
+        <view class="dec {{judgeDecision === 'pass' ? 'on-pass' : ''}}"
+              data-key="pass" bindtap="selectDecision">
+          <text class="dec-t">通过</text>
+          <text class="dec-d">打卡照和体重读数看着没问题</text>
+        </view>
+        <view class="dec {{judgeDecision === 'cheat' ? 'on-cheat' : ''}}"
+              data-key="cheat" bindtap="selectDecision">
+          <text class="dec-t">判作弊</text>
+          <text class="dec-d">明显造假</text>
+        </view>
+        <view class="dec {{judgeDecision === 'doubt' ? 'on-doubt' : ''}}"
+              data-key="doubt" bindtap="selectDecision">
+          <text class="dec-t">存疑</text>
+          <text class="dec-d">看不清、拿不准</text>
+        </view>
+      </view>
+
+      <textarea class="textarea" placeholder="补充说明（可选）"
+                value="{{judgeReason}}" bindinput="onReasonInput" maxlength="300"></textarea>
+
+      <button class="btn btn-primary" bindtap="submitJudge"
+              loading="{{submitting}}" disabled="{{submitting}}">提交判定</button>
+    </view>
+  </view>
+</view>

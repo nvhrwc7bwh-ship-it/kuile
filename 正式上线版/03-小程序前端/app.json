@@ -1,0 +1,34 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/square/index",
+    "pages/notifs/index",
+    "pages/me/index",
+    "pages/create/index",
+    "pages/checkin/index",
+    "pages/flag/index",
+    "pages/witness/index",
+    "pages/profile/index",
+    "pages/record/index"
+  ],
+  "window": {
+    "navigationStyle": "custom",
+    "backgroundColor": "#F7F5F2",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#9A938A",
+    "selectedColor": "#1F5F4E",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      { "pagePath": "pages/index/index", "text": "首页" },
+      { "pagePath": "pages/square/index", "text": "广场" },
+      { "pagePath": "pages/notifs/index", "text": "通知" },
+      { "pagePath": "pages/me/index", "text": "我的" }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

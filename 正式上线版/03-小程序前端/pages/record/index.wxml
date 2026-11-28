@@ -1,0 +1,60 @@
+<view class="page" wx:if="{{card}}">
+  <view class="status-bar"></view>
+
+  <view class="banner {{card.outcome === 'success' ? 'ok' : 'no'}}">
+    <text class="banner-icon">{{card.outcome === 'success' ? '🏆' : '📋'}}</text>
+    <text class="banner-title">{{card.outcome === 'success' ? '达标了' : '这次没成'}}</text>
+    <text class="banner-sub">{{card.tier}} 档 · {{card.witnesses ? card.witnesses.length : 0}} 位见证</text>
+  </view>
+
+  <view class="card">
+    <text class="card-title">{{card.title}}</text>
+
+    <view class="nums">
+      <view class="n">
+        <text class="n-v">{{card.startWeight}}</text>
+        <text class="n-k">起始 kg</text>
+      </view>
+      <view class="n">
+        <text class="n-v">{{card.finalWeight || '—'}}</text>
+        <text class="n-k">最终 kg</text>
+      </view>
+      <view class="n">
+        <text class="n-v">{{card.targetWeight}}</text>
+        <text class="n-k">目标 kg</text>
+      </view>
+      <view class="n">
+        <text class="n-v {{card.delta < 0 ? 'down' : (card.delta > 0 ? 'up' : '')}}">{{card.deltaText}}</text>
+        <text class="n-k">变化 kg</text>
+      </view>
+    </view>
+
+    <view class="meta">
+      <text class="meta-item">坚持 {{card.days}} 天</text>
+      <text class="meta-item" wx:if="{{card.finishedAt}}">{{card.finishedAt}}</text>
+    </view>
+
+    <view class="witness" wx:if="{{card.witnesses && card.witnesses.length}}">
+      <text class="witness-label">见证人</text>
+      <view class="witness-list">
+        <view class="witness-item" wx:for="{{card.witnesses}}" wx:key="id">
+          <image class="avatar" src="{{item.avatar}}" mode="aspectFill" />
+          <text class="witness-name">{{item.name}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="quote" wx:if="{{card.note}}">
+      <text class="quote-text">{{card.note}}</text>
+    </view>
+  </view>
+
+  <view class="actions">
+    <button class="btn ghost" hover-class="btn-hover" bindtap="onShare">分享战绩</button>
+    <button class="btn primary" hover-class="btn-hover" bindtap="onAgain">再来一次</button>
+  </view>
+</view>
+
+<view class="page loading" wx:else>
+  <text class="loading-text">加载中…</text>
+</view>

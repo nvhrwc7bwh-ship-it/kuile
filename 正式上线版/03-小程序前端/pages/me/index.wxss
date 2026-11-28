@@ -1,0 +1,156 @@
+/* 亏了 · 我的页专属样式 */
+
+.user-card {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.u-avatar {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 48rpx;
+  background: #1F5F4E;
+  color: #FFFFFF;
+  font-size: 40rpx;
+  text-align: center;
+  line-height: 96rpx;
+  flex-shrink: 0;
+}
+
+.u-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.u-name {
+  display: block;
+  font-size: 34rpx;
+  font-weight: 700;
+}
+
+.u-bio {
+  display: block;
+  font-size: 23rpx;
+  color: #6B6560;
+  margin: 4rpx 0;
+}
+
+.credit-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10rpx;
+}
+
+.credit-num {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #1F5F4E;
+}
+
+.credit-tier {
+  font-size: 23rpx;
+  color: #6B6560;
+}
+
+.u-arrow {
+  font-size: 36rpx;
+  color: #C9C4BD;
+}
+
+/* 键值 */
+.kv {
+  display: flex;
+  justify-content: space-between;
+  padding: 14rpx 0;
+  border-bottom: 2rpx solid #F0EDE8;
+  font-size: 26rpx;
+}
+
+.kv:last-child {
+  border-bottom: none;
+}
+
+.k { color: #6B6560; }
+.v { font-weight: 500; }
+
+/* 卡片头 */
+.card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.link {
+  font-size: 25rpx;
+  color: #1F5F4E;
+}
+
+/* 我的 Flag */
+.my-flag {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  padding: 20rpx 0;
+  border-bottom: 2rpx solid #F0EDE8;
+}
+
+.my-flag:last-child {
+  border-bottom: none;
+}
+
+.mf-left {
+  flex: 1;
+  min-width: 0;
+}
+
+.mf-title {
+  display: block;
+  font-size: 27rpx;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mf-sub {
+  display: block;
+  font-size: 22rpx;
+  color: #6B6560;
+  margin-top: 4rpx;
+}
+
+/* 功能行 */
+.func {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  padding: 24rpx 0;
+  border-bottom: 2rpx solid #F0EDE8;
+}
+
+.func:last-child {
+  border-bottom: none;
+}
+
+.func-icon {
+  font-size: 34rpx;
+  width: 48rpx;
+}
+
+.func-label {
+  flex: 1;
+  font-size: 28rpx;
+}
+
+.func-badge {
+  min-width: 36rpx;
+  height: 36rpx;
+  padding: 0 10rpx;
+  border-radius: 18rpx;
+  background: #B3261E;
+  color: #FFFFFF;
+  font-size: 21rpx;
+  line-height: 36rpx;
+  text-align: center;
+}

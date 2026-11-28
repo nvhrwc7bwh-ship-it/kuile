@@ -1,0 +1,225 @@
+/* ==========================================================================
+   亏了 · 正式上线版 · 全局样式
+   --------------------------------------------------------------------------
+   【小白须知】这个文件决定小程序长什么样。
+     · app.wxss 是全局样式（所有页面都能用）
+     · 每个页面的 .wxss 是这个页面专属的样式
+
+   【颜色说明】
+     品牌绿 #1F5F4E   —— 主色，表示「靠谱」
+     背景米 #F7F5F2   —— 不用纯白，看着舒服
+     文字深 #1A1A1A
+     文字灰 #6B6560
+     警示橙 #C2571A   —— 断卡警告
+     危险红 #B3261E   —— 失败、作弊
+   ========================================================================== */
+
+page {
+  background: #F7F5F2;
+  color: #1A1A1A;
+  font-size: 28rpx;
+  line-height: 1.6;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+}
+
+view, text, button, input, textarea, image, scroll-view {
+  box-sizing: border-box;
+}
+
+/* ---------- 布局 ---------- */
+.page {
+  min-height: 100vh;
+  padding-bottom: 40rpx;
+}
+
+.pad {
+  padding: 0 32rpx;
+}
+
+/* ---------- 卡片 ---------- */
+.card {
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  margin: 0 32rpx 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+}
+
+.card-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  margin-bottom: 16rpx;
+}
+
+/* ---------- 按钮 ---------- */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 88rpx;
+  border-radius: 44rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+  border: none;
+}
+
+.btn::after {
+  border: none;
+}
+
+.btn-primary {
+  background: #1F5F4E;
+  color: #FFFFFF;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: #1F5F4E;
+  border: 2rpx solid #1F5F4E;
+}
+
+.btn-plain {
+  background: #EFECE7;
+  color: #1A1A1A;
+}
+
+.btn-danger {
+  background: transparent;
+  color: #B3261E;
+  border: 2rpx solid #B3261E;
+}
+
+.btn-disabled {
+  background: #D8D4CE;
+  color: #9A938A;
+}
+
+.btn-sm {
+  height: 64rpx;
+  font-size: 26rpx;
+  border-radius: 32rpx;
+  padding: 0 28rpx;
+}
+
+/* ---------- 标签 ---------- */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4rpx 16rpx;
+  border-radius: 8rpx;
+  font-size: 22rpx;
+  line-height: 1.5;
+}
+
+.tag-green { background: rgba(31, 95, 78, 0.10); color: #1F5F4E; }
+.tag-orange { background: rgba(194, 87, 26, 0.10); color: #C2571A; }
+.tag-red { background: rgba(179, 38, 30, 0.10); color: #B3261E; }
+.tag-gray { background: rgba(107, 101, 96, 0.10); color: #6B6560; }
+
+/* ---------- 文本 ---------- */
+.t-muted { color: #6B6560; }
+.t-small { font-size: 24rpx; }
+.t-strong { font-weight: 600; }
+.t-green { color: #1F5F4E; }
+.t-orange { color: #C2571A; }
+.t-red { color: #B3261E; }
+
+/* ---------- 表单 ---------- */
+.field {
+  margin-bottom: 32rpx;
+}
+
+.label {
+  font-size: 26rpx;
+  color: #6B6560;
+  margin-bottom: 12rpx;
+  display: block;
+}
+
+.input {
+  width: 100%;
+  height: 88rpx;
+  background: #FFFFFF;
+  border: 2rpx solid #E5E1DB;
+  border-radius: 16rpx;
+  padding: 0 24rpx;
+  font-size: 28rpx;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 160rpx;
+  background: #FFFFFF;
+  border: 2rpx solid #E5E1DB;
+  border-radius: 16rpx;
+  padding: 20rpx 24rpx;
+  font-size: 28rpx;
+  line-height: 1.6;
+}
+
+/* ---------- 分隔 ---------- */
+.divider {
+  height: 2rpx;
+  background: #EDE9E3;
+  margin: 24rpx 0;
+}
+
+/* ---------- 空状态 ---------- */
+.empty {
+  text-align: center;
+  padding: 120rpx 40rpx;
+  color: #9A938A;
+  font-size: 26rpx;
+}
+
+/* ---------- 底部固定操作条 ---------- */
+.footer-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #FFFFFF;
+  border-top: 2rpx solid #EDE9E3;
+  padding: 20rpx 32rpx calc(20rpx + env(safe-area-inset-bottom));
+  display: flex;
+  gap: 20rpx;
+}
+
+.footer-bar .btn {
+  flex: 1;
+}
+
+/* ---------- 通用导航栏（自定义） ---------- */
+.navbar {
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 32rpx;
+  background: #F7F5F2;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navbar-back {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+  color: #1A1A1A;
+}
+
+.navbar-title {
+  flex: 1;
+  font-size: 32rpx;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* 状态栏占位（自定义导航栏时用） */
+.status-bar {
+  height: env(safe-area-inset-top);
+  min-height: 20rpx;
+}

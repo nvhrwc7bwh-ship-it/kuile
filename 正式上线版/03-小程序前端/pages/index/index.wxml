@@ -1,0 +1,73 @@
+<view class="page">
+  <view class="status-bar"></view>
+
+  <!-- 顶部问候 -->
+  <view class="head">
+    <view class="head-left">
+      <text class="hello">{{user ? user.nickname : '朋友'}}</text>
+      <text class="hello-sub" wx:if="{{user}}">信用分 {{user.creditScore}} · {{user.creditTier}}</text>
+    </view>
+    <view class="head-right">
+      <view class="bell" bindtap="goNotifs">
+        <text class="bell-icon">🔔</text>
+        <view class="bell-badge" wx:if="{{notifUnread > 0}}">{{notifUnread > 99 ? '99+' : notifUnread}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 断卡强提示 -->
+  <view class="alert alert-strong" wx:if="{{breakWarn}}">
+    <text class="alert-icon">⚠</text>
+    <text>{{breakWarn}}</text>
+  </view>
+
+  <!-- 有正在跑的 Flag -->
+  <block wx:if="{{mainFlag}}">
+    <view class="card main-card" bindtap="goFlag">
+      <view class="main-head">
+        <text class="main-title">{{mainFlag.title}}</text>
+        <text class="tag tag-green">第 {{mainFlag.checkedDays}}/{{mainFlag.days}} 天</text>
+      </view>
+
+      <view class="main-nums">
+        <view class="num">
+          <text class="num-v">{{mainFlag.startWeight}}</text>
+          <text class="num-k">起始 kg</text>
+        </view>
+        <view class="num">
+          <text class="num-v">{{mainFlag.curWeight || '—'}}</text>
+          <text class="num-k">当前 kg</text>
+        </view>
+        <view class="num">
+          <text class="num-v">{{mainFlag.targetWeight}}</text>
+          <text class="num-k">目标 kg</text>
+        </view>
+      </view>
+
+      <view class="progress">
+        <view class="progress-bar" style="width: {{mainFlag.checkedDays / mainFlag.days * 100}}%"></view>
+      </view>
+
+      <view class="main-foot">
+        <text class="t-muted t-small">断卡 {{mainFlag.breaks}}/{{mainFlag.breakLimit}} 次</text>
+        <text class="t-muted t-small">押金 {{mainFlag.deposit}} 元</text>
+      </view>
+    </view>
+
+    <view class="pad">
+      <button class="btn btn-primary" bindtap="goCheckin">今日打卡</button>
+    </view>
+  </block>
+
+  <!-- 还没有 Flag -->
+  <block wx:else>
+    <view class="card empty-card">
+      <text class="empty-title">还没立 Flag</text>
+      <text class="empty-sub">公开一个减肥目标，让熟人见证、陌生人围观</text>
+      <button class="btn btn-primary" bindtap="goCreate">立一个 Flag</button>
+    </view>
+  </block>
+
+  <!-- 加载中 -->
+  <view class="loading" wx:if="{{loading}}">加载中…</view>
+</view>

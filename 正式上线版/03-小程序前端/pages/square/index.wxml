@@ -1,0 +1,60 @@
+<view class="page">
+  <view class="status-bar"></view>
+
+  <!-- 筛选条 -->
+  <view class="filters">
+    <view class="filter {{statusFilter === item.key ? 'on' : ''}}"
+          wx:for="{{filters}}" wx:key="key"
+          data-key="{{item.key}}" bindtap="selectFilter">{{item.label}}</view>
+  </view>
+
+  <!-- 排序条 -->
+  <view class="sorts">
+    <view class="sort {{sort === item.key ? 'on' : ''}}"
+          wx:for="{{sorts}}" wx:key="key"
+          data-key="{{item.key}}" bindtap="selectSort">{{item.label}}</view>
+  </view>
+
+  <!-- 列表 -->
+  <view class="flag-list">
+    <view class="flag-card" wx:for="{{list}}" wx:key="id"
+          data-id="{{item.id}}" bindtap="goFlag">
+      <view class="flag-head">
+        <view class="avatar">{{item.user.name[0]}}</view>
+        <view class="flag-who">
+          <text class="who-name">{{item.user.name}}</text>
+          <text class="who-reason" wx:if="{{item.reason}}">{{item.reason}}</text>
+        </view>
+        <text class="tag {{item.tier === 'T3' ? 'tag-green' : 'tag-gray'}}">{{item.tier}}</text>
+      </view>
+
+      <text class="flag-title">{{item.title}}</text>
+
+      <view class="flag-nums">
+        <view class="fn"><text class="fn-v">{{item.startWeight}}</text><text class="fn-k">起始</text></view>
+        <view class="fn"><text class="fn-v">{{item.curWeight || '—'}}</text><text class="fn-k">当前</text></view>
+        <view class="fn"><text class="fn-v">{{item.targetWeight}}</text><text class="fn-k">目标</text></view>
+        <view class="fn"><text class="fn-v">{{item.checkedDays}}/{{item.days}}</text><text class="fn-k">打卡</text></view>
+      </view>
+
+      <view class="progress">
+        <view class="progress-bar" style="width: {{item.checkedDays / item.days * 100}}%"></view>
+      </view>
+
+      <view class="flag-foot">
+        <text class="t-muted t-small">👁 {{item.watchCount}}　❤️ {{item.likeCount}}　🤝 {{item.witnessCount}} 见证</text>
+        <text class="t-muted t-small">押金 {{item.deposit}} 元</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空 -->
+  <view class="empty" wx:if="{{!loading && list.length === 0}}">
+    还没有符合条件的 Flag
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">加载中…</view>
+
+  <!-- 悬浮立 Flag 按钮 -->
+  <view class="fab" bindtap="goCreate">+</view>
+</view>

@@ -1,0 +1,42 @@
+<view class="page" wx:if="{{user}}">
+  <view class="status-bar"></view>
+
+  <view class="navbar">
+    <view class="navbar-back" bindtap="onBack">‹</view>
+    <text class="navbar-title">用户主页</text>
+    <view class="navbar-back"></view>
+  </view>
+
+  <view class="card user-card">
+    <view class="u-avatar">{{user.name[0]}}</view>
+    <view class="u-info">
+      <text class="u-name">{{user.name}}</text>
+      <text class="u-bio" wx:if="{{user.bio}}">{{user.bio}}</text>
+      <view class="u-tags">
+        <text class="tag tag-green">{{user.creditTier}} {{user.creditScore}}</text>
+        <text class="tag tag-gray">{{user.flagCount}} 个 Flag</text>
+        <text class="tag tag-gray" wx:if="{{user.witnessRate !== null}}">见证率 {{user.witnessRate * 100}}%</text>
+      </view>
+    </view>
+    <button class="btn btn-sm {{user.isFollowing ? 'btn-plain' : 'btn-primary'}}"
+            wx:if="{{!user.isMe}}" bindtap="toggleFollow">
+      {{user.isFollowing ? '已关注' : '关注'}}
+    </button>
+  </view>
+
+  <view class="card">
+    <text class="card-title">公开的 Flag</text>
+    <view class="pf" wx:for="{{flags}}" wx:key="id" data-id="{{item.id}}" bindtap="goFlag">
+      <text class="pf-title">{{item.title}}</text>
+      <view class="pf-foot">
+        <text class="t-muted t-small">{{item.days}} 天 · 打卡 {{item.checkedDays}}/{{item.days}}</text>
+        <text class="tag {{item.status === 'success' ? 'tag-green' : (item.status === 'failed' ? 'tag-red' : 'tag-gray')}}">
+          {{item.status === 'success' ? '已达标' : (item.status === 'failed' ? '未达标' : '进行中')}}
+        </text>
+      </view>
+    </view>
+    <text class="t-muted t-small" wx:if="{{flags.length === 0}}">还没有公开的 Flag</text>
+  </view>
+</view>
+
+<view class="empty" wx:if="{{loading}}">加载中…</view>

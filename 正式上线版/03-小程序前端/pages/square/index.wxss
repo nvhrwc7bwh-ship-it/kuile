@@ -1,0 +1,163 @@
+/* 亏了 · 广场页专属样式 */
+
+/* 筛选条 */
+.filters {
+  display: flex;
+  gap: 16rpx;
+  padding: 16rpx 32rpx 8rpx;
+  overflow-x: auto;
+}
+
+.filter {
+  flex-shrink: 0;
+  padding: 10rpx 24rpx;
+  border-radius: 28rpx;
+  background: #FFFFFF;
+  color: #6B6560;
+  font-size: 25rpx;
+}
+
+.filter.on {
+  background: #1F5F4E;
+  color: #FFFFFF;
+}
+
+/* 排序条 */
+.sorts {
+  display: flex;
+  gap: 12rpx;
+  padding: 12rpx 32rpx 20rpx;
+}
+
+.sort {
+  font-size: 24rpx;
+  color: #9A938A;
+  padding: 6rpx 16rpx;
+  border-radius: 8rpx;
+}
+
+.sort.on {
+  color: #1F5F4E;
+  background: rgba(31, 95, 78, 0.08);
+  font-weight: 600;
+}
+
+/* Flag 卡片 */
+.flag-card {
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 28rpx 32rpx;
+  margin: 0 32rpx 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+}
+
+.flag-head {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-bottom: 18rpx;
+}
+
+.avatar {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 32rpx;
+  background: #1F5F4E;
+  color: #FFFFFF;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 64rpx;
+  flex-shrink: 0;
+}
+
+.flag-who {
+  flex: 1;
+  min-width: 0;
+}
+
+.who-name {
+  display: block;
+  font-size: 27rpx;
+  font-weight: 600;
+}
+
+.who-reason {
+  display: block;
+  font-size: 23rpx;
+  color: #6B6560;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.flag-title {
+  display: block;
+  font-size: 31rpx;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 20rpx;
+}
+
+.flag-nums {
+  display: flex;
+  margin-bottom: 16rpx;
+}
+
+.fn {
+  flex: 1;
+  text-align: center;
+}
+
+.fn-v {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1F5F4E;
+}
+
+.fn-k {
+  display: block;
+  font-size: 21rpx;
+  color: #6B6560;
+}
+
+.progress {
+  height: 10rpx;
+  background: #EFECE7;
+  border-radius: 5rpx;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: #1F5F4E;
+}
+
+.flag-foot {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 14rpx;
+}
+
+/* 悬浮按钮 */
+.fab {
+  position: fixed;
+  right: 40rpx;
+  bottom: 140rpx;
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 52rpx;
+  background: #1F5F4E;
+  color: #FFFFFF;
+  font-size: 60rpx;
+  line-height: 104rpx;
+  text-align: center;
+  box-shadow: 0 8rpx 24rpx rgba(31, 95, 78, 0.3);
+}
+
+.loading {
+  text-align: center;
+  color: #9A938A;
+  font-size: 26rpx;
+  padding: 40rpx 0;
+}

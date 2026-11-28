@@ -1,0 +1,32 @@
+# ---- 密钥与密码文件（最重要，绝不能上传）----
+.env
+.env.local
+*.env
+!.env.example
+
+# ---- 证书与私钥 ----
+*.key
+*.pem
+*.crt
+*.p12
+*.cer
+certs/
+HTTPS 证书.zip
+
+# ---- 云账号密钥（文件名开头是 ★）----
+★*.txt
+腾讯云子域名.txt
+
+# ---- 依赖包（体积巨大，服务器上用 npm 重装）----
+node_modules/
+
+# ---- 日志 ----
+logs/
+*.log
+
+# ---- 系统与编辑器临时文件 ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

@@ -1,0 +1,165 @@
+/* 亏了 · 首页专属样式 */
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 24rpx 32rpx 32rpx;
+}
+
+.hello {
+  display: block;
+  font-size: 40rpx;
+  font-weight: 600;
+}
+
+.hello-sub {
+  display: block;
+  font-size: 24rpx;
+  color: #6B6560;
+  margin-top: 4rpx;
+}
+
+.head-right {
+  display: flex;
+  align-items: center;
+}
+
+.bell {
+  position: relative;
+  width: 72rpx;
+  height: 72rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bell-icon {
+  font-size: 40rpx;
+}
+
+.bell-badge {
+  position: absolute;
+  top: 4rpx;
+  right: 0;
+  min-width: 32rpx;
+  height: 32rpx;
+  padding: 0 8rpx;
+  border-radius: 16rpx;
+  background: #B3261E;
+  color: #FFFFFF;
+  font-size: 20rpx;
+  line-height: 32rpx;
+  text-align: center;
+}
+
+/* 断卡提示 */
+.alert {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  margin: 0 32rpx 24rpx;
+  padding: 20rpx 24rpx;
+  border-radius: 16rpx;
+  font-size: 26rpx;
+}
+
+.alert-strong {
+  background: rgba(179, 38, 30, 0.08);
+  color: #B3261E;
+}
+
+.alert-icon {
+  font-size: 30rpx;
+}
+
+/* 主卡 */
+.main-card {
+  margin-bottom: 24rpx;
+}
+
+.main-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16rpx;
+}
+
+.main-title {
+  flex: 1;
+  font-size: 32rpx;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.main-nums {
+  display: flex;
+  margin: 28rpx 0;
+}
+
+.num {
+  flex: 1;
+  text-align: center;
+}
+
+.num-v {
+  display: block;
+  font-size: 40rpx;
+  font-weight: 600;
+  color: #1F5F4E;
+}
+
+.num-k {
+  display: block;
+  font-size: 22rpx;
+  color: #6B6560;
+  margin-top: 4rpx;
+}
+
+/* 进度条 */
+.progress {
+  height: 12rpx;
+  background: #EFECE7;
+  border-radius: 6rpx;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: #1F5F4E;
+  border-radius: 6rpx;
+  transition: width 0.3s;
+}
+
+.main-foot {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16rpx;
+}
+
+/* 空状态卡 */
+.empty-card {
+  text-align: center;
+  padding: 64rpx 48rpx;
+}
+
+.empty-title {
+  display: block;
+  font-size: 34rpx;
+  font-weight: 600;
+  margin-bottom: 12rpx;
+}
+
+.empty-sub {
+  display: block;
+  font-size: 26rpx;
+  color: #6B6560;
+  margin-bottom: 40rpx;
+}
+
+.loading {
+  text-align: center;
+  color: #9A938A;
+  font-size: 26rpx;
+  padding: 60rpx 0;
+}
