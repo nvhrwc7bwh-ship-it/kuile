@@ -1,73 +1,154 @@
-<view class="page">
+<view class="page home">
   <view class="status-bar"></view>
 
-  <!-- 顶部问候 -->
-  <view class="head">
-    <view class="head-left">
-      <text class="hello">{{user ? user.nickname : '朋友'}}</text>
-      <text class="hello-sub" wx:if="{{user}}">信用分 {{user.creditScore}} · {{user.creditTier}}</text>
-    </view>
-    <view class="head-right">
-      <view class="bell" bindtap="goNotifs">
-        <text class="bell-icon">🔔</text>
-        <view class="bell-badge" wx:if="{{notifUnread > 0}}">{{notifUnread > 99 ? '99+' : notifUnread}}</view>
+  <!-- 顶部导航（demo: navBig('亏了') + 问号按钮） -->
+  <view class="navbar navbar-big">
+    <text class="navbar-brand">亏了</text>
+    <view class="navbar-action">
+      <view class="nav-btn" bindtap="showAbout">
+        <text class="nav-btn-q">?</text>
       </view>
     </view>
   </view>
 
-  <!-- 断卡强提示 -->
-  <view class="alert alert-strong" wx:if="{{breakWarn}}">
-    <text class="alert-icon">⚠</text>
-    <text>{{breakWarn}}</text>
-  </view>
+  <!-- ============ 状态一：全新用户（没有任何 Flag）============ -->
+  <block wx:if="{{!mainFlag}}">
+    <view class="empty-hero">
+      <view class="empty-ico">
+        <k-icon name="target" color="#FFFFFF" size="58" />
+      </view>
+      <text class="empty-t">你还没有立下任何 Flag</text>
+      <text class="empty-s">立一个目标，让别人盯着你，才算数。</text>
 
-  <!-- 有正在跑的 Flag -->
-  <block wx:if="{{mainFlag}}">
-    <view class="card main-card" bindtap="goFlag">
-      <view class="main-head">
-        <text class="main-title">{{mainFlag.title}}</text>
-        <text class="tag tag-green">第 {{mainFlag.checkedDays}}/{{mainFlag.days}} 天</text>
+      <button class="btn block btn-lg empty-cta" bindtap="goCreate">
+        <k-icon name="plus" color="#FFFFFF" size="34" />
+        <text>立我的第一个 Flag</text>
+      </button>
+    </view>
+
+    <!-- 立 Flag 会发生什么 -->
+    <view class="section">
+      <view class="section-head">
+        <text class="section-title">立 Flag 会发生什么</text>
+      </view>
+      <view class="list">
+        <view class="row">
+          <view class="row-icon">
+            <k-icon name="users" color="#FF6B00" size="32" />
+          </view>
+          <view class="row-main">
+            <text class="row-title">有人盯着，才不鸽自己</text>
+            <text class="row-sub">见证席 + 监督席，全程公开可查</text>
+          </view>
+        </view>
+        <view class="row">
+          <view class="row-icon">
+            <k-icon name="coin" color="#FF6B00" size="32" />
+          </view>
+          <view class="row-main">
+            <text class="row-title">押金押上，达标全退</text>
+            <text class="row-sub">没做到按信用比例扣，信用越高扣得越少</text>
+          </view>
+        </view>
+        <view class="row">
+          <view class="row-icon">
+            <k-icon name="trend" color="#FF6B00" size="32" />
+          </view>
+          <view class="row-main">
+            <text class="row-title">守信攒信用，越走越远</text>
+            <text class="row-sub">信用分越高，能押越多、能立越久</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <!-- ============ 状态二：筹备期（24 小时倒计时）============ -->
+  <block wx:elif="{{mainFlag.status === 'prep'}}">
+    <view class="hero prep-hero">
+      <view class="hero-top">
+        <text class="hero-label">我的 Flag</text>
+        <text class="hero-badge">筹备中</text>
+      </view>
+      <text class="hero-title">{{mainFlag.title}}</text>
+      <text class="hero-sub">押金 {{mainFlag.deposit}} 元 · {{mainFlag.days}} 天</text>
+
+      <!-- 24 小时倒计时（逐秒递减） -->
+      <view class="prep-clock">
+        <text class="prep-clock-label">距离正式开始还有</text>
+        <text class="prep-clock-value" wx:if="{{prepCountdown}}">{{prepCountdown}}</text>
+        <text class="prep-clock-value" wx:else>--:--:--</text>
+        <text class="prep-clock-note">这 24 小时里还不能打卡 —— 先把见证人找齐。</text>
+      </view>
+    </view>
+
+    <view class="prep-actions">
+      <text class="prep-actions-title">这 24 小时，任务只有一个：找人</text>
+      <text class="prep-actions-sub">0 位见证席也能跑（档位 T0 独自打卡）—— 但见证人越多，信用分系数越高。</text>
+      <button class="btn block prep-btn" bindtap="goFlag">
+        <k-icon name="doc" color="#FFFFFF" size="30" />
+        <text>查看我的立据</text>
+      </button>
+      <button class="btn btn-ghost block prep-btn" bindtap="goWitnessPool">
+        <k-icon name="users" color="#FF6B00" size="30" />
+        <text>从见证席候选池选</text>
+      </button>
+    </view>
+  </block>
+
+  <!-- ============ 状态三：进行中 ============ -->
+  <block wx:else>
+    <!-- 断卡预警 -->
+    <view class="alert alert-strong" wx:if="{{breakWarn}}">
+      <text class="alert-icon">⚠</text>
+      <text>{{breakWarn}}</text>
+    </view>
+
+    <view class="hero" bindtap="goFlag">
+      <view class="hero-top">
+        <text class="hero-label">我的 Flag</text>
+        <text class="hero-badge">进行中</text>
+      </view>
+      <text class="hero-title">{{mainFlag.title}}</text>
+      <text class="hero-sub">押金 {{mainFlag.deposit}} 元 · {{mainFlag.days}} 天</text>
+
+      <view class="hero-weight">
+        <view class="hw-item">
+          <text class="hw-v">{{mainFlag.startWeight}}</text>
+          <text class="hw-u">起始 kg</text>
+        </view>
+        <view class="hw-item">
+          <text class="hw-v">{{mainFlag.curWeight || '—'}}</text>
+          <text class="hw-u">当前 kg</text>
+        </view>
+        <view class="hw-item">
+          <text class="hw-v">{{mainFlag.targetWeight}}</text>
+          <text class="hw-u">目标 kg</text>
+        </view>
       </view>
 
-      <view class="main-nums">
-        <view class="num">
-          <text class="num-v">{{mainFlag.startWeight}}</text>
-          <text class="num-k">起始 kg</text>
-        </view>
-        <view class="num">
-          <text class="num-v">{{mainFlag.curWeight || '—'}}</text>
-          <text class="num-k">当前 kg</text>
-        </view>
-        <view class="num">
-          <text class="num-v">{{mainFlag.targetWeight}}</text>
-          <text class="num-k">目标 kg</text>
-        </view>
+      <view class="hero-progress">
+        <view class="hero-progress-bar" style="width: {{progress}}%"></view>
       </view>
-
-      <view class="progress">
-        <view class="progress-bar" style="width: {{mainFlag.checkedDays / mainFlag.days * 100}}%"></view>
-      </view>
-
-      <view class="main-foot">
-        <text class="t-muted t-small">断卡 {{mainFlag.breaks}}/{{mainFlag.breakLimit}} 次</text>
-        <text class="t-muted t-small">押金 {{mainFlag.deposit}} 元</text>
+      <view class="hero-progress-label">
+        <text>第 {{mainFlag.checkedDays}}/{{mainFlag.days}} 天</text>
+        <text>断卡 {{mainFlag.breaks}}/{{mainFlag.breakLimit}} 次</text>
       </view>
     </view>
 
     <view class="pad">
-      <button class="btn btn-primary" bindtap="goCheckin">今日打卡</button>
-    </view>
-  </block>
-
-  <!-- 还没有 Flag -->
-  <block wx:else>
-    <view class="card empty-card">
-      <text class="empty-title">还没立 Flag</text>
-      <text class="empty-sub">公开一个减肥目标，让熟人见证、陌生人围观</text>
-      <button class="btn btn-primary" bindtap="goCreate">立一个 Flag</button>
+      <button class="btn block btn-lg" bindtap="goCheckin">今日打卡</button>
     </view>
   </block>
 
   <!-- 加载中 -->
   <view class="loading" wx:if="{{loading}}">加载中…</view>
+
+  <!-- 产品说明弹层 -->
+  <k-dialog visible="{{showAbout}}"
+             title="这是什么产品"
+             rich-content="{{aboutHtml}}"
+             confirm-text="知道了"
+             show-cancel="{{false}}"
+             bind:confirm="closeAbout" />
 </view>

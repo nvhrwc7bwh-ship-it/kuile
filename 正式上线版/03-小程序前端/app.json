@@ -13,12 +13,12 @@
   ],
   "window": {
     "navigationStyle": "custom",
-    "backgroundColor": "#F7F5F2",
+    "backgroundColor": "#FAF7F4",
     "backgroundTextStyle": "dark"
   },
   "tabBar": {
-    "color": "#9A938A",
-    "selectedColor": "#1F5F4E",
+    "color": "#B3A79A",
+    "selectedColor": "#FF6B00",
     "backgroundColor": "#FFFFFF",
     "borderStyle": "white",
     "list": [
@@ -27,6 +27,11 @@
       { "pagePath": "pages/notifs/index", "text": "通知" },
       { "pagePath": "pages/me/index", "text": "我的" }
     ]
+  },
+  "usingComponents": {
+    "k-icon": "/components/icon/index",
+    "k-sheet": "/components/sheet/index",
+    "k-dialog": "/components/dialog/index"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",

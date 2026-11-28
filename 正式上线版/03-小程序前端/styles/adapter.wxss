@@ -1,0 +1,752 @@
+﻿/* --------------------------------------------------------------------------
+ * 小程序适配层
+ * ------------------------------------------------------------------------- */
+
+page {
+  background: #FAF7F4;
+  color: #1C1613;
+  font-size: 30rpx;
+  line-height: 1.5;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC",
+    "HarmonyOS Sans SC", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+view, text, button, input, textarea, image, scroll-view, swiper, swiper-item {
+  box-sizing: border-box;
+}
+
+/* 数字等宽，避免数字跳动 */
+.num,
+.feed-weight,
+.me-stat-v,
+.tile-v,
+.metric-v {
+  font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------------------------------------------------------
+ * 布局
+ * ------------------------------------------------------------------------- */
+
+.page {
+  min-height: 100vh;
+  padding-bottom: 40rpx;
+}
+
+/* 内容区左右留白（demo 是 18px → 36rpx） */
+.pad {
+  padding: 0 36rpx;
+}
+
+/* 状态栏占位（自定义导航栏时用） */
+.status-bar {
+  height: env(safe-area-inset-top);
+  min-height: 20rpx;
+}
+
+/* --------------------------------------------------------------------------
+ * 导航栏
+ *   demo 的导航栏是「滚动后折叠」的大标题，小程序用 sticky 模拟
+ * ------------------------------------------------------------------------- */
+
+.navbar {
+  height: 104rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 36rpx;
+  background: #FAF7F4;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navbar-back {
+  width: 64rpx;
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44rpx;
+  color: #1C1613;
+  flex: 0 0 64rpx;
+}
+
+.navbar-title {
+  flex: 1;
+  font-size: 33rpx;
+  font-weight: 650;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.navbar-action {
+  width: 64rpx;
+  flex: 0 0 64rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* --------------------------------------------------------------------------
+ * 卡片
+ *   demo：白底 + 16px 圆角 + 暖调阴影（浮起来的感觉）
+ * ------------------------------------------------------------------------- */
+
+.card {
+  background: #FFFFFF;
+  border-radius: 32rpx;
+  padding: 32rpx;
+  margin: 0 36rpx 24rpx;
+  box-shadow: 0 2rpx 4rpx rgba(74, 52, 32, 0.04), 0 8rpx 24rpx rgba(74, 52, 32, 0.06);
+}
+
+.card-title {
+  font-size: 30rpx;
+  font-weight: 680;
+  margin-bottom: 16rpx;
+  color: #1C1613;
+}
+
+/* --------------------------------------------------------------------------
+ * 按钮
+ *   demo：药丸形、主色渐变、按下去会缩
+ *
+ * ⚠️ 为什么要覆盖 demo 的 .btn
+ *   demo 的 .btn 用的是 background:inherit / border-radius:inherit ——
+ *   它的外观靠【外层元素】或【内联 style】给（比如 <div class="btn-wrap">）。
+ *   浏览器里没问题，搬进小程序就变成「透明按钮」（因为小程序里没有那层包裹）。
+ *   所以这里给 .btn 一个【默认外观】= 品牌橙渐变，
+ *   需要别的样式时用 .btn-ghost / .btn-plain / .btn-danger 覆盖。
+ * ------------------------------------------------------------------------- */
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14rpx;
+  height: 96rpx;
+  padding: 0 44rpx;
+  border-radius: 48rpx;
+  background: linear-gradient(135deg, #FF8A2B 0%, #FF6B00 45%, #E85A00 100%);
+  color: #FFFFFF;
+  font-size: 31rpx;
+  font-weight: 600;
+  letter-spacing: 0.4rpx;
+  border: none;
+  line-height: 1;
+  box-shadow: 0 8rpx 24rpx rgba(255, 107, 0, 0.36);
+  transition: transform 0.16s;
+}
+
+.btn::after {
+  border: none;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* 主按钮 —— 品牌橙渐变（demo 的 .btn 是这个效果） */
+.btn-primary {
+  background: linear-gradient(135deg, #FF8A2B 0%, #FF6B00 45%, #E85A00 100%);
+  color: #FFFFFF;
+  box-shadow: 0 8rpx 24rpx rgba(255, 107, 0, 0.36);
+}
+
+/* 次按钮 —— 白底描边 */
+.btn-ghost {
+  background: #FFFFFF;
+  color: #FF6B00;
+  border: 2rpx solid #FF6B00;
+}
+
+/* 中性按钮 */
+.btn-plain {
+  background: #F0E9E1;
+  color: #1C1613;
+}
+
+/* 危险按钮 */
+.btn-danger {
+  background: transparent;
+  color: #F0413E;
+  border: 2rpx solid #F0413E;
+}
+
+/* 禁用态 */
+.btn-disabled,
+.btn.disabled {
+  background: #F0E9E1;
+  color: #B3A79A;
+  box-shadow: none;
+}
+
+.btn-sm {
+  height: 64rpx;
+  font-size: 26rpx;
+  border-radius: 32rpx;
+  padding: 0 28rpx;
+}
+
+.btn-lg {
+  height: 100rpx;
+  font-size: 33rpx;
+  font-weight: 680;
+}
+
+/* 块级按钮 */
+.btn.block {
+  display: flex;
+  width: 100%;
+}
+
+/* 柔和按钮（demo 的 .btn.soft）—— 白底浅描边 */
+.btn.soft,
+.btn-soft {
+  background: #FFFFFF;
+  color: #4A423B;
+  box-shadow: none;
+  border: 2rpx solid #F0E8E0;
+}
+
+/* demo 的 .btn.ghost 在小程序里对应 .btn-ghost，这里做个别名 */
+.btn.ghost {
+  background: #FFFFFF;
+  color: #FF6B00;
+  box-shadow: none;
+  border: 2rpx solid #FF6B00;
+}
+
+/* --------------------------------------------------------------------------
+ * 标签
+ * ------------------------------------------------------------------------- */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4rpx 16rpx;
+  border-radius: 16rpx;
+  font-size: 22rpx;
+  line-height: 1.5;
+  font-weight: 550;
+}
+
+.tag-brand { background: #FFF1E4; color: #E85A00; }
+.tag-mint { background: #E3F9F0; color: #0A8A5C; }
+.tag-amber { background: #FFF4DC; color: #A97108; }
+.tag-sky { background: #EAF2FE; color: #2563EB; }
+.tag-violet { background: #F3EBFF; color: #7C3AED; }
+.tag-rose { background: #FFECEC; color: #C9302D; }
+
+/* 兼容旧类名 */
+.tag-green { background: #E3F9F0; color: #0A8A5C; }
+.tag-orange { background: #FFF4DC; color: #A97108; }
+.tag-red { background: #FFECEC; color: #C9302D; }
+.tag-gray { background: #F0E9E1; color: #857A6F; }
+
+/* --------------------------------------------------------------------------
+ * 文本
+ * ------------------------------------------------------------------------- */
+
+.t-muted { color: #857A6F; }
+.t-small { font-size: 24rpx; }
+.t-strong { font-weight: 680; }
+.t-brand { color: #FF6B00; }
+.t-green { color: #0A8A5C; }
+.t-orange { color: #A97108; }
+.t-red { color: #C9302D; }
+.t-ink3 { color: #857A6F; }
+.t-ink4 { color: #B3A79A; }
+
+/* --------------------------------------------------------------------------
+ * 表单
+ * ------------------------------------------------------------------------- */
+
+.field {
+  margin-bottom: 32rpx;
+}
+
+.label {
+  font-size: 26rpx;
+  color: #857A6F;
+  margin-bottom: 12rpx;
+  display: block;
+  font-weight: 500;
+}
+
+.input {
+  width: 100%;
+  height: 88rpx;
+  background: #FFFFFF;
+  border: 2rpx solid #F0E8E0;
+  border-radius: 24rpx;
+  padding: 0 24rpx;
+  font-size: 28rpx;
+  color: #1C1613;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 160rpx;
+  background: #FFFFFF;
+  border: 2rpx solid #F0E8E0;
+  border-radius: 24rpx;
+  padding: 20rpx 24rpx;
+  font-size: 28rpx;
+  line-height: 1.6;
+  color: #1C1613;
+}
+
+.input-placeholder,
+.textarea-placeholder {
+  color: #B3A79A;
+}
+
+/* --------------------------------------------------------------------------
+ * 分隔
+ * ------------------------------------------------------------------------- */
+
+.divider {
+  height: 2rpx;
+  background: #F0E8E0;
+  margin: 24rpx 0;
+}
+
+/* --------------------------------------------------------------------------
+ * 空状态
+ *   demo 的 .empty-hero 是带渐变和光晕的大卡片 —— 这里做兼容版
+ * ------------------------------------------------------------------------- */
+
+.empty {
+  text-align: center;
+  padding: 120rpx 40rpx;
+  color: #857A6F;
+  font-size: 26rpx;
+}
+
+.empty-hero {
+  text-align: center;
+  padding: 60rpx 44rpx 52rpx;
+  background: linear-gradient(160deg, #FFF1E4 0%, #FFFFFF 62%);
+  border-radius: 40rpx;
+  box-shadow: 0 2rpx 4rpx rgba(74, 52, 32, 0.05), 0 8rpx 24rpx rgba(74, 52, 32, 0.06);
+  margin: 12rpx 36rpx 24rpx;
+  position: relative;
+  overflow: hidden;
+}
+
+.empty-ico {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 38rpx;
+  margin: 0 auto 30rpx;
+  background: linear-gradient(145deg, #FF8A2B, #E85A00);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 16rpx 48rpx rgba(255, 107, 0, 0.36);
+}
+
+.empty-ico image {
+  width: 58rpx;
+  height: 58rpx;
+}
+
+.empty-t {
+  font-size: 38rpx;
+  font-weight: 700;
+  color: #1C1613;
+}
+
+.empty-s {
+  font-size: 26rpx;
+  color: #857A6F;
+  line-height: 1.75;
+  margin-top: 16rpx;
+}
+
+/* --------------------------------------------------------------------------
+ * 列表行（demo 的 .row）
+ * ------------------------------------------------------------------------- */
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  padding: 22rpx 32rpx;
+  background: #FFFFFF;
+  border-bottom: 2rpx solid #F0E8E0;
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.row-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.row-title {
+  font-size: 28rpx;
+  font-weight: 650;
+  color: #1C1613;
+  line-height: 1.4;
+}
+
+.row-sub {
+  font-size: 23rpx;
+  color: #857A6F;
+  margin-top: 4rpx;
+  line-height: 1.45;
+}
+
+.row-icon {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 20rpx;
+  background: #FFF1E4;
+  color: #FF6B00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 64rpx;
+}
+
+.row-icon image {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+/* 列表容器 */
+.list {
+  background: #FFFFFF;
+  border-radius: 32rpx;
+  margin: 0 36rpx 24rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 4rpx rgba(74, 52, 32, 0.04), 0 8rpx 24rpx rgba(74, 52, 32, 0.06);
+}
+
+/* 区块标题 */
+.section {
+  margin: 0 36rpx 24rpx;
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 16rpx;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 680;
+  color: #1C1613;
+}
+
+.section-sub {
+  font-size: 23rpx;
+  color: #B3A79A;
+}
+
+/* --------------------------------------------------------------------------
+ * 头像
+ * ------------------------------------------------------------------------- */
+
+.avatar {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #FF8A2B, #E85A00);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  font-weight: 650;
+  flex: 0 0 72rpx;
+  overflow: hidden;
+}
+
+.avatar.sm {
+  width: 56rpx;
+  height: 56rpx;
+  font-size: 24rpx;
+  flex: 0 0 56rpx;
+}
+
+.avatar.xs {
+  width: 40rpx;
+  height: 40rpx;
+  font-size: 20rpx;
+  flex: 0 0 40rpx;
+}
+
+.avatar.lg {
+  width: 120rpx;
+  height: 120rpx;
+  font-size: 44rpx;
+  flex: 0 0 120rpx;
+}
+
+/* --------------------------------------------------------------------------
+ * 进度条
+ * ------------------------------------------------------------------------- */
+
+.progress {
+  height: 12rpx;
+  background: #F0E9E1;
+  border-radius: 6rpx;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #FF8A2B, #FF6B00);
+  border-radius: 6rpx;
+  transition: width 0.3s;
+}
+
+.bar {
+  height: 8rpx;
+  background: #F0E9E1;
+  border-radius: 4rpx;
+  overflow: hidden;
+}
+
+.bar > i,
+.bar > view {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #FF8A2B, #FF6B00);
+  border-radius: 4rpx;
+}
+
+.bar.mint > i,
+.bar.mint > view { background: #0FBE7E; }
+.bar.amber > i,
+.bar.amber > view { background: #F59300; }
+.bar.rose > i,
+.bar.rose > view { background: #F0413E; }
+
+/* --------------------------------------------------------------------------
+ * 分段控件（demo 的 .seg）
+ * ------------------------------------------------------------------------- */
+
+.seg {
+  display: flex;
+  gap: 8rpx;
+  padding: 6rpx;
+  background: #F0E9E1;
+  border-radius: 24rpx;
+}
+
+.seg button,
+.seg-item {
+  flex: 1;
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20rpx;
+  font-size: 26rpx;
+  font-weight: 550;
+  color: #857A6F;
+  transition: all 0.18s;
+}
+
+.seg button.on,
+.seg-item.on {
+  background: #FFFFFF;
+  color: #FF6B00;
+  font-weight: 680;
+  box-shadow: 0 2rpx 6rpx rgba(74, 52, 32, 0.08);
+}
+
+/* --------------------------------------------------------------------------
+ * 底部固定操作条
+ * ------------------------------------------------------------------------- */
+
+.footer-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #FFFFFF;
+  border-top: 2rpx solid #F0E8E0;
+  padding: 20rpx 36rpx calc(20rpx + env(safe-area-inset-bottom));
+  display: flex;
+  gap: 20rpx;
+  z-index: 20;
+}
+
+.footer-bar .btn {
+  flex: 1;
+}
+
+/* --------------------------------------------------------------------------
+ * 半屏抽屉 & 遮罩（demo 的 #sheet / .scrim）
+ * ------------------------------------------------------------------------- */
+
+.mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.48);
+  z-index: 100;
+  display: flex;
+  align-items: flex-end;
+}
+
+.sheet {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 40rpx 40rpx 0 0;
+  padding: 24rpx 32rpx calc(32rpx + env(safe-area-inset-bottom));
+  max-height: 80vh;
+  overflow-y: auto;
+  animation: sheetUp 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes sheetUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.sheet-handle {
+  width: 72rpx;
+  height: 8rpx;
+  border-radius: 4rpx;
+  background: #F0E9E1;
+  margin: 0 auto 20rpx;
+}
+
+.sheet-title {
+  font-size: 32rpx;
+  font-weight: 680;
+  color: #1C1613;
+  margin-bottom: 8rpx;
+}
+
+.sheet-sub {
+  font-size: 24rpx;
+  color: #857A6F;
+  margin-bottom: 24rpx;
+}
+
+/* --------------------------------------------------------------------------
+ * 居中弹窗（demo 的 dialog）
+ * ------------------------------------------------------------------------- */
+
+.dialog-mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.48);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 60rpx;
+}
+
+.dialog {
+  width: 100%;
+  max-width: 620rpx;
+  background: #FFFFFF;
+  border-radius: 32rpx;
+  padding: 36rpx 32rpx 28rpx;
+  box-shadow: 0 32rpx 96rpx rgba(74, 52, 32, 0.16);
+}
+
+.dialog-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #1C1613;
+  margin-bottom: 16rpx;
+  text-align: center;
+}
+
+.dialog-body {
+  font-size: 27rpx;
+  color: #4A423B;
+  line-height: 1.7;
+  margin-bottom: 28rpx;
+}
+
+.dialog-acts {
+  display: flex;
+  gap: 20rpx;
+}
+
+.dialog-acts .btn {
+  flex: 1;
+}
+
+/* --------------------------------------------------------------------------
+ * 图标
+ * ------------------------------------------------------------------------- */
+
+.ico {
+  width: 32rpx;
+  height: 32rpx;
+  flex: 0 0 32rpx;
+}
+
+.ico-sm {
+  width: 26rpx;
+  height: 26rpx;
+  flex: 0 0 26rpx;
+}
+
+.ico-lg {
+  width: 44rpx;
+  height: 44rpx;
+  flex: 0 0 44rpx;
+}
+
+/* --------------------------------------------------------------------------
+ * 提示条（demo 的 .alert / .field-hint）
+ * ------------------------------------------------------------------------- */
+
+.alert {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  margin: 0 36rpx 24rpx;
+  padding: 20rpx 24rpx;
+  border-radius: 24rpx;
+  font-size: 26rpx;
+  line-height: 1.5;
+}
+
+.alert-brand {
+  background: #FFF1E4;
+  color: #E85A00;
+}
+
+.alert-strong {
+  background: #FFECEC;
+  color: #C9302D;
+}
+
+.alert-icon {
+  font-size: 30rpx;
+  flex: 0 0 auto;
+}
+
+.field-hint {
+  font-size: 23rpx;
+  color: #B3A79A;
+  line-height: 1.6;
+  margin-top: 12rpx;
+}

@@ -1,0 +1,15 @@
+{
+  "name": "kuile-tools",
+  "version": "1.0.0",
+  "description": "亏了小程序 —— demo 原型转换工具与自动检查工具",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "verify": "node verify.js",
+    "build": "node build-wxss.js && node build-icons.js && node build-app-wxss.js",
+    "check": "node check-frontend.js && node check-loops.js && node check-styles.js",
+    "test": "node simulate-home.js"
+  },
+  "license": "ISC",
+  "dependencies": {}
+}

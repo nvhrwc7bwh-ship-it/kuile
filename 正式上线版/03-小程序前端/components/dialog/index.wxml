@@ -1,0 +1,20 @@
+<!-- 居中弹窗 -->
+<view class="dlg-mask" wx:if="{{visible}}" bindtap="onMaskTap">
+  <view class="dlg" catchtap="noop">
+    <text class="dlg-title" wx:if="{{title}}">{{title}}</text>
+
+    <!-- 富文本正文 -->
+    <rich-text nodes="{{richContent}}" wx:if="{{richContent}}"></rich-text>
+
+    <!-- 纯文本正文 -->
+    <text class="dlg-body" wx:elif="{{content}}">{{content}}</text>
+
+    <view class="dlg-acts">
+      <button class="btn btn-plain dlg-btn"
+              wx:if="{{showCancel}}"
+              bindtap="onCancel">{{cancelText}}</button>
+      <button class="btn {{danger ? 'btn-danger' : 'btn-primary'}} dlg-btn"
+              bindtap="onConfirm">{{confirmText}}</button>
+    </view>
+  </view>
+</view>

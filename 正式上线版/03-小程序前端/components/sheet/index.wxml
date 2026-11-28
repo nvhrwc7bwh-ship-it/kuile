@@ -1,0 +1,16 @@
+<!-- 底部半屏抽屉 -->
+<view class="sheet-mask" wx:if="{{visible}}" bindtap="onMaskTap">
+  <view class="sheet-body" catchtap="noop">
+    <view class="sheet-handle"></view>
+
+    <view class="sheet-head" wx:if="{{title}}">
+      <text class="sheet-title">{{title}}</text>
+      <text class="sheet-sub" wx:if="{{sub}}">{{sub}}</text>
+      <view class="sheet-close" bindtap="onCloseTap">
+        <text class="sheet-close-x">✕</text>
+      </view>
+    </view>
+
+    <slot></slot>
+  </view>
+</view>

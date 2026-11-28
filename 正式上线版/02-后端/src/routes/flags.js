@@ -193,6 +193,15 @@ router.get('/my', requireAuth, async (req, res, next) => {
         streak: f.streak,
         breaks: f.breaks,
         breakLimit: f.break_limit,
+        /* 筹备期截止时刻 —— 首页的 24 小时倒计时要用它。
+         * ⚠️ 必须给【毫秒时间戳】（小程序里要自己递减，不能只给秒数）。
+         *    prep_end_at 是 DATETIME，转成 Date 再取毫秒。
+         *    已经是数字（后端有些地方直接给时间戳）就原样用。 */
+        prepEndAt: f.prep_end_at ? new Date(f.prep_end_at).getTime() : 0,
+        /* 距离筹备期结束还剩多少秒 —— 兜底用（万一客户端时区/时间戳不对） */
+        prepRemainSec: f.prep_end_at
+          ? Math.max(0, Math.floor((new Date(f.prep_end_at).getTime() - Date.now()) / 1000))
+          : 0,
         watchCount: f.watch_count,
         likeCount: f.like_count,
         witnessCount: Number(f.witness_count) || 0,

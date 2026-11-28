@@ -1,0 +1,6 @@
+/* 图标 */
+
+.k-ico {
+  display: block;
+  flex-shrink: 0;
+}
