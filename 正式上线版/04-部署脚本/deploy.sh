@@ -11,9 +11,12 @@
 #
 # 【怎么用】
 #   在服务器上执行：
-#     cd /var/www/kuile/正式上线版/04-部署脚本
+#     cd /var/www/kuile/kuile/正式上线版/04-部署脚本
 #     chmod +x deploy.sh
 #     ./deploy.sh
+#
+#   （上面那行 cd 的路径，按你服务器上代码的实际位置调整；
+#     脚本本身会自动定位项目目录，不需要你手动改文件里的路径）
 #
 # 【前提】
 #   · 服务器已装好 Node.js 18+、Nginx
@@ -29,11 +32,11 @@ set -e   # 任何一步出错就停下，不继续瞎跑
 # ---------------------------------------------------------------------------
 APP_NAME="kuile-api"
 
-# 【REPO_DIR】代码仓库的根目录 —— git clone 的目标
+# 【REPO_DIR】代码仓库的根目录 —— 里面有 .git
 # 【APP_DIR】项目目录（含 02-后端 / 04-部署脚本 这些子目录）
 #
-#   /var/www/kuile/                 ← REPO_DIR（仓库根）
-#   └── 正式上线版/                  ← APP_DIR
+#   仓库根/                        ← REPO_DIR（有 .git 的那层）
+#   └── 正式上线版/                ← APP_DIR
 #       ├── 02-后端/
 #       ├── 03-小程序前端/
 #       ├── 04-部署脚本/
@@ -42,10 +45,25 @@ APP_NAME="kuile-api"
 # 【为什么要分两个变量】
 #   git clone 出来的是「整个仓库」，仓库里才有「正式上线版」这一层。
 #   所以「代码放哪」（仓库根）和「后端在哪」（项目目录）是两个不同的位置。
-REPO_DIR="/var/www/kuile"
-APP_DIR="$REPO_DIR/正式上线版"
+#
+# 【为什么改成自动探测】
+#   以前这里写死了 REPO_DIR="/var/www/kuile"，但实际部署目录可能是
+#   /var/www/kuile/ 也可能是 /var/www/kuile/kuile/（多套了一层）。
+#   写死的话，换个目录就要回来改这个文件 —— 很容易漏改，导致脚本报错。
+#
+#   现在改成「从脚本自己的位置往回推」：
+#     脚本在 <APP_DIR>/04-部署脚本/deploy.sh
+#     所以 APP_DIR = 脚本目录的上一级，REPO_DIR = APP_DIR 的上一级
+#   这样无论代码放在哪，脚本都能自己找到正确的位置。
+#
+#   —— 这套写法叫「相对定位」，backup-db.sh 用的也是同一招。
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+APP_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+REPO_DIR="$(cd "$APP_DIR/.." && pwd)"
 
 REPO_URL=""            # ← 你的代码仓库地址（GitHub / Gitee / Coding）
+                      #   留空 = 沿用服务器上已有的代码目录（不重新 clone）
+                      #   填上 = 自动 clone 或 pull
 BRANCH="main"          # ← 分支名
 NODE_ENV="production"
 
@@ -132,7 +150,8 @@ fi
 cd "$APP_DIR"
 if [ ! -d "02-后端" ]; then
   echo "✗ $APP_DIR 下找不到 02-后端 目录"
-  echo "  请检查脚本顶部的 APP_DIR 配置（当前：$APP_DIR）"
+  echo "  当前自动定位到的项目目录：$APP_DIR"
+  echo "  请确认这个脚本是不是放在 <项目目录>/04-部署脚本/ 下面"
   exit 1
 fi
 

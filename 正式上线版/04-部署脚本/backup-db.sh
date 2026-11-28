@@ -16,8 +16,15 @@
 #   3. 手动跑一次测试：./backup-db.sh
 #   4. 加到定时任务（每天凌晨 3:17 自动跑）：
 #      crontab -e
-#      17 3 * * * /var/www/kuile/正式上线版/04-部署脚本/backup-db.sh >> /var/log/kuile-backup.log 2>&1
+#      17 3 * * * /bin/bash /var/www/kuile/kuile/正式上线版/04-部署脚本/backup-db.sh >> /var/log/kuile-backup.log 2>&1
 #
+#      ⚠️ 路径里的 kuile 可能有两层（/var/www/kuile/kuile/...），
+#         取决于当初 git clone 时在哪一层执行的。
+#         用下面这行命令确认你机器上的真实路径：
+#           ls -d /var/www/kuile/*/正式上线版/04-部署脚本/backup-db.sh
+#
+#      💡 前面加 /bin/bash 是因为定时任务的环境变量比你在终端里少，
+#         不加的话可能找不到 mysqldump 命令。
 # 【⚠️ 没验证过的备份等于没有备份】
 #   跑通本脚本后，务必做一次【恢复演练】：
 #   把备份文件恢复到一台临时机器上，跑几个 SELECT 确认数据完整。
