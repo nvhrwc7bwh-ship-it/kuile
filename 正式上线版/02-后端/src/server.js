@@ -123,7 +123,7 @@ app.use((err, req, res, next) => {
  */
 async function tick() {
   try {
-    const { flagService } = require('./services/flagService');
+    const flagService = require('./services/flagService');
     const r = await flagService.syncLifecycles();
     if (r.prep || r.settled) {
       logger.info('生命周期推进', r);

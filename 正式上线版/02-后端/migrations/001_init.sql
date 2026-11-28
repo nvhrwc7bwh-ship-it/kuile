@@ -80,7 +80,6 @@ CREATE TABLE `flag` (
 
   -- 周期与日期（参数表 1.2）
   `period_days`    TINYINT      NOT NULL COMMENT '周期天数：7 / 14 / 30 / 90',
-  `created_at`     DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '发起时间',
   `prep_end_at`    DATETIME     NOT NULL COMMENT '筹备期截止（发起 + 24h）',
   `start_date`     DATE         NOT NULL COMMENT '生效日（第 1 天）',
   `end_date`       DATE         NOT NULL COMMENT '结束日（生效日 + 周期 - 1）',
